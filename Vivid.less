@@ -1,0 +1,195 @@
+// TaskPaper stylesheet by Gustaf Ekeberg
+// 
+// Custom tags
+// 	@p = Prio
+// 	@p(1) = Prio 1
+// 	@p(2) = Prio 2
+// 	@p(3) = Prio 3
+
+// UI Scale
+@base-font-size: 16;
+@user-font-size: $USER_FONT_SIZE;
+@ui-scale: @user-font-size / @base-font-size;
+
+// Fonts
+@font-sans: PT Sans;
+@font-serif: PT Serif;
+
+// Colors
+// @accent-color: darken(skyblue, 5%);
+@accent-color: #009FF4;
+// @accent-color: white;
+@background-color: white;
+// @background-color: #333;
+@text-color: contrast(@background-color, rgb(26%, 26%, 26%), rgb(87%, 87%, 87%));
+@tint-color: contrast(@background-color, mix(@accent-color, @background-color, 50%), mix(@accent-color, @background-color, 20%));
+
+// Editor colors
+@caret-color: @accent-color;
+@selection-color: mix(@background-color, @accent-color, 85%);
+@project-color: mix(@background-color, @text-color, 5%);
+@note-color: @text-color;
+@item-color: @text-color;
+@link-color: contrast(@background-color, multiply(@background-color, @accent-color), overlay(@background-color, @accent-color));
+
+// Misc.
+@searchbar-secondary-text-color: @selection-color;
+@invisibles-color: mix(@text-color, @selection-color, 10%);
+
+// Tags
+// @tag-color: mix(@background-color, @text-color , 75%);
+@faded-accent-color: mix(@background-color, @accent-color , 65%);
+@tag-color: contrast(@background-color, multiply(@background-color, @faded-accent-color), screen(@background-color, @faded-accent-color ));
+@tag-done-color: mix(@background-color, @text-color, 75%);
+
+// Custom tag colors
+@prio-color: #5AD30E;
+@prio-1-color: #E84A52;
+@prio-2-color: #ECAD39;
+@prio-3-color: #0098E9;
+
+// Custom tag color calculations
+@prio-tag-mix-color: mix(@text-color, @background-color, 25%);
+@prio-tag-mix-percent: 50%;
+@prio-item-mix-percent: 100%;
+@prio-mix-percent: 100%;
+
+@item-prio-color: mix(@prio-color, @background-color, @prio-mix-percent);
+@prio-mix-color: mix(@background-color, @prio-color , @prio-tag-mix-percent);
+
+@item-prio-color: contrast(@background-color, mix(@background-color, @prio-color , @prio-item-mix-percent), mix(@prio-color ,@background-color , @prio-item-mix-percent));;
+@item-prio-1-color: contrast(@background-color, mix(@background-color, @prio-1-color, @prio-item-mix-percent), mix(@prio-1-color, @background-color, @prio-item-mix-percent));
+@item-prio-2-color: contrast(@background-color, mix(@background-color, @prio-2-color, @prio-item-mix-percent), mix(@prio-2-color, @background-color, @prio-item-mix-percent));
+@item-prio-3-color: contrast(@background-color, mix(@background-color, @prio-3-color, @prio-item-mix-percent), mix(@prio-3-color, @background-color, @prio-item-mix-percent));
+
+@tag-prio-color: mix(@background-color, @item-prio-color, @prio-tag-mix-percent);
+@tag-prio-1-color: mix(@background-color, @item-prio-1-color, @prio-tag-mix-percent);
+@tag-prio-2-color: mix(@background-color, @item-prio-2-color, @prio-tag-mix-percent);
+@tag-prio-3-color: mix(@background-color, @item-prio-3-color, @prio-tag-mix-percent);
+
+@handle-size: 7 * @ui-scale;
+@handle-color: @tint-color;
+@handle-secondary-color: @tint-color;
+
+// Rules
+window {
+	appearance: NSAppearanceNameVibrantLight;
+}
+sidebar {
+	appearance: NSAppearanceNameVibrantLight;
+}
+searchbar {
+	appearance: NSAppearanceNameVibrantLight;
+	color: white;
+	secondary-text-color: @searchbar-secondary-text-color;
+	error-text-color: red;
+	placeholder-color: orange;
+	background-color: mix(@background-color, black, 35%);
+}
+editor {
+	item-wrap-to-column: 78;
+	font-family: @font-serif;
+	guide-line-width: 1;
+	caret-color: @caret-color;
+	caret-width: 2;
+	bottom-padding-percent: 50%;
+	typewriter-scroll-percent: 50%;
+}
+item[data-type=project] {
+	color: @project-color;
+	font-family: @font-sans;
+}
+item[depth=1][data-type=project] {
+	font-size: @user-font-size * 1.33;
+	paragraph-spacing-before: 15;
+	paragraph-spacing-after: 5;
+}
+item[depth=2][data-type=project] {
+	font-size: @user-font-size * 1.1;
+	text-underline: NSUnderlineStyleSingle;
+	font-weight: 7;
+	paragraph-spacing-before: 7;
+	paragraph-spacing-after: 3;
+}
+item[depth=3][data-type=project] {
+	font-style: italic;
+	font-weight: 9;
+	paragraph-spacing-before: 10;
+	paragraph-spacing-after: 0;
+}
+item[data-type=note] {
+	font-family: @font-serif;
+	color: @note-color;
+	paragraph-spacing-after: 10;
+}
+item[data-type=task] {
+	color: @note-color;
+	font-weight: bold;
+	text-underline: NSUnderlineStyleNone;
+}
+item[collapsed][data-type=task] {
+	font-weight: bold;
+	text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
+}
+item[leaf][data-type=task] {
+	font-weight: normal;
+	text-underline: NSUnderlineStyleNone;
+}
+run[link] {
+	color: @link-color;
+	text-underline: NSUnderlineStyleSingle;
+}
+run[link^=button] {
+	color: @text-color;
+	text-decoration: none;
+}
+run[link^=filter] {
+	color: @text-color;
+}
+run[tag] {
+	color: @tag-color;
+	font-style: italic;
+	text-underline: NSUnderlineStyleSingle;
+}
+item[data-p] {
+	color: @item-prio-color;
+	> run[tag=data-p] {
+		color: @tag-prio-color;
+	}
+}
+item[data-p="1"] {
+	color: @item-prio-1-color;
+	> run[tag=data-p] {
+		color: @tag-prio-1-color;
+		// font-weight: bold;
+	}
+	> run[content] {
+		// font-weight: bold;	
+	}
+}
+item[data-p="2"] {
+	color: @item-prio-2-color;
+	> run[tag=data-p] {
+		color: @tag-prio-2-color;
+	}
+}
+item[data-p="3"] {
+	color: @item-prio-3-color;
+	> run[tag=data-p] {
+		color: @tag-prio-3-color;
+	}
+}
+item[data-done] {
+	> run[content] {
+		text-strikethrough: NSUnderlineStyleSingle;
+		text-strikethrough-color: @tag-done-color;
+		font-style: italic;
+		color:  @tag-done-color;
+	}
+	> run[tag] {
+		color: @tag-done-color;
+	}
+	> run[link^=button] {
+		color:  @tag-done-color;
+	}
+}
