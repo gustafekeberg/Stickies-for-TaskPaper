@@ -39,7 +39,11 @@
 // Tags
 // @tag-color: mix(@background-color, @text-color , 75%);
 @faded-accent-color: mix(@background-color, @accent-color , 65%);
-@tag-color: contrast(@background-color, multiply(@background-color, @faded-accent-color), screen(@background-color, @faded-accent-color ));
+@tag-color: contrast(
+	@background-color,
+	multiply(@background-color, @faded-accent-color),
+	screen(@background-color, @faded-accent-color )
+	);
 @tag-done-color: mix(@background-color, @text-color, 75%);
 
 // Custom tag colors
@@ -47,6 +51,7 @@
 @prio-1-color: #E84A52;
 @prio-2-color: #ECAD39;
 @prio-3-color: #0098E9;
+@flag-color: @prio-1-color;
 
 // Custom tag color calculations
 @prio-tag-mix-color: mix(@text-color, @background-color, 25%);
@@ -57,15 +62,34 @@
 @item-prio-color: mix(@prio-color, @background-color, @prio-mix-percent);
 @prio-mix-color: mix(@background-color, @prio-color , @prio-tag-mix-percent);
 
-@item-prio-color: contrast(@background-color, mix(@background-color, @prio-color , @prio-item-mix-percent), mix(@prio-color ,@background-color , @prio-item-mix-percent));;
-@item-prio-1-color: contrast(@background-color, mix(@background-color, @prio-1-color, @prio-item-mix-percent), mix(@prio-1-color, @background-color, @prio-item-mix-percent));
-@item-prio-2-color: contrast(@background-color, mix(@background-color, @prio-2-color, @prio-item-mix-percent), mix(@prio-2-color, @background-color, @prio-item-mix-percent));
-@item-prio-3-color: contrast(@background-color, mix(@background-color, @prio-3-color, @prio-item-mix-percent), mix(@prio-3-color, @background-color, @prio-item-mix-percent));
+@item-prio-color: contrast(
+	@background-color,
+	mix(@background-color, @prio-color , @prio-item-mix-percent),
+	mix(@prio-color ,@background-color , @prio-item-mix-percent)
+	);;
+@item-prio-1-color: contrast(
+	@background-color,
+	mix(@background-color, @prio-1-color, @prio-item-mix-percent),
+	mix(@prio-1-color, @background-color, @prio-item-mix-percent)
+	);
+@item-prio-2-color: contrast(
+	@background-color,
+	mix(@background-color, @prio-2-color, @prio-item-mix-percent),
+	mix(@prio-2-color, @background-color, @prio-item-mix-percent)
+	);
+@item-prio-3-color: contrast(
+	@background-color,
+	mix(@background-color, @prio-3-color, @prio-item-mix-percent),
+	mix(@prio-3-color, @background-color, @prio-item-mix-percent)
+	);
 
 @tag-prio-color: mix(@background-color, @item-prio-color, @prio-tag-mix-percent);
 @tag-prio-1-color: mix(@background-color, @item-prio-1-color, @prio-tag-mix-percent);
 @tag-prio-2-color: mix(@background-color, @item-prio-2-color, @prio-tag-mix-percent);
 @tag-prio-3-color: mix(@background-color, @item-prio-3-color, @prio-tag-mix-percent);
+
+@item-flag-color: @item-prio-1-color;
+@tag-flag-color: @tag-prio-1-color;
 
 @handle-size: 7 * @ui-scale;
 @handle-color: @tint-color;
@@ -107,7 +131,7 @@ item[depth=1][data-type=project] {
 item[depth=2][data-type=project] {
 	font-size: @user-font-size * 1.1;
 	text-underline: NSUnderlineStyleSingle;
-	font-weight: 7;
+	font-weight: 8;
 	paragraph-spacing-before: 7;
 	paragraph-spacing-after: 3;
 }
@@ -177,6 +201,12 @@ item[data-p="3"] {
 	color: @item-prio-3-color;
 	> run[tag=data-p] {
 		color: @tag-prio-3-color;
+	}
+}
+item[data-flag] {
+	color: @item-flag-color;
+	> run[tag=data-flag] {
+		color: @tag-flag-color;
 	}
 }
 item[data-done] {
