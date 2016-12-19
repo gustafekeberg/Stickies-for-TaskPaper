@@ -1,6 +1,7 @@
 // TaskPaper stylesheet by Gustaf Ekeberg
 // 
 // Custom tags
+// 	@f, @flag = Flag
 // 	@p = Prio
 // 	@p(1) = Prio 1
 // 	@p(2) = Prio 2
@@ -141,21 +142,29 @@ item[depth=3][data-type=project] {
 	paragraph-spacing-before: 10;
 	paragraph-spacing-after: 0;
 }
+item[data-type=task], item[data-type=note] {
+	color: @note-color;
+	font-weight: bold;
+	text-underline: NSUnderlineStyleNone;
+}
 item[data-type=note] {
 	font-family: @font-serif;
 	color: @note-color;
 	paragraph-spacing-after: 10;
 }
-item[data-type=task] {
-	color: @note-color;
-	font-weight: bold;
-	text-underline: NSUnderlineStyleNone;
-}
 item[collapsed][data-type=task] > run[content] {
 	font-weight: bold;
 	text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
 }
+item[collapsed][data-type=note] > run[content] {
+	font-weight: bold;
+	text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
+}
 item[leaf][data-type=task] {
+	font-weight: normal;
+	text-underline: NSUnderlineStyleNone;
+}
+item[leaf][data-type=note] {
 	font-weight: normal;
 	text-underline: NSUnderlineStyleNone;
 }
@@ -203,10 +212,13 @@ item[data-p="3"] {
 		color: @tag-prio-3-color;
 	}
 }
-item[data-flag] {
-	color: @item-flag-color;
-	> run[tag=data-flag] {
+item[data-flag], item[data-f] {
+	// color: @item-flag-color;
+	> run[tag=data-flag], > run[tag=data-f] {
 		color: @tag-flag-color;
+	}
+	> run[content] {
+		font-weight: bold;
 	}
 }
 item[data-done] {
@@ -214,6 +226,7 @@ item[data-done] {
 		text-strikethrough: NSUnderlineStyleSingle;
 		text-strikethrough-color: @tag-done-color;
 		font-style: italic;
+		font-weight: normal;
 		color:  @tag-done-color;
 	}
 	> run[tag] {
