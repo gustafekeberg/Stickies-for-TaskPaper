@@ -13,8 +13,10 @@
 @ui-scale: @user-font-size / @base-font-size;
 
 // Fonts
-@font-sans: PT Sans;
-@font-serif: PT Serif;
+// @font-sans: PT Sans;
+@font-sans: Source Sans Pro;
+@font-serif: Source Serif Pro;
+@font-special: @font-sans;
 
 // Colors
 // @accent-color: darken(skyblue, 5%);
@@ -26,20 +28,26 @@
 @tint-color: contrast(@background-color, mix(@accent-color, @background-color, 50%), mix(@accent-color, @background-color, 20%));
 
 // Editor colors
-@caret-color: @accent-color;
-@selection-color: mix(@background-color, @accent-color, 85%);
+@caret-color: spin(@accent-color, 180);
+@selection-color: spin(mix(@background-color, @accent-color, 85%), 180);
 @project-color: mix(@background-color, @text-color, 5%);
 @note-color: @text-color;
 @item-color: @text-color;
 @link-color: contrast(@background-color, multiply(@background-color, @accent-color), overlay(@background-color, @accent-color));
 
 // Misc.
-@searchbar-secondary-text-color: @selection-color;
 @invisibles-color: mix(@text-color, @selection-color, 10%);
+
+// Searchbar colors
+
+@searchbar-background-color: mix(@background-color, black, 35%);
+@searchbar-error-color: mix(red, @background-color, 50%);
+@searchbar-secondary-text-color: @selection-color;
+@searchbar-text-color: @background-color;
 
 // Tags
 // @tag-color: mix(@background-color, @text-color , 75%);
-@faded-accent-color: mix(@background-color, @accent-color , 65%);
+@faded-accent-color: mix(@background-color, @accent-color , 55%);
 @tag-color: contrast(
 	@background-color,
 	multiply(@background-color, @faded-accent-color),
@@ -92,7 +100,7 @@
 @item-flag-color: @item-prio-1-color;
 @tag-flag-color: @tag-prio-1-color;
 
-@handle-size: 7 * @ui-scale;
+@handle-size: 8 * @ui-scale;
 @handle-color: @tint-color;
 @handle-secondary-color: @tint-color;
 
@@ -105,15 +113,15 @@ sidebar {
 }
 searchbar {
 	appearance: NSAppearanceNameVibrantLight;
-	color: white;
+	color: @searchbar-text-color;
 	secondary-text-color: @searchbar-secondary-text-color;
-	error-text-color: red;
-	placeholder-color: orange;
-	background-color: mix(@background-color, black, 35%);
+	error-text-color: @searchbar-error-color;
+	placeholder-color: @searchbar-text-color;
+	background-color: @searchbar-background-color;
 }
 editor {
 	editor-wrap-to-column: 78;
-	font-family: @font-serif;
+	font-family: @font-sans;
 	guide-line-width: 1;
 	caret-color: @caret-color;
 	caret-width: 2;
@@ -125,21 +133,24 @@ item[data-type=project] {
 	font-family: @font-sans;
 }
 item[depth=1][data-type=project] {
-	font-size: @user-font-size * 1.33;
+	font-size: @user-font-size * 1.8;
 	paragraph-spacing-before: 15;
 	paragraph-spacing-after: 5;
+	font-family: @font-special;
 }
 item[depth=2][data-type=project] {
 	> run[content] {
-		text-underline: NSUnderlineStyleSingle;
+		font-style: italic;
 	}
-	font-size: @user-font-size * 1.1;
+	font-size: @user-font-size * 1.3;
 	font-weight: 8;
 	paragraph-spacing-before: 7;
 	paragraph-spacing-after: 3;
 }
 item[depth=3][data-type=project] {
-	font-style: italic;
+	> run[content] {
+		text-underline: NSUnderlineStyleSingle;
+	}
 	font-weight: 9;
 	paragraph-spacing-before: 10;
 	paragraph-spacing-after: 0;
@@ -150,7 +161,7 @@ item[data-type=task], item[data-type=note] {
 	text-underline: NSUnderlineStyleNone;
 }
 item[data-type=note] {
-	font-family: @font-serif;
+	font-family: @font-sans;
 	color: @note-color;
 	paragraph-spacing-after: 10;
 }
@@ -176,7 +187,7 @@ run[link] {
 }
 run[link^=button] {
 	color: @text-color;
-	text-decoration: none;
+	text-underline: NSUnderlineStyleNone;
 }
 run[link^=filter] {
 	color: @text-color;
