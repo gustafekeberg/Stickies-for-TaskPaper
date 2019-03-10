@@ -6,6 +6,10 @@
 // 	@p(1) = Prio 1
 // 	@p(2) = Prio 2
 // 	@p(3) = Prio 3
+//	@critical
+//	@high
+//	@low
+//	@today
 
 // UI Scale
 @base-font-size: 16;
@@ -48,11 +52,12 @@
 // Tags
 // @tag-color: mix(@background-color, @text-color , 75%);
 @faded-accent-color: mix(@background-color, @accent-color , 55%);
-@tag-color: contrast(
-	@background-color,
-	multiply(@background-color, @faded-accent-color),
-	screen(@background-color, @faded-accent-color )
-	);
+// @tag-color: contrast(
+// 	@background-color,
+// 	multiply(@background-color, @faded-accent-color),
+// 	screen(@background-color, @faded-accent-color )
+// 	);
+@tag-color: mix(@background-color, @text-color, 60%);
 @tag-done-color: mix(@background-color, @text-color, 75%);
 
 // Custom tag colors
@@ -117,8 +122,11 @@
 @tag-flag-color: @tag-prio-1-color;
 
 @handle-size: 8 * @ui-scale;
-@handle-color: @tint-color;
+@handle-border-width: 8 * @ui-scale;
+@handle-color: mix(@text-color, @background-color, 25%);
 @handle-secondary-color: @tint-color;
+@handle-collapsed-color: mix(@text-color, @background-color, 75%);
+@guide-line-color: mix(@background-color, @text-color, 90%); 
 
 // Rules
 window {
@@ -139,6 +147,7 @@ editor {
 	editor-wrap-to-column: 78;
 	font-family: @font-sans;
 	guide-line-width: 1;
+	guide-line-color: @guide-line-color;
 	caret-color: @caret-color;
 	caret-width: 2;
 	bottom-padding-percent: 50%;
@@ -193,6 +202,31 @@ item[collapsed][data-type=note] > run[content] {
 	font-weight: bold;
 	text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
 }
+
+item {
+  handle-color: @handle-color;
+  // handle-border-width: @handle-border-width; 
+}
+
+item[leaf], item[leaf][mouseOverHandle] {
+  handle-color: none;
+  // handle-border-width: @handle-border-width; 
+  handle-border-color: none;
+}
+
+item[collapsed] {
+  handle-color: @handle-collapsed-color;
+  // handle-border-width: @handle-border-width; 
+  handle-border-color: none;
+  > run[content] {
+  	text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
+  }
+}
+
+item[expanded] {
+  handle-border-color: none;
+}
+
 item[leaf][data-type=task] {
 	// font-weight: normal;
 	// paragraph-spacing-after: 20;
@@ -222,6 +256,7 @@ run[tag] {
 item[data-critical] {
 	// color: @item-critical-color;
 	> run[tag=data-critical] {
+		font-weight: bold;
 		color: @text-color;
 		background-color: @tag-critical-color;
 	}
@@ -229,6 +264,7 @@ item[data-critical] {
 item[data-high] {
 	// color: @item-high-color;
 	> run[tag=data-high] {
+		font-weight: bold;
 		color: @text-color;
 		background-color: @tag-high-color;
 	}
@@ -236,6 +272,7 @@ item[data-high] {
 item[data-low] {
 	// color: @item-low-color;
 	> run[tag=data-low] {
+		font-weight: bold;
 		color: @text-color;
 		background-color: @tag-low-color;
 	}
@@ -243,6 +280,7 @@ item[data-low] {
 item[data-today] {
 	// color: @item-today-color;
 	> run[tag=data-today] {
+		font-weight: bold;
 		color: @text-color;
 		background-color: @tag-today-color;
 	}
