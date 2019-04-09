@@ -19,7 +19,7 @@
 // Fonts
 // @font-sans: PT Sans;
 @font-sans: Source Sans Pro;
-@font-serif: Source Serif Pro;
+@font-serif: Crimson Text;
 @font-special: @font-sans;
 
 // Colors
@@ -190,7 +190,8 @@ item[data-type=task], item[data-type=note] {
 	text-underline: NSUnderlineStyleNone;	
 }
 item[data-type=note] {
-	font-family: @font-sans;
+	font-family: @font-serif;
+	font-style: normal;
 	color: @note-color;
 	// paragraph-spacing-after: 20;
 }
@@ -336,4 +337,11 @@ item[data-done] {
 	> run[link^=button] {
 		color:  @tag-done-color;
 	}
+}
+item[data-url] {
+	> run[tag=data-url] {
+		color: @link-color;
+	}
+}
+run[lead] {
 }
