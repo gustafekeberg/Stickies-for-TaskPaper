@@ -106,6 +106,10 @@
 @item-high-color: @high-color;
 @item-low-color: @low-color;
 @item-today-color: @today-color;
+@item-critical-bg-color: mix(@background-color, @critical-color, 90%);
+@item-high-bg-color: mix(@background-color, @high-color, 90%);
+@item-low-bg-color: mix(@background-color, @low-color, 90%);
+@item-today-bg-color: mix(@background-color, @today-color, 90%);
 
 @tag-prio-color: mix(@background-color, @item-prio-color, @prio-tag-mix-percent);
 @tag-prio-1-color: mix(@background-color, @item-prio-1-color, @prio-tag-mix-percent);
@@ -255,7 +259,7 @@ run[tag] {
 }
 
 item[data-critical] {
-	// color: @item-critical-color;
+	background-color: @item-critical-bg-color;
 	> run[tag=data-critical] {
 		font-weight: bold;
 		color: @text-color;
@@ -263,7 +267,7 @@ item[data-critical] {
 	}
 }
 item[data-high] {
-	// color: @item-high-color;
+	background-color: @item-high-bg-color;
 	> run[tag=data-high] {
 		font-weight: bold;
 		color: @text-color;
@@ -271,7 +275,7 @@ item[data-high] {
 	}
 }
 item[data-low] {
-	// color: @item-low-color;
+	background-color: @item-low-bg-color;
 	> run[tag=data-low] {
 		font-weight: bold;
 		color: @text-color;
