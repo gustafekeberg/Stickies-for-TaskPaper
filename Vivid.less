@@ -18,8 +18,8 @@
 
 // Fonts
 // @font-sans: PT Sans;
-@font-sans: Source Sans Pro;
-@font-serif: Crimson Text;
+@font-sans: 'Source Sans Pro';
+@font-serif: 'Crimson Text';
 @font-special: @font-sans;
 
 // Colors
@@ -286,15 +286,15 @@ item[data-today] {
 		background-color: @tag-today-color;
 	}
 }
-item[data-p] {
+item[data-p], item[data-prio] {
 	color: @item-prio-color;
-	> run[tag=data-p] {
+	> run[tag=data-p], > run[tag=data-prio] {
 		color: @tag-prio-color;
 	}
 }
-item[data-p="1"] {
+item[data-p="1"], item[data-prio="1"] {
 	color: @item-prio-1-color;
-	> run[tag=data-p] {
+	> run[tag=data-p], > run[tag=data-prio] {
 		color: @tag-prio-1-color;
 		// font-weight: bold;
 	}
@@ -302,15 +302,15 @@ item[data-p="1"] {
 		// font-weight: bold;	
 	}
 }
-item[data-p="2"] {
+item[data-p="2"], item[data-prio="2"] {
 	color: @item-prio-2-color;
-	> run[tag=data-p] {
+	> run[tag=data-p], > run[tag=data-prio] {
 		color: @tag-prio-2-color;
 	}
 }
-item[data-p="3"] {
+item[data-p="3"], item[data-prio="3"] {
 	color: @item-prio-3-color;
-	> run[tag=data-p] {
+	> run[tag=data-p], > run[tag=data-prio] {
 		color: @tag-prio-3-color;
 	}
 }
