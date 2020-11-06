@@ -6,20 +6,19 @@
 // 	@p(1) = Prio 1
 // 	@p(2) = Prio 2
 // 	@p(3) = Prio 3
-//	@critical
-//	@high
-//	@low
-//	@today
+// 	@p(4) = Prio 4
+//	@today = Today
 
 // UI Scale
 @base-font-size: 16;
 @user-font-size: $USER_FONT_SIZE;
 @ui-scale: @user-font-size / @base-font-size;
+@default-spacing-height: @ui-scale * 2;
 
 // Fonts
 // @font-sans: PT Sans;
-@font-sans: 'Source Sans Pro';
-@font-serif: 'Crimson Text';
+@font-sans: 'Optima';
+@font-serif: 'Palatino';
 @font-special: @font-sans;
 
 // Colors
@@ -102,14 +101,15 @@
 	mix(@prio-3-color, @background-color, @prio-item-mix-percent)
 	);
 
-@item-critical-color: @critical-color;
-@item-high-color: @high-color;
-@item-low-color: @low-color;
 @item-today-color: @today-color;
-@item-critical-bg-color: mix(@background-color, @critical-color, 90%);
-@item-high-bg-color: mix(@background-color, @high-color, 90%);
-@item-low-bg-color: mix(@background-color, @low-color, 90%);
 @item-today-bg-color: mix(@background-color, @today-color, 90%);
+
+// @item-critical-color: @critical-color;
+// @item-critical-bg-color: mix(@background-color, @critical-color, 90%);
+// @item-high-color: @high-color;
+// @item-high-bg-color: mix(@background-color, @high-color, 90%);
+// @item-low-color: @low-color;
+// @item-low-bg-color: mix(@background-color, @low-color, 90%);
 
 @tag-prio-color: mix(@background-color, @item-prio-color, @prio-tag-mix-percent);
 @tag-prio-1-color: mix(@background-color, @item-prio-1-color, @prio-tag-mix-percent);
@@ -123,6 +123,7 @@
 @tag-today-color: mix(@background-color, @today-color, @tag-mix-percent);
 
 @item-flag-color: @item-prio-1-color;
+@item-flag-bg-color: mix(@background-color, @item-flag-color, 90%);
 @tag-flag-color: @tag-prio-1-color;
 
 @handle-size: 8 * @ui-scale;
@@ -150,10 +151,10 @@ searchbar {
 editor {
 	editor-wrap-to-column: 78;
 	font-family: @font-sans;
-	guide-line-width: 1;
+	guide-line-width: @ui-scale * 2;
 	guide-line-color: @guide-line-color;
 	caret-color: @caret-color;
-	caret-width: 2;
+	caret-width: @ui-scale * 1.5;
 	bottom-padding-percent: 50%;
 	typewriter-scroll-percent: 50%;
 }
@@ -180,28 +181,31 @@ item[depth=3][data-type=project] {
 	> run[content] {
 		text-underline: NSUnderlineStyleSingle;
 	}
-	paragraph-spacing-after: 0;
+	paragraph-spacing-before: @default-spacing-height * 2;
+	paragraph-spacing-after: @default-spacing-height * 2;
 }
 item[depth=4][data-type=project] {
 	> run[content] {
 		font-style: italic;
 	}
-	paragraph-spacing-after: 0;
+	paragraph-spacing-after: @default-spacing-height * 0;
 }
-item[data-type=task] {
-// 	paragraph-spacing-after: 10;
-// 	paragraph-spacing-before: 10;
+item[data-type=task] > run[content], item[data-type=note] > run[content] {
+	// font-weight: bold;
 }
 item[data-type=task], item[data-type=note] {
 	color: @note-color;
-	// font-weight: bold;
-	text-underline: NSUnderlineStyleNone;	
+	font-weight: bold;
+	> run[content] {
+		text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
+	}
 }
 item[data-type=note] {
 	font-family: @font-serif;
 	font-style: normal;
 	color: @note-color;
-	paragraph-spacing-after: 10;
+	paragraph-spacing-before: @default-spacing-height * 2;
+	paragraph-spacing-after: @default-spacing-height * 2;
 }
 item[collapsed][data-type=task] > run[content] {
 	font-weight: bold;
@@ -211,39 +215,30 @@ item[collapsed][data-type=note] > run[content] {
 	font-weight: bold;
 	text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
 }
-
 item {
   handle-color: @handle-color;
-  // handle-border-width: @handle-border-width; 
 }
-
 item[leaf], item[leaf][mouseOverHandle] {
-  handle-color: none;
+  // handle-color: none;
   // handle-border-width: @handle-border-width; 
   handle-border-color: none;
 }
-
 item[collapsed] {
   handle-color: @handle-collapsed-color;
   // handle-border-width: @handle-border-width; 
   handle-border-color: none;
-  > run[content] {
-  	text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
-  }
+  // > run[content] {
+  // 	text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
+  // }
 }
-
 item[expanded] {
   handle-border-color: none;
 }
-
-item[leaf][data-type=task] {
-	// font-weight: normal;
-	// paragraph-spacing-after: 20;
-	text-underline: NSUnderlineStyleNone;
-}
-item[leaf][data-type=note] {
+item[leaf][data-type=note], item[leaf][data-type=task] {
 	font-weight: normal;
-	text-underline: NSUnderlineStyleNone;
+	> run[content] {
+		text-underline: NSUnderlineStyleNone;
+	}
 }
 run[link] {
 	color: @link-color;
@@ -252,6 +247,7 @@ run[link] {
 run[link^=button] {
 	color: @text-color;
 	text-underline: NSUnderlineStyleNone;
+	text-expansion: 0;
 }
 run[link^=filter] {
 	color: @text-color;
@@ -262,32 +258,34 @@ run[tag] {
 	text-underline: NSUnderlineStyleSingle;
 }
 
-item[data-critical] {
-	background-color: @item-critical-bg-color;
-	> run[tag=data-critical] {
-		font-weight: bold;
-		color: @text-color;
-		background-color: @tag-critical-color;
-	}
-}
-item[data-high] {
-	background-color: @item-high-bg-color;
-	> run[tag=data-high] {
-		font-weight: bold;
-		color: @text-color;
-		background-color: @tag-high-color;
-	}
-}
-item[data-low] {
-	background-color: @item-low-bg-color;
-	> run[tag=data-low] {
-		font-weight: bold;
-		color: @text-color;
-		background-color: @tag-low-color;
-	}
-}
+// item[data-critical] {
+// 	background-color: @item-critical-bg-color;
+// 	> run[tag=data-critical] {
+// 		font-weight: bold;
+// 		color: @text-color;
+// 		background-color: @tag-critical-color;
+// 	}
+// }
+// item[data-high] {
+// 	background-color: @item-high-bg-color;
+// 	> run[tag=data-high] {
+// 		font-weight: bold;
+// 		color: @text-color;
+// 		background-color: @tag-high-color;
+// 	}
+// }
+// item[data-low] {
+// 	background-color: @item-low-bg-color;
+// 	> run[tag=data-low] {
+// 		font-weight: bold;
+// 		color: @text-color;
+// 		background-color: @tag-low-color;
+// 	}
+// }
 item[data-today] {
 	// color: @item-today-color;
+	background-color: @item-today-bg-color;
+
 	> run[tag=data-today] {
 		font-weight: bold;
 		color: @text-color;
@@ -324,6 +322,7 @@ item[data-p="3"], item[data-prio="3"] {
 }
 item[data-flag], item[data-f] {
 	// color: @item-flag-color;
+	background-color: @item-flag-bg-color;
 	> run[tag=data-flag], > run[tag=data-f] {
 		color: @tag-flag-color;
 	}
@@ -332,18 +331,17 @@ item[data-flag], item[data-f] {
 	}
 }
 item[data-done] {
+		background-color: @background-color;
+		color:  @tag-done-color;
+		> run[content], > run[tag], > run[link^=button] {
+			font-weight: normal;
+			font-style: italic;
+			text-strikethrough-color: @tag-done-color;
+			background-color: @background-color;
+			color: @tag-done-color;
+		}
 	> run[content] {
 		text-strikethrough: NSUnderlineStyleSingle;
-		text-strikethrough-color: @tag-done-color;
-		font-style: italic;
-		font-weight: normal;
-		color:  @tag-done-color;
-	}
-	> run[tag] {
-		color: @tag-done-color;
-	}
-	> run[link^=button] {
-		color:  @tag-done-color;
 	}
 }
 item[data-url] {
