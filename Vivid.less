@@ -169,10 +169,10 @@ item[depth=1][data-type=project] {
 }
 item[depth=2][data-type=project] {
 	> run[content] {
-		font-style: italic;
+		text-underline: NSUnderlineStyleSingle;
 	}
 	font-size: @user-font-size * 1.3;
-	font-weight: 8;
+	font-weight: bold;
 	// paragraph-spacing-before: 7;
 	// paragraph-spacing-after: 3;
 }
@@ -180,8 +180,12 @@ item[depth=3][data-type=project] {
 	> run[content] {
 		text-underline: NSUnderlineStyleSingle;
 	}
-	font-weight: 9;
-	// paragraph-spacing-before: 10;
+	paragraph-spacing-after: 0;
+}
+item[depth=4][data-type=project] {
+	> run[content] {
+		font-style: italic;
+	}
 	paragraph-spacing-after: 0;
 }
 item[data-type=task] {
@@ -190,7 +194,7 @@ item[data-type=task] {
 }
 item[data-type=task], item[data-type=note] {
 	color: @note-color;
-	font-weight: bold;
+	// font-weight: bold;
 	text-underline: NSUnderlineStyleNone;	
 }
 item[data-type=note] {
