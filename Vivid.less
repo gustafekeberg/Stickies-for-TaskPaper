@@ -10,6 +10,7 @@
 
 // Appearance
 @appearance: $APPEARANCE; // dark or light
+// @appearance: "light"; 
 
 // UI Scale
 @base-font-size: 16;
@@ -28,41 +29,40 @@
 @dark-background-color: #1E1E1E;
 @current-appearence-background-color: "@{appearance}-background-color";
 @background-color: @@current-appearence-background-color;
+@tint-color: $CONTROL_ACCENT_COLOR;
 
-@light-accent-color: #009FF4;
+@light-link-color: #009FF4;
+@dark-link-color: mix(@light-link-color, @background-color, 65%);
+@current-appearence-link-color: "@{appearance}-link-color";
+@link-color: @@current-appearence-link-color;
+
+@light-accent-color: @tint-color;
 @dark-accent-color: mix(@light-accent-color, @background-color, 65%);
 @current-appearence-accent-color: "@{appearance}-accent-color";
 @accent-color: @@current-appearence-accent-color;
 
 @text-color: contrast(@background-color, rgb(26%, 26%, 26%), rgb(87%, 87%, 87%));
-@tint-color: contrast(@background-color, mix(@accent-color, @background-color, 50%), mix(@accent-color, @background-color, 20%));
 
 // Editor colors
 @caret-color: spin(@accent-color, 180);
-@selection-color: mix(@background-color, @text-color, 85%);
+@light-selection-color: mix(@tint-color, @background-color, 15%);
+@dark-selection-color: mix(@tint-color, @background-color, 10%);
+@current-selection-color: "@{appearance}-selection-color";
+@selection-color: @@current-selection-color;
 @project-color: mix(@background-color, @text-color, 5%);
 @note-color: @text-color;
 @item-color: @text-color;
-@link-color: @accent-color;
 
 // Misc.
 @invisibles-color: mix(@text-color, @selection-color, 10%);
 
 // Searchbar colors
-
-@searchbar-background-color: mix(@background-color, black, 15%);
+@searchbar-background-color: contrast(@background-color, darken(@background-color,10%), lighten(@background-color,5%));
 @searchbar-error-color: mix(red, @background-color, 50%);
-@searchbar-secondary-text-color: @selection-color;
-@searchbar-text-color: @background-color;
+@searchbar-secondary-text-color: contrast(@searchbar-background-color, @accent-color, @dark-accent-color);
+@searchbar-text-color: @text-color;
 
 // Tags
-// @tag-color: mix(@background-color, @text-color , 75%);
-// @faded-accent-color: mix(@background-color, @accent-color , 55%);
-// @tag-color: contrast(
-// 	@background-color,
-// 	multiply(@background-color, @faded-accent-color),
-// 	screen(@background-color, @faded-accent-color )
-// 	);
 @tag-color: mix(@background-color, @text-color, 60%);
 @tag-done-color: mix(@background-color, @text-color, 75%);
 
@@ -73,10 +73,6 @@
 @prio-3-color: #0098E9;
 @flag-color: @prio-1-color;
 @today-color: yellow;
-
-// @critical-color: red;
-// @high-color: orange;
-// @low-color: grey;
 
 // Custom tag color calculations
 @prio-tag-mix-color: mix(@text-color, @background-color, 25%);
@@ -111,13 +107,6 @@
 @item-today-color: @today-color;
 @item-today-bg-color: mix(@background-color, @today-color, 90%);
 
-// @item-critical-color: @critical-color;
-// @item-critical-bg-color: mix(@background-color, @critical-color, 90%);
-// @item-high-color: @high-color;
-// @item-high-bg-color: mix(@background-color, @high-color, 90%);
-// @item-low-color: @low-color;
-// @item-low-bg-color: mix(@background-color, @low-color, 90%);
-
 @tag-prio-color: mix(@background-color, @item-prio-color, @prio-tag-mix-percent);
 @tag-prio-1-color: mix(@background-color, @item-prio-1-color, @prio-tag-mix-percent);
 @tag-prio-2-color: mix(@background-color, @item-prio-2-color, @prio-tag-mix-percent);
@@ -125,18 +114,17 @@
 
 @tag-mix-percent: 60%;
 @tag-today-color: mix(@background-color, @today-color, @tag-mix-percent);
-// @tag-critical-color: mix(@background-color, @critical-color, @tag-mix-percent);
-// @tag-high-color: mix(@background-color, @high-color, @tag-mix-percent);
-// @tag-low-color: mix(@background-color, @low-color, @tag-mix-percent);
 
 @item-flag-color: @item-prio-1-color;
 @item-flag-bg-color: mix(@background-color, @item-flag-color, 90%);
 @tag-flag-color: @tag-prio-1-color;
 
-@handle-size: 8 * @ui-scale;
+@handle-size: 10 * @ui-scale;
+@mouse-over-handle-border-width: -4;
 @handle-border-width: 8 * @ui-scale;
 @handle-color: mix(@text-color, @background-color, 25%);
-@handle-secondary-color: @tint-color;
+@handle-border-color: @handle-color;
+@handle-secondary-color: @accent-color;
 @handle-collapsed-color: mix(@text-color, @background-color, 75%);
 @guide-line-color: mix(@background-color, @text-color, 90%); 
 
@@ -173,10 +161,10 @@ item[data-type=project] {
 }
 item[depth=1][data-type=project] {
 	font-size: 1.8 * @user-font-size;
-	// paragraph-spacing-before: 35 * @ui-scale;
-	// paragraph-spacing-after: 5 * @ui-scale;
+	paragraph-spacing-before: 5 * @ui-scale;
+	paragraph-spacing-after: 5 * @ui-scale;
 	font-family: @font-special;
-	line-height-multiple: 1.5 * @ui-scale;
+	// line-height-multiple: 2 * @ui-scale;
 }
 item[depth=2][data-type=project] {
 	> run[content] {
@@ -196,7 +184,6 @@ item[depth=4][data-type=project] {
 	> run[content] {
 		font-style: italic;
 	}
-	paragraph-spacing-after: 0 * @default-spacing-height;
 }
 item[data-type=task] > run[content],
 item[data-type=note] > run[content] {
@@ -206,7 +193,6 @@ item[data-type=task], item[data-type=note] {
 	color: @note-color;
 	font-weight: bold;
 	> run[content] {
-		// text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
 	}
 }
 item[data-type=note] {
@@ -231,7 +217,13 @@ item[leaf],
 item[leaf][mouseOverHandle] {
 	handle-border-color: none;
 }
-item[mouseOverHandle][leaf] {
+item[mouseOverHandle] {
+	// handle-border-width: @mouse-over-handle-border-width;
+	handle-color: @handle-secondary-color;
+	handle-border-color: @handle-secondary-color;
+}
+item, item[collapsed], item[expanded], item[filtered], item[leaf] {
+  // handle-border-width: @mouse-over-handle-border-width;
 }
 item[collapsed] {
 	handle-color: @handle-collapsed-color;
@@ -243,6 +235,10 @@ item[collapsed] {
 }
 item[expanded] {
   handle-border-color: none;
+}
+item[filtered] {
+  handle-color: @handle-secondary-color;
+  // handle-border-width: @mouse-over-handle-border-width;
 }
 item[leaf][data-type=note],
 item[leaf][data-type=task] {
@@ -268,31 +264,6 @@ run[tag] {
 	font-style: italic;
 	text-underline: NSUnderlineStyleSingle;
 }
-
-// item[data-critical] {
-// 	background-color: @item-critical-bg-color;
-// 	> run[tag=data-critical] {
-// 		font-weight: bold;
-// 		color: @text-color;
-// 		background-color: @tag-critical-color;
-// 	}
-// }
-// item[data-high] {
-// 	background-color: @item-high-bg-color;
-// 	> run[tag=data-high] {
-// 		font-weight: bold;
-// 		color: @text-color;
-// 		background-color: @tag-high-color;
-// 	}
-// }
-// item[data-low] {
-// 	background-color: @item-low-bg-color;
-// 	> run[tag=data-low] {
-// 		font-weight: bold;
-// 		color: @text-color;
-// 		background-color: @tag-low-color;
-// 	}
-// }
 item[data-today] {
 	// color: @item-today-color;
 	background-color: @item-today-bg-color;
@@ -309,8 +280,11 @@ item[data-priority] {
 	color: @item-prio-color;
 	> run[tag=data-p],
 	> run[tag=data-prio],
-	> run[tag=data-priority] {
+	> run[tag=data-priority]{
 		color: @tag-prio-color;
+	}
+	> run[link^=button] {
+		color: @item-prio-color;
 	}
 }
 item[data-p="1"],
@@ -321,10 +295,9 @@ item[data-priority="1"] {
 	> run[tag=data-prio],
 	> run[tag=data-priority] {
 		color: @tag-prio-1-color;
-		// font-weight: bold;
 	}
-	> run[content] {
-		// font-weight: bold;	
+	> run[link^=button] {
+		color: @item-prio-1-color;
 	}
 }
 item[data-p="2"],
@@ -336,6 +309,9 @@ item[data-priority="3"] {
 	> run[tag=data-priority] {
 		color: @tag-prio-2-color;
 	}
+	> run[link^=button] {
+		color: @item-prio-2-color;
+	}
 }
 item[data-p="3"],
 item[data-prio="3"],
@@ -346,6 +322,10 @@ item[data-priority="3"] {
 	> run[tag=data-priority] {
 		color: @tag-prio-3-color;
 	}
+	> run[link^=button] {
+		color: @item-prio-3-color;
+	}
+
 }
 item[data-flag],
 item[data-f] {
