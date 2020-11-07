@@ -2,11 +2,10 @@
 // 
 // Custom tags
 // 	@f, @flag = Flag
-// 	@p = Prio
-// 	@p(1) = Prio 1
-// 	@p(2) = Prio 2
-// 	@p(3) = Prio 3
-// 	@p(4) = Prio 4
+// 	@p, @prio, @priority = Prio
+// 	@p(1), @prio(1), @priority(1) = Prio 1
+// 	@p(2), @prio(2), @priority(2) = Prio 2
+// 	@p(3), @prio(3), @priority(3) = Prio 3
 //	@today = Today
 
 // UI Scale
@@ -65,11 +64,11 @@
 @prio-2-color: #ECAD39;
 @prio-3-color: #0098E9;
 @flag-color: @prio-1-color;
-
-@critical-color: red;
-@high-color: orange;
-@low-color: grey;
 @today-color: yellow;
+
+// @critical-color: red;
+// @high-color: orange;
+// @low-color: grey;
 
 // Custom tag color calculations
 @prio-tag-mix-color: mix(@text-color, @background-color, 25%);
@@ -117,10 +116,10 @@
 @tag-prio-3-color: mix(@background-color, @item-prio-3-color, @prio-tag-mix-percent);
 
 @tag-mix-percent: 60%;
-@tag-critical-color: mix(@background-color, @critical-color, @tag-mix-percent);
-@tag-high-color: mix(@background-color, @high-color, @tag-mix-percent);
-@tag-low-color: mix(@background-color, @low-color, @tag-mix-percent);
 @tag-today-color: mix(@background-color, @today-color, @tag-mix-percent);
+// @tag-critical-color: mix(@background-color, @critical-color, @tag-mix-percent);
+// @tag-high-color: mix(@background-color, @high-color, @tag-mix-percent);
+// @tag-low-color: mix(@background-color, @low-color, @tag-mix-percent);
 
 @item-flag-color: @item-prio-1-color;
 @item-flag-bg-color: mix(@background-color, @item-flag-color, 90%);
@@ -133,12 +132,14 @@
 @handle-collapsed-color: mix(@text-color, @background-color, 75%);
 @guide-line-color: mix(@background-color, @text-color, 90%); 
 
+@window-appearence-light
+
 // Rules
 window {
-	appearance: NSAppearanceNameVibrantLight;
+	appearance: NSAppearanceNameVibrant;
 }
 sidebar {
-	appearance: NSAppearanceNameVibrantLight;
+	appearance: NSAppearanceNameVibrant;
 }
 searchbar {
 	appearance: NSAppearanceNameVibrantLight;
@@ -292,15 +293,15 @@ item[data-today] {
 		background-color: @tag-today-color;
 	}
 }
-item[data-p], item[data-prio] {
+item[data-p], item[data-prio], item[data-priority] {
 	color: @item-prio-color;
-	> run[tag=data-p], > run[tag=data-prio] {
+	> run[tag=data-p], > run[tag=data-prio], > run[tag=data-priority] {
 		color: @tag-prio-color;
 	}
 }
-item[data-p="1"], item[data-prio="1"] {
+item[data-p="1"], item[data-prio="1"], item[data-priority="1"] {
 	color: @item-prio-1-color;
-	> run[tag=data-p], > run[tag=data-prio] {
+	> run[tag=data-p], > run[tag=data-prio], > [tag=data-priority] {
 		color: @tag-prio-1-color;
 		// font-weight: bold;
 	}
@@ -308,15 +309,15 @@ item[data-p="1"], item[data-prio="1"] {
 		// font-weight: bold;	
 	}
 }
-item[data-p="2"], item[data-prio="2"] {
+item[data-p="2"], item[data-prio="2"], item[data-priority="3"] {
 	color: @item-prio-2-color;
-	> run[tag=data-p], > run[tag=data-prio] {
+	> run[tag=data-p], > run[tag=data-prio], > run[tag=data-priority] {
 		color: @tag-prio-2-color;
 	}
 }
-item[data-p="3"], item[data-prio="3"] {
+item[data-p="3"], item[data-prio="3"], item[data-priority="3"] {
 	color: @item-prio-3-color;
-	> run[tag=data-p], > run[tag=data-prio] {
+	> run[tag=data-p], > run[tag=data-prio], > run[tag=data-priority] {
 		color: @tag-prio-3-color;
 	}
 }
