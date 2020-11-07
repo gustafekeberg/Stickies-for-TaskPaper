@@ -24,11 +24,16 @@
 @font-special: @font-sans;
 
 // Colors
-// @accent-color: darken(skyblue, 5%);
-@accent-color: #009FF4;
-// @accent-color: white;
-@background-color: white;
-// @background-color: #333;
+@light-background-color: #FFFFFF;
+@dark-background-color: #1E1E1E;
+@current-appearence-background-color: "@{appearance}-background-color";
+@background-color: @@current-appearence-background-color;
+
+@light-accent-color: #009FF4;
+@dark-accent-color: mix(@light-accent-color, @background-color, 65%);
+@current-appearence-accent-color: "@{appearance}-accent-color";
+@accent-color: @@current-appearence-accent-color;
+
 @text-color: contrast(@background-color, rgb(26%, 26%, 26%), rgb(87%, 87%, 87%));
 @tint-color: contrast(@background-color, mix(@accent-color, @background-color, 50%), mix(@accent-color, @background-color, 20%));
 
@@ -38,7 +43,7 @@
 @project-color: mix(@background-color, @text-color, 5%);
 @note-color: @text-color;
 @item-color: @text-color;
-@link-color: contrast(@background-color, multiply(@background-color, @accent-color), overlay(@background-color, @accent-color));
+@link-color: @accent-color;
 
 // Misc.
 @invisibles-color: mix(@text-color, @selection-color, 10%);
@@ -52,7 +57,7 @@
 
 // Tags
 // @tag-color: mix(@background-color, @text-color , 75%);
-@faded-accent-color: mix(@background-color, @accent-color , 55%);
+// @faded-accent-color: mix(@background-color, @accent-color , 55%);
 // @tag-color: contrast(
 // 	@background-color,
 // 	multiply(@background-color, @faded-accent-color),
@@ -168,9 +173,10 @@ item[data-type=project] {
 }
 item[depth=1][data-type=project] {
 	font-size: 1.8 * @user-font-size;
-	// paragraph-spacing-before: 15;
-	// paragraph-spacing-after: 5;
+	// paragraph-spacing-before: 35 * @ui-scale;
+	// paragraph-spacing-after: 5 * @ui-scale;
 	font-family: @font-special;
+	line-height-multiple: 1.5 * @ui-scale;
 }
 item[depth=2][data-type=project] {
 	> run[content] {
@@ -178,8 +184,6 @@ item[depth=2][data-type=project] {
 	}
 	font-size: 1.3 * @user-font-size;
 	font-weight: bold;
-	// paragraph-spacing-before: 7;
-	// paragraph-spacing-after: 3;
 }
 item[depth=3][data-type=project] {
 	> run[content] {
@@ -194,7 +198,8 @@ item[depth=4][data-type=project] {
 	}
 	paragraph-spacing-after: 0 * @default-spacing-height;
 }
-item[data-type=task] > run[content], item[data-type=note] > run[content] {
+item[data-type=task] > run[content],
+item[data-type=note] > run[content] {
 	// font-weight: bold;
 }
 item[data-type=task], item[data-type=note] {
@@ -222,23 +227,25 @@ item[collapsed][data-type=note] > run[content] {
 item {
 	handle-color: @handle-color;
 }
-item[leaf], item[leaf][mouseOverHandle] {
-	// handle-color: none;
-	// handle-border-width: @handle-border-width; 
+item[leaf],
+item[leaf][mouseOverHandle] {
 	handle-border-color: none;
+}
+item[mouseOverHandle][leaf] {
 }
 item[collapsed] {
 	handle-color: @handle-collapsed-color;
 	// handle-border-width: @handle-border-width; 
 	handle-border-color: none;
 	// > run[content] {
-	// 	text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
+		// text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
 	// }
 }
 item[expanded] {
   handle-border-color: none;
 }
-item[leaf][data-type=note], item[leaf][data-type=task] {
+item[leaf][data-type=note],
+item[leaf][data-type=task] {
 	font-weight: normal;
 	> run[content] {
 		text-underline: NSUnderlineStyleNone;
@@ -296,7 +303,9 @@ item[data-today] {
 		background-color: @tag-today-color;
 	}
 }
-item[data-p], item[data-prio], item[data-priority] {
+item[data-p],
+item[data-prio],
+item[data-priority] {
 	color: @item-prio-color;
 	> run[tag=data-p],
 	> run[tag=data-prio],
@@ -304,7 +313,9 @@ item[data-p], item[data-prio], item[data-priority] {
 		color: @tag-prio-color;
 	}
 }
-item[data-p="1"], item[data-prio="1"], item[data-priority="1"] {
+item[data-p="1"],
+item[data-prio="1"],
+item[data-priority="1"] {
 	color: @item-prio-1-color;
 	> run[tag=data-p],
 	> run[tag=data-prio],
@@ -316,7 +327,9 @@ item[data-p="1"], item[data-prio="1"], item[data-priority="1"] {
 		// font-weight: bold;	
 	}
 }
-item[data-p="2"], item[data-prio="2"], item[data-priority="3"] {
+item[data-p="2"],
+item[data-prio="2"],
+item[data-priority="3"] {
 	color: @item-prio-2-color;
 	> run[tag=data-p],
 	> run[tag=data-prio],
@@ -324,7 +337,9 @@ item[data-p="2"], item[data-prio="2"], item[data-priority="3"] {
 		color: @tag-prio-2-color;
 	}
 }
-item[data-p="3"], item[data-prio="3"], item[data-priority="3"] {
+item[data-p="3"],
+item[data-prio="3"],
+item[data-priority="3"] {
 	color: @item-prio-3-color;
 	> run[tag=data-p],
 	> run[tag=data-prio],
@@ -332,7 +347,8 @@ item[data-p="3"], item[data-prio="3"], item[data-priority="3"] {
 		color: @tag-prio-3-color;
 	}
 }
-item[data-flag], item[data-f] {
+item[data-flag],
+item[data-f] {
 	// color: @item-flag-color;
 	background-color: @item-flag-bg-color;
 	> run[tag=data-flag],
@@ -340,7 +356,12 @@ item[data-flag], item[data-f] {
 		color: @tag-flag-color;
 	}
 	> run[content] {
-		font-weight: bold;
+		// font-weight: bold;
+	}
+}
+item[data-url] {
+	> run[tag=data-url] {
+		color: @link-color;
 	}
 }
 item[data-done] {
@@ -348,6 +369,7 @@ item[data-done] {
 	color:  @tag-done-color;
 	> run[content],
 	> run[tag],
+	> run[tag=data-url],
 	> run[link^=button] {
 		font-weight: normal;
 		font-style: italic;
@@ -358,11 +380,4 @@ item[data-done] {
 	> run[content] {
 		text-strikethrough: NSUnderlineStyleSingle;
 	}
-}
-item[data-url] {
-	> run[tag=data-url] {
-		color: @link-color;
-	}
-}
-run[lead] {
 }
