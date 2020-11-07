@@ -25,11 +25,11 @@
 @font-special: @font-sans;
 
 // Colors
-@light-background-color: #FFFFFF;
-@dark-background-color: #1E1E1E;
+@tint-color: $CONTROL_ACCENT_COLOR;
+@light-background-color: hsl(0, 0%, 100%);
+@dark-background-color: hsl(0, 0%, 12%);
 @current-appearence-background-color: "@{appearance}-background-color";
 @background-color: @@current-appearence-background-color;
-@tint-color: $CONTROL_ACCENT_COLOR;
 
 @light-link-color: #009FF4;
 @dark-link-color: mix(@light-link-color, @background-color, 65%);
@@ -41,17 +41,26 @@
 @current-appearence-accent-color: "@{appearance}-accent-color";
 @accent-color: @@current-appearence-accent-color;
 
-@text-color: contrast(@background-color, rgb(26%, 26%, 26%), rgb(87%, 87%, 87%));
+@text-color: contrast(@background-color, hsl(0, 0, 25%), hsl(0, 0, 85%));
 
 // Editor colors
-@caret-color: spin(@accent-color, 180);
 @light-selection-color: mix(@tint-color, @background-color, 15%);
-@dark-selection-color: mix(@tint-color, @background-color, 10%);
+@dark-selection-color: mix(@tint-color, @background-color, 15%);
 @current-selection-color: "@{appearance}-selection-color";
 @selection-color: @@current-selection-color;
-@project-color: mix(@background-color, @text-color, 5%);
+
+@light-project-color: mix(@background-color, @text-color, 10%);
+@dark-project-color: mix(@background-color, @text-color, 5%);
+@current-appearence-project-color: "@{appearance}-project-color";
+@project-color: @@current-appearence-project-color;
+
 @note-color: @text-color;
 @item-color: @text-color;
+
+@dark-caret-color: lighten(@accent-color, 10%);
+@light-caret-color: darken(@accent-color, 0%);
+@current-caret-color: "@{appearance}-caret-color";
+@caret-color: @@current-caret-color;
 
 // Misc.
 @invisibles-color: mix(@text-color, @selection-color, 10%);
@@ -119,7 +128,7 @@
 @item-flag-bg-color: mix(@background-color, @item-flag-color, 90%);
 @tag-flag-color: @tag-prio-1-color;
 
-@handle-size: 10 * @ui-scale;
+@handle-size: 8 * @ui-scale;
 @mouse-over-handle-border-width: -4;
 @handle-border-width: 8 * @ui-scale;
 @handle-color: mix(@text-color, @background-color, 25%);
@@ -146,6 +155,7 @@ searchbar {
 	background-color: @searchbar-background-color;
 }
 editor {
+	background-color: @background-color;
 	editor-wrap-to-column: 110;
 	font-family: @font-sans;
 	guide-line-width: 2 * @ui-scale;
