@@ -36,6 +36,7 @@
 @link-color: @@current-appearence-link-color;
 
 @light-accent-color: @tint-color;
+@ligther-accent-color: lighten(@light-accent-color, 10%);
 @dark-accent-color: mix(@light-accent-color, @background-color, 65%);
 @current-appearence-accent-color: "@{appearance}-accent-color";
 @accent-color: @@current-appearence-accent-color;
@@ -66,8 +67,12 @@
 
 // Searchbar colors
 @searchbar-background-color: contrast(@background-color, darken(@background-color,10%), lighten(@background-color,5%));
-@searchbar-error-color: mix(red, @background-color, 50%);
-@searchbar-secondary-text-color: contrast(@searchbar-background-color, @accent-color, @dark-accent-color);
+@base-searchbar-error-color: spin(@accent-color, 180);
+@dark-searchbar-error-color: darken(@base-searchbar-error-color, 5%);
+@light-searchbar-error-color: lighten(@base-searchbar-error-color, 5%);
+@searchbar-error-color: contrast(@searchbar-background-color, @dark-searchbar-error-color, @light-searchbar-error-color);
+
+@searchbar-secondary-text-color: contrast(@searchbar-background-color, @ligther-accent-color, @dark-accent-color);
 @searchbar-text-color: @text-color;
 
 // Tags
