@@ -63,7 +63,7 @@
 @caret-color: @@current-caret-color;
 
 // Misc.
-@invisibles-color: mix(@text-color, @selection-color, 10%);
+@invisibles-color: mix(@tint-color, @background-color, 50%);
 
 // Searchbar colors
 @searchbar-background-color: contrast(@background-color, darken(@background-color,10%), lighten(@background-color,5%));
@@ -128,16 +128,20 @@
 @item-flag-bg-color: mix(@background-color, @item-flag-color, 90%);
 @tag-flag-color: @tag-prio-1-color;
 
-@handle-size: 8 * @ui-scale;
-@mouse-over-handle-border-width: -4;
-@handle-border-width: 8 * @ui-scale;
-@handle-color: mix(@text-color, @background-color, 25%);
+@handle-size: 9 * @ui-scale;
+@handle-border-width: 2 * @ui-scale;
+// @handle-color: mix(@text-color, @background-color, 25%);
+@dark-guide-line-color: mix(@background-color, @text-color, 85%); 
+@light-guide-line-color: mix(@background-color, @text-color, 75%); 
+@current-guide-line-color: "@{appearance}-guide-line-color"; 
+@guide-line-color: @@current-guide-line-color; 
+@handle-color: @guide-line-color;
 @handle-border-color: @handle-color;
 @handle-secondary-color: @accent-color;
-@handle-collapsed-color: mix(@text-color, @background-color, 75%);
-@guide-line-color: mix(@background-color, @text-color, 90%); 
+// @handle-collapsed-color: mix(@text-color, @background-color, 75%);
+@handle-collapsed-color: @handle-color;
 
-@window-appearence-light
+// @window-appearence-light
 
 // Rules
 window {
@@ -212,44 +216,49 @@ item[data-type=note] {
 	paragraph-spacing-before: 2 * @default-spacing-height;
 	paragraph-spacing-after: 2 * @default-spacing-height;
 }
-item[collapsed][data-type=task] > run[content] {
-	font-weight: bold;
-	text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
-}
-item[collapsed][data-type=note] > run[content] {
-	font-weight: bold;
-	text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
+item[collapsed] {
+	& [data-type=task] > run[content] {
+		font-weight: bold;
+		text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
+	}
+	& [data-type=note] > run[content] {
+		font-weight: bold;
+		text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
+	}
 }
 item {
-	handle-color: @handle-color;
+	handle-border-color: @handle-color;
+	handle-border-width: @handle-border-width;
 }
 item[leaf],
 item[leaf][mouseOverHandle] {
 	handle-border-color: none;
+	handle-size: @handle-size;
 }
 item[mouseOverHandle] {
-	// handle-border-width: @mouse-over-handle-border-width;
 	handle-color: @handle-secondary-color;
 	handle-border-color: @handle-secondary-color;
 }
-item, item[collapsed], item[expanded], item[filtered], item[leaf] {
-  // handle-border-width: @mouse-over-handle-border-width;
-}
 item[collapsed] {
 	handle-color: @handle-collapsed-color;
-	// handle-border-width: @handle-border-width; 
-	handle-border-color: none;
-	// > run[content] {
-		// text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
-	// }
+	handle-border-color: @handle-collapsed-color;
+	handle-size: @handle-size;
+}
+item[collapsed][mouseOverHandle], item[expanded][mouseOverHandle], item[filtered][mouseOverHandle] {
+	handle-color: @handle-secondary-color;
+	handle-border-color: @handle-secondary-color;
+	handle-size: @handle-size;
 }
 item[expanded] {
-  handle-border-color: none;
+  handle-border-color: @handle-color;
 }
 item[filtered] {
   handle-color: @handle-secondary-color;
-  // handle-border-width: @mouse-over-handle-border-width;
 }
+  item[filtered][mouseOverHandle] {
+  	handle-color: @handle-color;
+  	handle-border-color: @handle-color;
+  }
 item[leaf][data-type=note],
 item[leaf][data-type=task] {
 	font-weight: normal;
