@@ -78,14 +78,18 @@
 @done-tag-color: @tag-color;
 
 // Custom tag colors
+
 @prio-color: #4AC100;
 @prio-1-color: #E84A52;
 @prio-2-color: #D49229;
 @prio-3-color: #0098E9;
-@flag-color: @prio-1-color;
-@today-color: #F8ED00;
+// @flag-color: @prio-1-color;
+// @today-color: #F8ED00;
+
+@flag-color: @tint-color;
 
 // Custom tag color calculations
+
 @dark-tag-prio-mix-percent: 50%;
 @light-tag-prio-mix-percent: 50%;
 @current-tag-prio-mix-percent: "@{appearance}-tag-prio-mix-percent";
@@ -97,29 +101,31 @@
 @prio-item-mix-percent: @@current-item-prio-mix-percent;
 
 @item-prio-color: mix(@prio-color, @background-color, @prio-item-mix-percent);
-
 @item-prio-1-color: mix(@prio-1-color, @background-color, @prio-item-mix-percent);
 @item-prio-2-color: mix(@prio-2-color, @background-color, @prio-item-mix-percent);
 @item-prio-3-color: mix(@prio-3-color, @background-color, @prio-item-mix-percent);
-
-
-@item-today-bg-color: mix(@today-color, @background-color, @flag-background-mix);
 
 @tag-prio-color: mix(@item-prio-color, @background-color, @prio-tag-mix-percent);
 @tag-prio-1-color: mix(@item-prio-1-color, @background-color, @prio-tag-mix-percent);
 @tag-prio-2-color: mix(@item-prio-2-color, @background-color, @prio-tag-mix-percent);
 @tag-prio-3-color: mix(@item-prio-3-color, @background-color, @prio-tag-mix-percent);
 
-@dark-flag-background-mix: 7%;
+// Today and flag color
+
+// @item-today-background-color: mix(@today-color, @background-color, @flag-background-mix);
+
+@dark-flag-background-mix: 15%;
 @light-flag-background-mix: 15%;
 @current-appearence-flag-mix: "@{appearance}-flag-background-mix";
 @flag-background-mix: @@current-appearence-flag-mix;
 
-@tag-today-color: mix(@today-color, @background-color, @flag-background-mix);
+// @tag-today-color: mix(@today-color, @background-color, @flag-background-mix);
 
-@item-flag-color: @item-prio-1-color;
-@item-flag-bg-color: mix(@item-flag-color, @background-color, @flag-background-mix);
-@tag-flag-color: @tag-prio-1-color;
+@item-flag-color: @flag-color;
+@tag-flag-color: @flag-color;
+@item-flag-backgroundg-color: mix(@item-flag-color, @background-color, @flag-background-mix);
+
+// Handle and guide line
 
 @handle-size: 9 * @ui-scale;
 @handle-border-width: 2 * @ui-scale;
@@ -131,7 +137,6 @@
 @handle-color: @guide-line-color;
 @handle-border-color: @handle-color;
 @handle-secondary-color: @accent-color;
-// @handle-collapsed-color: mix(@text-color, @background-color, 75%);
 @handle-collapsed-color: @handle-color;
 
 // @window-appearence-light
@@ -275,13 +280,13 @@ run[tag] {
 	font-style: italic;
 	text-underline: NSUnderlineStyleSingle;
 }
-item[data-today] {
-	background-color: @item-today-bg-color;
+// item[data-today] {
+// 	background-color: @item-today-background-color;
 
-	> run[tag=data-today] {
-		background-color: @tag-today-color;
-	}
-}
+// 	> run[tag=data-today] {
+// 		background-color: @tag-today-color;
+// 	}
+// }
 item[data-p],
 item[data-prio],
 item[data-priority] {
@@ -338,7 +343,7 @@ item[data-priority="3"] {
 item[data-flag],
 item[data-f] {
 	// color: @item-flag-color;
-	background-color: @item-flag-bg-color;
+	background-color: @item-flag-backgroundg-color;
 	> run[tag=data-flag],
 	> run[tag=data-f] {
 		color: @tag-flag-color;
