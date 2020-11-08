@@ -10,7 +10,8 @@
 
 // Appearance
 @appearance: $APPEARANCE; // dark or light
-// @appearance: "light"; 
+// @appearance: "light"; // force light mode
+// @appearance: "dark"; // force dark mode
 
 // UI Scale
 @base-font-size: 16;
@@ -19,10 +20,8 @@
 @default-spacing-height: @ui-scale * 2;
 
 // Fonts
-// @font-sans: PT Sans;
 @font-sans: 'Optima';
 @font-serif: 'Palatino';
-@font-special: @font-sans;
 
 // Colors
 @tint-color: $CONTROL_ACCENT_COLOR;
@@ -177,8 +176,6 @@ item[depth=1][data-type=project] {
 	font-size: 1.8 * @user-font-size;
 	paragraph-spacing-before: 5 * @ui-scale;
 	paragraph-spacing-after: 5 * @ui-scale;
-	font-family: @font-special;
-	// line-height-multiple: 2 * @ui-scale;
 }
 item[depth=2][data-type=project] {
 	> run[content] {
