@@ -170,31 +170,38 @@ editor {
 item[data-type=project] {
 	color: @project-color;
 	font-family: @font-sans;
+	font-weight: bold;
+	> run[content] {
+		text-underline: NSUnderlineStyleSingle;
+	}
 }
 item[depth=1][data-type=project] {
-	font-size: 1.8 * @user-font-size;
-	paragraph-spacing-before: 5 * @ui-scale;
-	paragraph-spacing-after: 5 * @ui-scale;
-}
-item[depth=2][data-type=project] {
+	font-size: 1.4 * @user-font-size;
+	paragraph-spacing-before: 4 * @ui-scale;
+	paragraph-spacing-after: 4 * @ui-scale;
 	> run[content] {
-		text-underline: NSUnderlineStyleSingle;
-	}
-	font-size: 1.3 * @user-font-size;
-	font-weight: bold;
-}
-item[depth=3][data-type=project] {
-	> run[content] {
-		text-underline: NSUnderlineStyleSingle;
-	}
-	paragraph-spacing-before: 2 * @default-spacing-height;
-	paragraph-spacing-after: 2 * @default-spacing-height;
-}
-item[depth=4][data-type=project] {
-	> run[content] {
-		font-style: italic;
+		text-underline: none;
 	}
 }
+// item[depth=2][data-type=project] {
+// 	// > run[content] {
+// 	// 	text-underline: NSUnderlineStyleSingle;
+// 	// }
+// 	// font-size: 1 * @user-font-size;
+// }
+// item[depth=3][data-type=project] {
+// 	// > run[content] {
+// 	// 	text-underline: NSUnderlineStyleSingle;
+// 	// 	// font-style: italic;
+// 	// }
+// 	// paragraph-spacing-before: 2 * @default-spacing-height;
+// 	// paragraph-spacing-after: 2 * @default-spacing-height;
+// }
+// item[depth=4][data-type=project] {
+// 	> run[content] {
+// 		// font-style: italic;
+// 	}
+// }
 item[data-type=task] > run[content],
 item[data-type=note] > run[content] {
 	// font-weight: bold;
@@ -289,7 +296,8 @@ run[tag] {
 // }
 item[data-p],
 item[data-prio],
-item[data-priority] {
+item[data-priority],
+ {
 	color: @item-prio-color;
 	> run[tag=data-p],
 	> run[tag=data-prio],
@@ -302,7 +310,11 @@ item[data-priority] {
 }
 item[data-p="1"],
 item[data-prio="1"],
-item[data-priority="1"] {
+item[data-priority="1"],
+item[data-p="I"],
+item[data-prio="I"],
+item[data-priority="I"],
+ {
 	color: @item-prio-1-color;
 	> run[tag=data-p],
 	> run[tag=data-prio],
@@ -315,7 +327,11 @@ item[data-priority="1"] {
 }
 item[data-p="2"],
 item[data-prio="2"],
-item[data-priority="3"] {
+item[data-priority="3"],
+item[data-p="II"],
+item[data-prio="II"],
+item[data-priority="II"],
+ {
 	color: @item-prio-2-color;
 	> run[tag=data-p],
 	> run[tag=data-prio],
@@ -328,7 +344,10 @@ item[data-priority="3"] {
 }
 item[data-p="3"],
 item[data-prio="3"],
-item[data-priority="3"] {
+item[data-priority="3"],
+item[data-p="III"],
+item[data-prio="III"],
+item[data-priority="III"] {
 	color: @item-prio-3-color;
 	> run[tag=data-p],
 	> run[tag=data-prio],
@@ -341,19 +360,32 @@ item[data-priority="3"] {
 
 }
 item[data-flag],
-item[data-f] {
+item[data-f],
+item[data-important],
+item[data-i],
+item[data-today]
+ {
 	// color: @item-flag-color;
 	background-color: @item-flag-backgroundg-color;
 	> run[tag=data-flag],
-	> run[tag=data-f] {
+	> run[tag=data-f],
+	> run[tag=data-important],
+	> run[tag=data-i],
+	> run[tag=data-today]
+	 {
 		color: @tag-flag-color;
 	}
 	> run[content] {
 		// font-weight: bold;
 	}
 }
-item[data-url] {
-	> run[tag=data-url] {
+item[data-url],
+item[data-www],
+item[data-link] {
+	> run[tag=data-url],
+	> run[tag=data-www],
+	> run[tag=data-link],
+	 {
 		color: @link-color;
 	}
 }
