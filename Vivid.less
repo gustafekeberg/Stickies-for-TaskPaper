@@ -71,60 +71,54 @@
 @searchbar-text-color: @text-color;
 
 // Tags
-@tag-color: mix(@background-color, @text-color, 60%);
-@tag-done-color: mix(@background-color, @text-color, 75%);
+@light-tag-mix-percent: 55%;
+@dark-tag-mix-percent: 35%;
+@current-appearence-tag-mix-percent: "@{appearance}-tag-mix-percent";
+@tag-color: mix(@text-color, @background-color, @@current-appearence-tag-mix-percent);
+@done-tag-color: @tag-color;
 
 // Custom tag colors
-@prio-color: #5AD30E;
+@prio-color: #4AC100;
 @prio-1-color: #E84A52;
-@prio-2-color: #ECAD39;
+@prio-2-color: #D49229;
 @prio-3-color: #0098E9;
 @flag-color: @prio-1-color;
-@today-color: yellow;
+@today-color: #F8ED00;
 
 // Custom tag color calculations
-@prio-tag-mix-color: mix(@text-color, @background-color, 25%);
-@prio-tag-mix-percent: 50%;
-@prio-item-mix-percent: 100%;
-@prio-mix-percent: 100%;
+@dark-tag-prio-mix-percent: 50%;
+@light-tag-prio-mix-percent: 50%;
+@current-tag-prio-mix-percent: "@{appearance}-tag-prio-mix-percent";
+@prio-tag-mix-percent: @@current-tag-prio-mix-percent;
 
-@item-prio-color: mix(@prio-color, @background-color, @prio-mix-percent);
-@prio-mix-color: mix(@background-color, @prio-color , @prio-tag-mix-percent);
+@dark-item-prio-mix-percent: 100%;
+@light-item-prio-mix-percent: 100%;
+@current-item-prio-mix-percent: "@{appearance}-item-prio-mix-percent";
+@prio-item-mix-percent: @@current-item-prio-mix-percent;
 
-@item-prio-color: contrast(
-	@background-color,
-	mix(@background-color, @prio-color , @prio-item-mix-percent),
-	mix(@prio-color ,@background-color , @prio-item-mix-percent)
-	);;
-@item-prio-1-color: contrast(
-	@background-color,
-	mix(@background-color, @prio-1-color, @prio-item-mix-percent),
-	mix(@prio-1-color, @background-color, @prio-item-mix-percent)
-	);
-@item-prio-2-color: contrast(
-	@background-color,
-	mix(@background-color, @prio-2-color, @prio-item-mix-percent),
-	mix(@prio-2-color, @background-color, @prio-item-mix-percent)
-	);
-@item-prio-3-color: contrast(
-	@background-color,
-	mix(@background-color, @prio-3-color, @prio-item-mix-percent),
-	mix(@prio-3-color, @background-color, @prio-item-mix-percent)
-	);
+@item-prio-color: mix(@prio-color, @background-color, @prio-item-mix-percent);
 
-@item-today-color: @today-color;
-@item-today-bg-color: mix(@background-color, @today-color, 90%);
+@item-prio-1-color: mix(@prio-1-color, @background-color, @prio-item-mix-percent);
+@item-prio-2-color: mix(@prio-2-color, @background-color, @prio-item-mix-percent);
+@item-prio-3-color: mix(@prio-3-color, @background-color, @prio-item-mix-percent);
 
-@tag-prio-color: mix(@background-color, @item-prio-color, @prio-tag-mix-percent);
-@tag-prio-1-color: mix(@background-color, @item-prio-1-color, @prio-tag-mix-percent);
-@tag-prio-2-color: mix(@background-color, @item-prio-2-color, @prio-tag-mix-percent);
-@tag-prio-3-color: mix(@background-color, @item-prio-3-color, @prio-tag-mix-percent);
 
-@tag-mix-percent: 60%;
-@tag-today-color: mix(@background-color, @today-color, @tag-mix-percent);
+@item-today-bg-color: mix(@today-color, @background-color, @flag-background-mix);
+
+@tag-prio-color: mix(@item-prio-color, @background-color, @prio-tag-mix-percent);
+@tag-prio-1-color: mix(@item-prio-1-color, @background-color, @prio-tag-mix-percent);
+@tag-prio-2-color: mix(@item-prio-2-color, @background-color, @prio-tag-mix-percent);
+@tag-prio-3-color: mix(@item-prio-3-color, @background-color, @prio-tag-mix-percent);
+
+@dark-flag-background-mix: 7%;
+@light-flag-background-mix: 15%;
+@current-appearence-flag-mix: "@{appearance}-flag-background-mix";
+@flag-background-mix: @@current-appearence-flag-mix;
+
+@tag-today-color: mix(@today-color, @background-color, @flag-background-mix);
 
 @item-flag-color: @item-prio-1-color;
-@item-flag-bg-color: mix(@background-color, @item-flag-color, 90%);
+@item-flag-bg-color: mix(@item-flag-color, @background-color, @flag-background-mix);
 @tag-flag-color: @tag-prio-1-color;
 
 @handle-size: 9 * @ui-scale;
@@ -282,12 +276,9 @@ run[tag] {
 	text-underline: NSUnderlineStyleSingle;
 }
 item[data-today] {
-	// color: @item-today-color;
 	background-color: @item-today-bg-color;
 
 	> run[tag=data-today] {
-		font-weight: bold;
-		color: @text-color;
 		background-color: @tag-today-color;
 	}
 }
@@ -363,16 +354,16 @@ item[data-url] {
 }
 item[data-done] {
 	background-color: @background-color;
-	color:  @tag-done-color;
+	color:  @done-tag-color;
 	> run[content],
 	> run[tag],
 	> run[tag=data-url],
 	> run[link^=button] {
 		font-weight: normal;
 		font-style: italic;
-		text-strikethrough-color: @tag-done-color;
+		text-strikethrough-color: @done-tag-color;
 		background-color: @background-color;
-		color: @tag-done-color;
+		color: @done-tag-color;
 	}
 	> run[content] {
 		text-strikethrough: NSUnderlineStyleSingle;
