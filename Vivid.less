@@ -139,17 +139,22 @@
 @handle-secondary-color: @accent-color;
 @handle-collapsed-color: @handle-color;
 
-// @window-appearence-light
+// editor/sidebar/searchbar NSAppearanceNameVibrant Light/Dark
+
+@light-ns-appearance-name-vibrant: "NSAppearanceNameVibrantLight";
+@dark-ns-appearance-name-vibrant: "NSAppearanceNameVibrantDark";
+@current-ns-appearance-name-vibrant: "@{appearance}-ns-appearance-name-vibrant";
+@ns-appearance-name-vibrant: @@current-ns-appearance-name-vibrant;
 
 // Rules
 window {
-	// appearance: NSAppearanceNameVibrant;
+	appearance: @ns-appearance-name-vibrant;
 }
 sidebar {
-	// appearance: NSAppearanceNameVibrant;
+	appearance: @ns-appearance-name-vibrant;
 }
 searchbar {
-	// appearance: NSAppearanceNameVibrantLight;
+	appearance: @ns-appearance-name-vibrant;
 	color: @searchbar-text-color;
 	secondary-text-color: @searchbar-secondary-text-color;
 	error-text-color: @searchbar-error-color;
