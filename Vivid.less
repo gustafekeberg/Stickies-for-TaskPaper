@@ -207,11 +207,12 @@ item[data-type=task], item[data-type=note] {
 	}
 }
 item[data-type=note] {
-	font-family: @font-serif;
-	font-style: normal;
+	// font-family: @font-serif;
+	font-style: italic;
 	color: @note-color;
-	paragraph-spacing-before: 2 * @default-spacing-height;
-	paragraph-spacing-after: 2 * @default-spacing-height;
+	paragraph-spacing-before: 3 * @default-spacing-height;
+	paragraph-spacing-after: 6 * @default-spacing-height;
+	line-height-multiple: .65 * @default-spacing-height;
 }
 item[collapsed] {
 	& [data-type=task] > run[content] {
