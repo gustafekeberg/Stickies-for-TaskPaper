@@ -25,6 +25,7 @@
 
 // Colors
 @tint-color: $CONTROL_ACCENT_COLOR;
+@selected-content-color: $SELECTED_CONTENT_BACKGROUND_COLOR;
 @light-background-color: hsl(0, 0%, 100%);
 @dark-background-color: hsl(0, 0%, 12%);
 @current-appearence-background-color: "@{appearance}-background-color";
@@ -44,8 +45,8 @@
 @text-color: contrast(@background-color, hsl(0, 0, 25%), hsl(0, 0, 85%));
 
 // Editor colors
-@light-selection-color: mix(@tint-color, @background-color, 15%);
-@dark-selection-color: mix(@tint-color, @background-color, 15%);
+@light-selection-color: mix(@selected-content-color, @background-color, 15%);
+@dark-selection-color: mix(@selected-content-color, @background-color, 25%);
 @current-selection-color: "@{appearance}-selection-color";
 @selection-color: @@current-selection-color;
 
@@ -119,8 +120,8 @@
 
 // @item-today-background-color: mix(@today-color, @background-color, @flag-background-mix);
 
-@dark-flag-background-mix: 15%;
-@light-flag-background-mix: 15%;
+@dark-flag-background-mix: 10%;
+@light-flag-background-mix: 7.5%;
 @current-appearence-flag-mix: "@{appearance}-flag-background-mix";
 @flag-background-mix: @@current-appearence-flag-mix;
 
@@ -135,10 +136,11 @@
 @handle-size: 9 * @ui-scale;
 @handle-border-width: 2 * @ui-scale;
 // @handle-color: mix(@text-color, @background-color, 25%);
-@dark-guide-line-color: mix(@background-color, @text-color, 85%); 
-@light-guide-line-color: mix(@background-color, @text-color, 80%); 
-@current-guide-line-color: "@{appearance}-guide-line-color"; 
-@guide-line-color: @@current-guide-line-color; 
+// @dark-guide-line-color: mix(@background-color, @text-color, 85%); 
+// @light-guide-line-color: mix(@background-color, @text-color, 80%); 
+// @current-guide-line-color: "@{appearance}-guide-line-color"; 
+// @guide-line-color: @@current-guide-line-color; 
+@guide-line-color: @done-tag-color; 
 @handle-color: @guide-line-color;
 @handle-border-color: @handle-color;
 @handle-secondary-color: @accent-color;
@@ -170,7 +172,7 @@ editor {
 	background-color: @background-color;
 	editor-wrap-to-column: 110;
 	font-family: @font-sans;
-	guide-line-width: 2 * @ui-scale;
+	guide-line-width: 1.75 * @ui-scale;
 	guide-line-color: @guide-line-color;
 	caret-color: @caret-color;
 	caret-width: 1.5 * @ui-scale;
