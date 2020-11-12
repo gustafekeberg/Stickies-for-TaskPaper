@@ -93,6 +93,7 @@
 // @today-color: #F8ED00;
 
 @flag-color: @tint-color;
+@ongoing-color: spin(@tint-color, 180);
 
 // Custom tag color calculations
 
@@ -116,20 +117,21 @@
 @tag-prio-2-color: mix(@item-prio-2-color, @background-color, @prio-tag-mix-percent);
 @tag-prio-3-color: mix(@item-prio-3-color, @background-color, @prio-tag-mix-percent);
 
-// Today and flag color
-
-// @item-today-background-color: mix(@today-color, @background-color, @flag-background-mix);
+// Today, ongoing and flag color
 
 @dark-flag-background-mix: 10%;
 @light-flag-background-mix: 7.5%;
 @current-appearence-flag-mix: "@{appearance}-flag-background-mix";
 @flag-background-mix: @@current-appearence-flag-mix;
+@ongoing-background-mix: @@current-appearence-flag-mix;
 
-// @tag-today-color: mix(@today-color, @background-color, @flag-background-mix);
+@item-ongoing-color: @ongoing-color;
+@tag-ongoing-color: @ongoing-color;
+@item-ongoing-background-color: mix(@item-ongoing-color, @background-color, @ongoing-background-mix);
 
 @item-flag-color: @flag-color;
 @tag-flag-color: @flag-color;
-@item-flag-backgroundg-color: mix(@item-flag-color, @background-color, @flag-background-mix);
+@item-flag-background-color: mix(@item-flag-color, @background-color, @flag-background-mix);
 
 // Handle and guide line
 
@@ -189,31 +191,20 @@ item[data-type=project] {
 }
 item[depth=1][data-type=project] {
 	font-size: 1.4 * @user-font-size;
-	paragraph-spacing-before: 4 * @ui-scale;
-	paragraph-spacing-after: 4 * @ui-scale;
+	// paragraph-spacing-before: 8 * @ui-scale;
+	// paragraph-spacing-after: 8 * @ui-scale;
+	line-height-multiple: 2 * @ui-scale;
 	> run[content] {
 		text-underline: none;
 	}
 }
-// item[depth=2][data-type=project] {
-// 	// > run[content] {
-// 	// 	text-underline: NSUnderlineStyleSingle;
-// 	// }
-// 	// font-size: 1 * @user-font-size;
-// }
-// item[depth=3][data-type=project] {
-// 	// > run[content] {
-// 	// 	text-underline: NSUnderlineStyleSingle;
-// 	// 	// font-style: italic;
-// 	// }
-// 	// paragraph-spacing-before: 2 * @default-spacing-height;
-// 	// paragraph-spacing-after: 2 * @default-spacing-height;
-// }
-// item[depth=4][data-type=project] {
-// 	> run[content] {
-// 		// font-style: italic;
-// 	}
-// }
+item[depth=2][data-type=project],
+item[depth=3][data-type=project],
+item[depth=4][data-type=project],
+item[depth=5][data-type=project] {
+	line-height-multiple: 2 * @ui-scale;
+	font-size: 1.2 * @user-font-size;
+}
 item[data-type=task] > run[content],
 item[data-type=note] > run[content] {
 	// font-weight: bold;
@@ -225,12 +216,9 @@ item[data-type=task], item[data-type=note] {
 	}
 }
 item[data-type=note] {
-	// font-family: @font-serif;
 	font-style: italic;
 	color: @note-color;
-	paragraph-spacing-before: 3 * @default-spacing-height;
-	paragraph-spacing-after: 6 * @default-spacing-height;
-	line-height-multiple: .65 * @default-spacing-height;
+	line-height-multiple: .5 * @default-spacing-height;
 }
 item[collapsed] {
 	& [data-type=task] > run[content] {
@@ -289,7 +277,7 @@ run[link] {
 run[link^=button] {
 	color: @text-color;
 	text-underline: NSUnderlineStyleNone;
-	text-expansion: 0;
+	text-expansion: .5 * @ui-scale;
 }
 run[link^=filter] {
 	color: @text-color;
@@ -298,14 +286,13 @@ run[tag] {
 	color: @tag-color;
 	font-style: italic;
 	text-underline: NSUnderlineStyleSingle;
+	&[tagvalue] {
+		color: @text-color;
+	}
 }
-// item[data-today] {
-// 	background-color: @item-today-background-color;
-
-// 	> run[tag=data-today] {
-// 		background-color: @tag-today-color;
-// 	}
-// }
+run[tag][tagvalue] {
+	// color: @text-color;
+}
 item[data-p],
 item[data-prio],
 item[data-priority],
@@ -317,6 +304,9 @@ item[data-priority],
 		color: @tag-prio-color;
 	}
 	> run[link^=button] {
+		color: @item-prio-color;
+	}
+	> run[tagvalue] {
 		color: @item-prio-color;
 	}
 }
@@ -336,6 +326,9 @@ item[data-priority="I"],
 	> run[link^=button] {
 		color: @item-prio-1-color;
 	}
+	> run[tagvalue] {
+		color: @item-prio-1-color;
+	}
 }
 item[data-p="2"],
 item[data-prio="2"],
@@ -351,6 +344,9 @@ item[data-priority="II"],
 		color: @tag-prio-2-color;
 	}
 	> run[link^=button] {
+		color: @item-prio-2-color;
+	}
+	> run[tagvalue] {
 		color: @item-prio-2-color;
 	}
 }
@@ -369,7 +365,15 @@ item[data-priority="III"] {
 	> run[link^=button] {
 		color: @item-prio-3-color;
 	}
-
+	> run[tagvalue] {
+		color: @item-prio-3-color;
+	}
+}
+item[data-ongoing] {
+	background-color: @item-ongoing-background-color;
+	>run[tag=data-ongoing] {
+		color: @tag-ongoing-color;
+	}
 }
 item[data-flag],
 item[data-f],
@@ -377,8 +381,7 @@ item[data-important],
 item[data-i],
 item[data-today]
  {
-	// color: @item-flag-color;
-	background-color: @item-flag-backgroundg-color;
+	background-color: @item-flag-background-color;
 	> run[tag=data-flag],
 	> run[tag=data-f],
 	> run[tag=data-important],
@@ -386,9 +389,6 @@ item[data-today]
 	> run[tag=data-today]
 	 {
 		color: @tag-flag-color;
-	}
-	> run[content] {
-		// font-weight: bold;
 	}
 }
 item[data-url],
@@ -417,4 +417,14 @@ item[data-done] {
 	> run[content] {
 		text-strikethrough: NSUnderlineStyleSingle;
 	}
+}
+item[data----] {
+	text-expansion: 1.5 * @ui-scale;
+  > run[content],
+  > run[tag],
+  > run[link^="button"] {
+    color: @background-color;
+    text-strikethrough: NSUnderlineStyleThick;
+    text-strikethrough-color: @guide-line-color;
+  }
 }
