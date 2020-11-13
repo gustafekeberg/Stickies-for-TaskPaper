@@ -20,8 +20,10 @@
 @default-spacing-height: @ui-scale * 2;
 
 // Fonts
-@font-sans: 'Optima';
+// @font-sans: 'Optima';
+@font-sans: 'San Fransisco';
 @font-serif: 'Palatino';
+@font-monospace: 'Monaco';
 
 // Colors
 @tint-color: $CONTROL_ACCENT_COLOR;
@@ -290,9 +292,6 @@ run[tag] {
 		color: @text-color;
 	}
 }
-run[tag][tagvalue] {
-	// color: @text-color;
-}
 item[data-p],
 item[data-prio],
 item[data-priority],
@@ -370,7 +369,7 @@ item[data-priority="III"] {
 	}
 }
 item[data-ongoing] {
-	background-color: @item-ongoing-background-color;
+	// background-color: @item-ongoing-background-color;
 	>run[tag=data-ongoing] {
 		color: @tag-ongoing-color;
 	}
@@ -391,13 +390,13 @@ item[data-today]
 		color: @tag-flag-color;
 	}
 }
-item[data-url],
-item[data-www],
-item[data-link] {
-	> run[tag=data-url],
-	> run[tag=data-www],
-	> run[tag=data-link],
-	 {
+
+run[tag=data-file],
+run[tag=data-link],
+run[tag=data-url],
+run[tag=data-www]
+ {
+		&[tagvalue] {
 		color: @link-color;
 	}
 }
@@ -406,7 +405,6 @@ item[data-done] {
 	color:  @done-tag-color;
 	> run[content],
 	> run[tag],
-	> run[tag=data-url],
 	> run[link^=button] {
 		font-weight: normal;
 		font-style: italic;
@@ -418,13 +416,22 @@ item[data-done] {
 		text-strikethrough: NSUnderlineStyleSingle;
 	}
 }
-item[data----] {
-	text-expansion: 1.5 * @ui-scale;
+item[data----]
+ {
   > run[content],
   > run[tag],
   > run[link^="button"] {
     color: @background-color;
-    text-strikethrough: NSUnderlineStyleThick;
+    text-strikethrough: NSUnderlineStyleSingle;
     text-strikethrough-color: @guide-line-color;
+    font-family: @font-monospace;
   }
+}
+item[data----] 
+{
+	> run[content],
+	> run[tag],
+	> run[link^="button"] {
+		text-expansion: .5 * @ui-scale;
+	}
 }
