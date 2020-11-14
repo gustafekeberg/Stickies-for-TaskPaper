@@ -1,3 +1,3 @@
 This is a configuration outline. Use it to store tags that you want to show (or always exclude) in the sidebar for all TaskPaper documents.
-Include Tags: @important @priority() @ongoing @today @due @www() @link() @url()
+Include Tags: @due @important @link() @ongoing @pinned @priority() @today @url() @www()
 Exclude Tags: @search @---
