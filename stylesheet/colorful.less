@@ -96,6 +96,7 @@
 
 @flag-color: @tint-color;
 @ongoing-color: spin(@tint-color, 180);
+@pinned-color: @ongoing-color;
 
 // Custom tag color calculations
 
@@ -129,6 +130,8 @@
 
 @item-ongoing-color: @ongoing-color;
 @tag-ongoing-color: @ongoing-color;
+@item-pinned-color: @pinned-color;
+@tag-pinned-color: @pinned-color;
 @item-ongoing-background-color: mix(@item-ongoing-color, @background-color, @ongoing-background-mix);
 
 @item-flag-color: @flag-color;
@@ -174,12 +177,14 @@ searchbar {
 }
 editor {
 	background-color: @background-color;
-	editor-wrap-to-column: 110;
+	// editor-wrap-to-column: 110;
+    item-wrap-to-column: 80;
 	font-family: @font-sans;
-	guide-line-width: 1.75 * @ui-scale;
+	guide-line-width: 1.5 * @ui-scale;
 	guide-line-color: @guide-line-color;
 	caret-color: @caret-color;
 	caret-width: 1.5 * @ui-scale;
+	// top-padding-percent: 5%; 
 	bottom-padding-percent: 50%;
 	typewriter-scroll-percent: 50%;
 }
@@ -187,15 +192,18 @@ item[data-type=project] {
 	color: @project-color;
 	font-family: @font-sans;
 	font-weight: bold;
+	line-height-multiple: 2 * @ui-scale;
+	font-size: 1.2 * @user-font-size;
 	> run[content] {
-		text-underline: NSUnderlineStyleSingle;
+		text-underline: NSUnderlineStyleDouble;
 	}
 }
 item[depth=1][data-type=project] {
-	font-size: 1.4 * @user-font-size;
-	// paragraph-spacing-before: 8 * @ui-scale;
-	// paragraph-spacing-after: 8 * @ui-scale;
-	line-height-multiple: 2 * @ui-scale;
+	font-size: 1.8 * @user-font-size;
+	// paragraph-spacing-before: 20 * @ui-scale;
+	// paragraph-spacing-after: 0 * @ui-scale;
+	// text-baseline-offset: 10 * @ui-scale;
+	// line-height-multiple: 2 * @ui-scale;
 	> run[content] {
 		text-underline: none;
 	}
@@ -204,8 +212,9 @@ item[depth=2][data-type=project],
 item[depth=3][data-type=project],
 item[depth=4][data-type=project],
 item[depth=5][data-type=project] {
-	line-height-multiple: 2 * @ui-scale;
-	font-size: 1.2 * @user-font-size;
+	// paragraph-spacing-before: 10 * @ui-scale;
+	// paragraph-spacing-after: 0 * @ui-scale;
+	// text-baseline-offset: 5 * @ui-scale;
 }
 item[data-type=task] > run[content],
 item[data-type=note] > run[content] {
@@ -237,11 +246,11 @@ item {
 	handle-border-width: @handle-border-width;
 }
 item[leaf],
-item[leaf][mouseOverHandle] {
+item[leaf][mouseOver] {
 	handle-border-color: none;
 	handle-size: @handle-size;
 }
-item[mouseOverHandle] {
+item[mouseOver] {
 	handle-color: @handle-secondary-color;
 	handle-border-color: @handle-secondary-color;
 }
@@ -250,7 +259,7 @@ item[collapsed] {
 	handle-border-color: @handle-collapsed-color;
 	handle-size: @handle-size;
 }
-item[collapsed][mouseOverHandle], item[expanded][mouseOverHandle], item[filtered][mouseOverHandle] {
+item[collapsed][mouseOver], item[expanded][mouseOver], item[filtered][mouseOver] {
 	handle-color: @handle-secondary-color;
 	handle-border-color: @handle-secondary-color;
 	handle-size: @handle-size;
@@ -261,7 +270,7 @@ item[expanded] {
 item[filtered] {
   handle-color: @handle-secondary-color;
 }
-  item[filtered][mouseOverHandle] {
+item[filtered][mouseOver] {
   	handle-color: @handle-color;
   	handle-border-color: @handle-color;
   }
@@ -290,6 +299,14 @@ run[tag] {
 	text-underline: NSUnderlineStyleSingle;
 	&[tagvalue] {
 		color: @text-color;
+	}
+}
+item[data-pinned]
+{
+	color: @item-pinned-color;
+	>run[tag=data-pinned]
+	{
+		color: @tag-pinned-color;
 	}
 }
 item[data-p],
@@ -368,9 +385,10 @@ item[data-priority="III"] {
 		color: @item-prio-3-color;
 	}
 }
-item[data-ongoing] {
-	// background-color: @item-ongoing-background-color;
-	>run[tag=data-ongoing] {
+item[data-ongoing],
+ {
+	>run[tag=data-ongoing],
+	 {
 		color: @tag-ongoing-color;
 	}
 }
