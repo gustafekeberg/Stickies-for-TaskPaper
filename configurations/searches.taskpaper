@@ -16,6 +16,8 @@ Searches:
 	Not done @search(not @done except @done//*)
 	Done today @search(@done =[d] today)
 	Done yesterday @search(@done =[d] yesterday)
+	Done this week @search(@done >=[d] this Week)
+	Done last week @search(@done >=[d] last Week and @done <[d] this Week)
 	——— @search( )
 	Priority @search(@p or @prio or @priority)
 	Priority I @search(@p = 1 or @p = I or @prio = 1 or @prio = I or @priority = 1 or @priority = I)
