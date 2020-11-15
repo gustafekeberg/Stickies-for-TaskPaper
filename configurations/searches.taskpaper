@@ -6,7 +6,7 @@ Searches:
 	Pinned @search(@pinned except @done *)
 	——— @search( )
 	Today @search(@today or @due <=[d] today or @done = [d] today)
-	+ tomorrow @search(@due <=[d] tomorrow or @done = [d] today)
+	+ tomorrow @search(@due <[d] tomorrow +1d or @done = [d] today)
 	This week @search(@due <[d] next Week except @done)
 	+ next week @search(@due >= [d] this Week and @due < [d] next Week + 1week except @done)
 	This month @search(@due < [d] next Month except @done)
