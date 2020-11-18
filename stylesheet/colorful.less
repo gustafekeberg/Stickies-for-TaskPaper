@@ -36,7 +36,7 @@
 @dark-background-color: hsl(0, 0%, 12%);
 @current-appearence-background-color: "@{appearance}-background-color";
 @background-color: @@current-appearence-background-color;
-@canceled-color: #FF0000;
+@cancelled-color: #FF0000;
 @link-color: #009FF4;
 
 @light-link-color: mix(@link-color, @background-color, 100%);
@@ -109,15 +109,15 @@
 
 // @done-tag-color: @tag-color;
 
-@light-canceled-tag-mix-percent: 45%;
-@dark-canceled-tag-mix-percent: 40%;
-@current-appearence-canceled-tag-mix-percent: "@{appearance}-canceled-tag-mix-percent";
-@canceled-tag-color: mix(@canceled-color, @background-color, @@current-appearence-canceled-tag-mix-percent);
+@light-cancelled-tag-mix-percent: 45%;
+@dark-cancelled-tag-mix-percent: 40%;
+@current-appearence-cancelled-tag-mix-percent: "@{appearance}-cancelled-tag-mix-percent";
+@cancelled-tag-color: mix(@cancelled-color, @background-color, @@current-appearence-cancelled-tag-mix-percent);
 
-// @light-canceled-strike-mix-percent: 45%;
-// @dark-canceled-strike-mix-percent: 40%;
-// @current-appearence-canceled-strike-mix-percent: "@{appearance}-canceled-strike-mix-percent";
-@canceled-strike-color: mix(@canceled-color, @background-color, 100% - @@current-appearence-canceled-tag-mix-percent);
+// @light-cancelled-strike-mix-percent: 45%;
+// @dark-cancelled-strike-mix-percent: 40%;
+// @current-appearence-cancelled-strike-mix-percent: "@{appearance}-cancelled-strike-mix-percent";
+@cancelled-strike-color: mix(@cancelled-color, @background-color, 100% - @@current-appearence-cancelled-tag-mix-percent);
 
 // Custom tag colors
 
@@ -473,7 +473,7 @@ run[tag=data-www]
 	}
 }
 item[data-done],
-item[data-canceled] {
+item[data-cancelled] {
 		text-strikethrough: NSUnderlineStyleThick;
 
 	> run[content],
@@ -499,9 +499,9 @@ item[data-done] {
 	// 	// text-strikethrough-color: @done-strike-color;
 	// }
 }
-item[data-canceled] {
+item[data-cancelled] {
 	background-color: @background-color;
-	text-strikethrough-color: @canceled-strike-color;
+	text-strikethrough-color: @cancelled-strike-color;
 	// color:  @done-tag-color;
 	> run[content],
 	> run[tag],
@@ -509,9 +509,9 @@ item[data-canceled] {
 		font-weight: normal;
 		font-style: italic;
 		// text-strikethrough-color: @done-tag-color;
-		text-strikethrough-color: @canceled-strike-color;
+		text-strikethrough-color: @cancelled-strike-color;
 		background-color: @background-color;
-		color: @canceled-tag-color;
+		color: @cancelled-tag-color;
 	}
 	// > run[content] {
 	// }
