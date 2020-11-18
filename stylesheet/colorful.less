@@ -36,11 +36,13 @@
 @dark-background-color: hsl(0, 0%, 12%);
 @current-appearence-background-color: "@{appearance}-background-color";
 @background-color: @@current-appearence-background-color;
+@canceled-color: #FF0000;
+@link-color: #009FF4;
 
-@light-link-color: #009FF4;
-@dark-link-color: mix(@light-link-color, @background-color, 65%);
+@light-link-color: mix(@link-color, @background-color, 100%);
+@dark-link-color: mix(@link-color, @background-color, 65%);
 @current-appearence-link-color: "@{appearance}-link-color";
-@link-color: @@current-appearence-link-color;
+@current-link-color: @@current-appearence-link-color;
 
 @light-accent-color: @tint-color;
 @ligther-accent-color: lighten(@light-accent-color, 10%);
@@ -90,11 +92,32 @@
 
 // Tags
 
-@light-tag-mix-percent: 25%;
-@dark-tag-mix-percent: 30%;
+@light-tag-mix-percent: 35%;
+@dark-tag-mix-percent: 40%;
 @current-appearence-tag-mix-percent: "@{appearance}-tag-mix-percent";
 @tag-color: mix(@text-color, @background-color, @@current-appearence-tag-mix-percent);
-@done-tag-color: @tag-color;
+
+@light-done-tag-mix-percent: 25%;
+@dark-done-tag-mix-percent: 20%;
+@current-appearence-done-tag-mix-percent: "@{appearance}-done-tag-mix-percent";
+@done-tag-color: mix(@text-color, @background-color, @@current-appearence-done-tag-mix-percent);
+
+// @light-done-strike-mix-percent: 25%;
+// @dark-done-strike-mix-percent: 100% - @dark-done-tag-mix-percent;
+// @current-appearence-done-strike-mix-percent: "@{appearance}-done-strike-mix-percent";
+@done-strike-color: mix(@text-color, @background-color, 100% - @@current-appearence-done-tag-mix-percent);
+
+// @done-tag-color: @tag-color;
+
+@light-canceled-tag-mix-percent: 45%;
+@dark-canceled-tag-mix-percent: 40%;
+@current-appearence-canceled-tag-mix-percent: "@{appearance}-canceled-tag-mix-percent";
+@canceled-tag-color: mix(@canceled-color, @background-color, @@current-appearence-canceled-tag-mix-percent);
+
+// @light-canceled-strike-mix-percent: 45%;
+// @dark-canceled-strike-mix-percent: 40%;
+// @current-appearence-canceled-strike-mix-percent: "@{appearance}-canceled-strike-mix-percent";
+@canceled-strike-color: mix(@canceled-color, @background-color, 100% - @@current-appearence-canceled-tag-mix-percent);
 
 // Custom tag colors
 
@@ -208,7 +231,7 @@ item[data-type=project] {
 	line-height-multiple: 2 * @ui-scale;
 }
 item[depth=1][data-type=project] {
-	font-size: 1.8 * @user-font-size;
+	font-size: 1.6 * @user-font-size;
 	// paragraph-spacing-before: 20 * @ui-scale;
 	// paragraph-spacing-after: 0 * @ui-scale;
 	// text-baseline-offset: 10 * @ui-scale;
@@ -219,7 +242,7 @@ item[depth=1][data-type=project] {
 }
 item[depth=2][data-type=project] {
 	> run[content] {
-		text-underline: NSUnderlineStyleDouble;
+		text-underline: NSUnderlineStyleThick;
 	}
 }
 item[depth=2][data-type=project],
@@ -303,7 +326,7 @@ item[leaf][data-type=task] {
 	}
 }
 run[link] {
-	color: @link-color;
+	color: @current-link-color;
 	text-underline: NSUnderlineStyleSingle;
 }
 run[link^=button] {
@@ -446,24 +469,52 @@ run[tag=data-url],
 run[tag=data-www]
  {
 		&[tagvalue] {
-		color: @link-color;
+		color: @current-link-color;
+	}
+}
+item[data-done],
+item[data-canceled] {
+		text-strikethrough: NSUnderlineStyleThick;
+
+	> run[content],
+	> run[tag],
+	> run[link^=button] {
+		text-strikethrough: NSUnderlineStyleThick;
 	}
 }
 item[data-done] {
 	background-color: @background-color;
 	color:  @done-tag-color;
+	text-strikethrough-color: @done-strike-color;
 	> run[content],
 	> run[tag],
 	> run[link^=button] {
 		font-weight: normal;
 		font-style: italic;
-		text-strikethrough-color: @done-tag-color;
+		text-strikethrough-color: @done-strike-color;
 		background-color: @background-color;
 		color: @done-tag-color;
 	}
-	> run[content] {
-		text-strikethrough: NSUnderlineStyleSingle;
+	// > run[content] {
+	// 	// text-strikethrough-color: @done-strike-color;
+	// }
+}
+item[data-canceled] {
+	background-color: @background-color;
+	text-strikethrough-color: @canceled-strike-color;
+	// color:  @done-tag-color;
+	> run[content],
+	> run[tag],
+	> run[link^=button] {
+		font-weight: normal;
+		font-style: italic;
+		// text-strikethrough-color: @done-tag-color;
+		text-strikethrough-color: @canceled-strike-color;
+		background-color: @background-color;
+		color: @canceled-tag-color;
 	}
+	// > run[content] {
+	// }
 }
 item[data----]
  {
