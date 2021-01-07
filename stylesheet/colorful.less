@@ -219,7 +219,7 @@ editor {
 	guide-line-width: 1.5 * @ui-scale;
 	guide-line-color: @guide-line-color;
 	caret-color: @caret-color;
-	caret-width: 1.5 * @ui-scale;
+	caret-width: 1.75 * @ui-scale;
 	// top-padding-percent: 5%; 
 	bottom-padding-percent: 50%;
 	typewriter-scroll-percent: 50%;
@@ -229,6 +229,7 @@ item[data-type=project] {
 	font-family: @font-sans;
 	font-weight: bold;
 	line-height-multiple: 2 * @ui-scale;
+	font-size: 1.2 * @user-font-size;
 }
 item[depth=1][data-type=project] {
 	font-size: 1.6 * @user-font-size;
@@ -247,7 +248,6 @@ item[depth=2][data-type=project] {
 }
 item[depth=2][data-type=project],
 item[depth=3][data-type=project] {
-	font-size: 1.2 * @user-font-size;
 }
 // item[depth=2][data-type=project],
 item[depth=3][data-type=project],
@@ -332,7 +332,7 @@ run[link] {
 run[link^=button] {
 	color: @text-color;
 	text-underline: NSUnderlineStyleNone;
-	text-expansion: .5 * @ui-scale;
+	// text-expansion: .5 * @ui-scale;
 }
 run[link^=filter] {
 	color: @text-color;
@@ -448,15 +448,52 @@ item[data-ongoing],
 }
 item[data-flag],
 item[data-f],
-item[data-important],
-item[data-i],
-item[data-today]
+// item[data-important],
+// item[data-i],
+// item[data-today]
  {
 	background-color: @item-flag-background-color;
 	> run[tag=data-flag],
 	> run[tag=data-f],
-	> run[tag=data-important],
-	> run[tag=data-i],
+	// > run[tag=data-important],
+	// > run[tag=data-i],
+	// > run[tag=data-today]
+	 {
+		color: @tag-flag-color;
+	}
+}
+// item[data-flag],
+// item[data-f],
+item[data-important],
+item[data-i],
+// item[data-today]
+ {
+ 	color: white;
+	background-color: @item-prio-1-color;
+	// > run[tag=data-flag],
+	// > run[tag=data-f],
+	// > run[tag=data-important],
+	// > run[tag=data-i],
+	// > run[tag=data-today]
+	> run[tag],
+	> run[content],
+	> run[link^=button]
+	 {
+		color: @text-color;
+		color: white;
+	}
+}
+// item[data-flag],
+// item[data-f],
+// item[data-important],
+// item[data-i],
+item[data-today]
+ {
+	// background-color: @item-flag-background-color;
+	// > run[tag=data-flag],
+	// > run[tag=data-f],
+	// > run[tag=data-important],
+	// > run[tag=data-i],
 	> run[tag=data-today]
 	 {
 		color: @tag-flag-color;
