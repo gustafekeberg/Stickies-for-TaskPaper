@@ -26,7 +26,8 @@
 // @font-sans: 'Optima';
 @font-sans: 'San Fransisco';
 @font-serif: 'Palatino';
-@font-monospace: 'Monaco';
+@font-monospace: 'Menlo';
+@font: @font-monospace;
 
 // Colors
 
@@ -215,7 +216,7 @@ editor {
 	background-color: @background-color;
 	// editor-wrap-to-column: 110;
     item-wrap-to-column: 80;
-	font-family: @font-sans;
+	font-family: @font;
 	guide-line-width: 1.5 * @ui-scale;
 	guide-line-color: @guide-line-color;
 	caret-color: @caret-color;
@@ -226,7 +227,7 @@ editor {
 }
 item[data-type=project] {
 	color: @project-color;
-	font-family: @font-sans;
+	font-family: @font;
 	font-weight: bold;
 	line-height-multiple: 2 * @ui-scale;
 	font-size: 1.2 * @user-font-size;
@@ -560,7 +561,7 @@ item[data----]
     color: @background-color;
     text-strikethrough: NSUnderlineStyleSingle;
     text-strikethrough-color: @guide-line-color;
-    font-family: @font-monospace;
+    font-family: @font;
 	text-expansion: .5 * @ui-scale;
   }
 }
