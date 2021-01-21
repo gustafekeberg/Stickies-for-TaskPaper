@@ -2,9 +2,9 @@ This is a configuration outline. Use it to store searches that you want to show 
 Searches:
 	🗓 Today @search(@today or @due <[d] tomorrow or @done = [d] today except @done)
 	⤷ tomorrow @search(@today or @due <[d] tomorrow +1d or @done = [d] today except @done)
-	🗓 This week @search(@due <[d] next Week except @done)
+	🗓 This week @search(@today or @due <[d] next Week except @done)
 	🗓 Next week @search(@due >= [d] next Week and @due < [d] next Week + 1week except @done)
-	🗓 This month @search(@due < [d] next Month except @done)
+	🗓 This month @search(@today or @due < [d] next Month except @done)
 	🗓 Next month @search(@due >= [d] next Month and @due < [d] next Month + 1month except @done)
 	🗓 Has due @search(@due except @done)
 	・・・ @search( )
