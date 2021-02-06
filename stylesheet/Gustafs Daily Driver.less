@@ -8,6 +8,17 @@
 // 	@p(3), @prio(3), @priority(3) = Prio 3
 //	@today = Today
 
+// Editor and Fonts
+
+@editor-wrap-to-column: none; // width in number of characters
+@item-wrap-to-column: none; // width in number of characters
+
+@font: @font-mono;
+
+@font-sans: 'San Fransisco';
+@font-serif: 'Palatino';
+@font-mono: 'Fira Code';
+
 // Appearance
 
 @appearance: $APPEARANCE; // dark or light
@@ -20,14 +31,6 @@
 @user-font-size: $USER_FONT_SIZE;
 @ui-scale: @user-font-size / @base-font-size;
 @default-spacing-height: @ui-scale * 2;
-
-// Fonts
-
-// @font-sans: 'Optima';
-@font-sans: 'San Fransisco';
-@font-serif: 'Palatino';
-@font-monospace: 'Menlo';
-@font: @font-monospace;
 
 // Colors
 
@@ -214,8 +217,8 @@ searchbar {
 }
 editor {
 	background-color: @background-color;
-	// editor-wrap-to-column: 110;
-    item-wrap-to-column: 80;
+	editor-wrap-to-column: @editor-wrap-to-column;
+    item-wrap-to-column: @item-wrap-to-column;
 	font-family: @font;
 	guide-line-width: 1.5 * @ui-scale;
 	guide-line-color: @guide-line-color;
@@ -465,6 +468,22 @@ item[data-f],
 }
 // item[data-flag],
 // item[data-f],
+// item[data-flag],
+// item[data-f],
+// item[data-important],
+// item[data-i],
+item[data-today]
+ {
+	// background-color: @item-flag-background-color;
+	// > run[tag=data-flag],
+	// > run[tag=data-f],
+	// > run[tag=data-important],
+	// > run[tag=data-i],
+	> run[tag=data-today]
+	 {
+		color: @tag-flag-color;
+	}
+}
 item[data-important],
 item[data-i],
 // item[data-today]
@@ -482,22 +501,6 @@ item[data-i],
 	 {
 		color: @text-color;
 		color: white;
-	}
-}
-// item[data-flag],
-// item[data-f],
-// item[data-important],
-// item[data-i],
-item[data-today]
- {
-	// background-color: @item-flag-background-color;
-	// > run[tag=data-flag],
-	// > run[tag=data-f],
-	// > run[tag=data-important],
-	// > run[tag=data-i],
-	> run[tag=data-today]
-	 {
-		color: @tag-flag-color;
 	}
 }
 
