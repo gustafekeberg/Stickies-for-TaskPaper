@@ -1,3 +1,3 @@
 # My Daily Driver TaskPaper style
 
-<!-- ![Screenshot](/../screenshots/Screen%20Shot%202016-12-14%20at%2008.45.43.jpg "Screenshot") -->
+![Screenshot](/../screenshots/Screenshot%202021-02-27%20at%2000.10.32.jpg "Screenshot")
