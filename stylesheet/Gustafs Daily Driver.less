@@ -15,11 +15,11 @@
 @editor-wrap-to-column: none; // width in number of characters
 @item-wrap-to-column: none; // width in number of characters
 
-@font: @font-mono;
+@font: @font-sans;
 
 @font-sans: 'San Fransisco';
 @font-serif: 'Palatino';
-@font-mono: 'Fira Code';
+@font-mono: 'Menlo';
 
 // Appearance
 
@@ -290,6 +290,11 @@ item[collapsed] {
 		font-weight: bold;
 		text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
 	}
+}
+item[focused] {
+	font-size: 1.6 * @user-font-size; 
+	line-height-multiple: 2 * @ui-scale;
+	// text-underline: NSUnderlineStyleThick;
 }
 item {
 	handle-border-color: @handle-color;
