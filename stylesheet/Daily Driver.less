@@ -1,7 +1,16 @@
 // TaskPaper stylesheet by Gustaf Ekeberg
-// 
+
+// Settings
+
+@set-font: 'sans'; 			// sans/serif/mono
+@set-theme: 'yellow'; 		// default/yellow/dark/grey/green/orange/pink/blue
+@set-appearance: 'system';	// system/light/dark
+
+@set-editor-wrap-to-column: 0; 	// width in number of characters / 0 = none
+@set-item-wrap-to-column: 0; 	// width in number of characters / 0 = none
+
 // Custom tags
-//
+
 //		@f, @flag = Flag
 //		@p, @prio, @priority = Prio
 //		@p(1), @prio(1), @priority(1) = Prio 1
@@ -10,54 +19,89 @@
 //		@today = Today
 //		@i, @important = Important
 
-// Editor and Fonts
+// Fonts
 
-@editor-wrap-to-column: none; // width in number of characters
-@item-wrap-to-column: none; // width in number of characters
+@set-font-sans: 'San Fransisco';
+@set-font-serif: 'Palatino';
+@set-font-mono: 'Menlo';
 
-@font: @font-sans;
+@selected-font: "set-font-@{set-font}";
 
-@font-sans: 'San Fransisco';
-@font-serif: 'Palatino';
-@font-mono: 'Menlo';
+// Default theme
 
-// Appearance
+@default-fg-color: hsl(0, 0, 25%);
+@default-bg-color: hsl(0, 0, 100%);
 
-@appearance: $APPEARANCE; 	// dark or light
-// @appearance: "light"; 	// force light mode
-// @appearance: "dark"; 	// force dark mode
+// Yellow
 
-// UI Scale
+@yellow-fg-color: rgb(75, 47, 11);
+@yellow-bg-color: hsl(46, 67%, 92%);
 
-@base-font-size: 16;
-@user-font-size: $USER_FONT_SIZE;
-@ui-scale: @user-font-size / @base-font-size;
-@default-spacing-height: @ui-scale * 2;
+// Grey theme
+
+@grey-fg-color: hsl(0, 0, 25%);
+@grey-bg-color: hsl(0, 0, 85%);
+
+// Green theme
+
+@green: 100;
+@green-fg-color: hsl(@green, 100, 25%);
+@green-bg-color: hsl(@green, 100, 90%);
+
+// Orange theme
+
+@orange: 30;
+@orange-fg-color: hsl(@orange, 100, 25%);
+@orange-bg-color: hsl(@orange, 100, 80%);
+
+// Pink theme
+
+@pink: 320;
+@pink-fg-color: hsl(@pink, 100, 30%);
+@pink-bg-color: hsl(@pink, 100, 95%);
+
+// Blue theme
+
+@blue: 200;
+@blue-fg-color: hsl(@blue, 100, 25%);
+@blue-bg-color: hsl(@blue, 100, 95%);
+
+// Dark theme
+
+@dark-bg-color: hsl(0, 0%, 12%);
+@dark-fg-color: hsl(0, 0, 85%);
+
+// Set theme
+
+@fg-color: "@{set-theme}-fg-color";
+@bg-color: "@{set-theme}-bg-color";
+
+// Custom tag colors
+
+@prio-color: #4AC100;
+@prio-1-color: #E84A52;
+@prio-2-color: #D49229;
+@prio-3-color: #0098E9;
+@cancelled-color: #FF0000;
+@link-color: #009FF4;
+@important-color: #E84A52;
 
 // Colors
 
-@tint-color: $CONTROL_ACCENT_COLOR;
-@selected-content-color: $SELECTED_CONTENT_BACKGROUND_COLOR;
-@light-background-color: hsl(0, 0%, 100%);
-@dark-background-color: hsl(0, 0%, 12%);
+@tint-color: $CONTROL_ACCENT_COLOR; // use color from system
+@selected-content-color: $SELECTED_CONTENT_BACKGROUND_COLOR; // use color from system
+
+// Foreground color
+
+@text-color: contrast(@background-color, @@fg-color, @dark-fg-color);
+@project-fg-color: contrast(@background-color, darken(@@fg-color, 5%), lighten(@dark-fg-color, 20%));
+
+// Background color
+
+@light-background-color: @@bg-color;
+@dark-background-color: @dark-bg-color;
 @current-appearence-background-color: "@{appearance}-background-color";
 @background-color: @@current-appearence-background-color;
-@cancelled-color: #FF0000;
-@link-color: #009FF4;
-
-@light-link-color: mix(@link-color, @background-color, 100%);
-@dark-link-color: mix(@link-color, @background-color, 65%);
-@current-appearence-link-color: "@{appearance}-link-color";
-@current-link-color: @@current-appearence-link-color;
-
-@light-accent-color: @tint-color;
-@ligther-accent-color: lighten(@light-accent-color, 10%);
-@dark-accent-color: mix(@light-accent-color, @background-color, 65%);
-@current-appearence-accent-color: "@{appearance}-accent-color";
-@accent-color: @@current-appearence-accent-color;
-
-@text-color: contrast(@background-color, hsl(0, 0, 25%), hsl(0, 0, 85%));
-@project-fg-color: contrast(@background-color, hsl(0, 0, 0%), hsl(0, 0, 100%));
 
 // Editor colors
 
@@ -65,24 +109,10 @@
 @dark-selection-color: mix(@selected-content-color, @background-color, 25%);
 @current-selection-color: "@{appearance}-selection-color";
 @selection-color: @@current-selection-color;
-
-// @light-project-color: mix(@background-color, @text-color, 10%);
-// @dark-project-color: mix(@background-color, @text-color, 5%);
-@light-project-color: mix(@background-color, @project-fg-color, 0%);
-@dark-project-color: mix(@background-color, @project-fg-color, 10%);
-@current-appearence-project-color: "@{appearance}-project-color";
-@project-color: @@current-appearence-project-color;
-
-@note-color: @text-color;
-@item-color: @text-color;
-
 @dark-caret-color: lighten(@accent-color, 10%);
 @light-caret-color: darken(@accent-color, 0%);
 @current-caret-color: "@{appearance}-caret-color";
 @caret-color: @@current-caret-color;
-
-// Misc.
-
 @invisibles-color: mix(@tint-color, @background-color, 50%);
 
 // Searchbar colors
@@ -93,8 +123,20 @@
 @light-searchbar-error-color: lighten(@base-searchbar-error-color, 5%);
 @searchbar-error-color: contrast(@searchbar-background-color, @dark-searchbar-error-color, @light-searchbar-error-color);
 
-@searchbar-secondary-text-color: contrast(@searchbar-background-color, @ligther-accent-color, @dark-accent-color);
+@searchbar-secondary-text-color: contrast(@searchbar-background-color, @searchbar-accent-color, @dark-accent-color);
 @searchbar-text-color: @text-color;
+
+// Project color
+
+@light-project-color: mix(@background-color, @project-fg-color, 0%);
+@dark-project-color: mix(@background-color, @project-fg-color, 10%);
+@current-appearence-project-color: "@{appearance}-project-color";
+@project-color: @@current-appearence-project-color;
+
+// Note and item color
+
+@note-color: @text-color;
+@item-color: @text-color;
 
 // Tags
 
@@ -113,40 +155,40 @@
 @current-appearence-done-strike-mix-percent: "@{appearance}-done-strike-mix-percent";
 @done-strike-color: mix(@text-color, @background-color, @@current-appearence-done-strike-mix-percent);
 
-// @done-tag-color: @tag-color;
-
 @light-cancelled-tag-mix-percent: 45%;
 @dark-cancelled-tag-mix-percent: 40%;
 @current-appearence-cancelled-tag-mix-percent: "@{appearance}-cancelled-tag-mix-percent";
 @cancelled-tag-color: mix(@cancelled-color, @background-color, @@current-appearence-cancelled-tag-mix-percent);
-
-// @light-cancelled-strike-mix-percent: 45%;
-// @dark-cancelled-strike-mix-percent: 40%;
-// @current-appearence-cancelled-strike-mix-percent: "@{appearance}-cancelled-strike-mix-percent";
 @cancelled-strike-color: mix(@cancelled-color, @background-color, 100% - @@current-appearence-cancelled-tag-mix-percent);
 
-// Custom tag colors
+// Link color
 
-@prio-color: #4AC100;
-@prio-1-color: #E84A52;
-@prio-2-color: #D49229;
-@prio-3-color: #0098E9;
-// @flag-color: @prio-1-color;
-// @today-color: #F8ED00;
+@light-link-color: mix(@link-color, @background-color, 90%);
+@dark-link-color: mix(@link-color, @background-color, 65%);
+@current-appearence-link-color: "@{appearance}-link-color";
+@current-link-color: @@current-appearence-link-color;
+
+// Accent color
+
+@light-accent-color: mix(@tint-color, @background-color, 75%);
+@searchbar-accent-color: lighten(@tint-color, 10%);
+@dark-accent-color: mix(@tint-color, @background-color, 65%);
+@current-appearence-accent-color: "@{appearance}-accent-color";
+@accent-color: @@current-appearence-accent-color;
+
+// Custom tag color calculations
 
 @flag-color: @tint-color;
 @ongoing-color: spin(@tint-color, 180);
 @pinned-color: @ongoing-color;
-
-// Custom tag color calculations
 
 @dark-tag-prio-mix-percent: 50%;
 @light-tag-prio-mix-percent: 50%;
 @current-tag-prio-mix-percent: "@{appearance}-tag-prio-mix-percent";
 @prio-tag-mix-percent: @@current-tag-prio-mix-percent;
 
-@dark-item-prio-mix-percent: 100%;
-@light-item-prio-mix-percent: 100%;
+@dark-item-prio-mix-percent: 90%;
+@light-item-prio-mix-percent: 90%;
 @current-item-prio-mix-percent: "@{appearance}-item-prio-mix-percent";
 @prio-item-mix-percent: @@current-item-prio-mix-percent;
 
@@ -160,7 +202,7 @@
 @tag-prio-2-color: mix(@item-prio-2-color, @background-color, @prio-tag-mix-percent);
 @tag-prio-3-color: mix(@item-prio-3-color, @background-color, @prio-tag-mix-percent);
 
-// Today, ongoing and flag color
+// Today, ongoing, flag and important tag color
 
 @dark-flag-background-mix: 10%;
 @light-flag-background-mix: 7.5%;
@@ -178,18 +220,28 @@
 @tag-flag-color: @flag-color;
 @item-flag-background-color: mix(@item-flag-color, @background-color, @flag-background-mix);
 
+@tag-important-background-color: mix(@important-color, @background-color, 75%);
+@tag-important-color: contrast(@tag-important-background-color, @@fg-color, @@bg-color);
+
+// Scale and sizes
+
+// UI Scale
+
+@base-font-size: 16;
+@user-font-size: $USER_FONT_SIZE;
+@ui-scale: @user-font-size / @base-font-size;
+@default-spacing-height: @ui-scale * 2;
+
 // Handle and guide line
 
 @handle-size: 9 * @ui-scale;
 @handle-border-width: 2 * @ui-scale;
-// @handle-color: mix(@text-color, @background-color, 25%);
 
 @dark-guide-line-color: mix(@text-color, @background-color, 15%); 
 @light-guide-line-color: mix(@text-color, @background-color, 10%); 
 @current-guide-line-color: "@{appearance}-guide-line-color"; 
 @guide-line-color: @@current-guide-line-color; 
 
-// @guide-line-color: @done-tag-color; 
 @handle-color: @guide-line-color;
 @handle-border-color: @handle-color;
 @handle-secondary-color: @accent-color;
@@ -202,13 +254,25 @@
 @current-ns-appearance-name-vibrant: "@{appearance}-ns-appearance-name-vibrant";
 @ns-appearance-name-vibrant: @@current-ns-appearance-name-vibrant;
 
+// Appearance
+
+@system-appearance: $APPEARANCE; // get appearence from system
+@light-appearance: 'light';
+@dark-appearance: 'dark';
+
+@chosen-appearance: "@{set-appearance}-appearance";
+@appearance: @@chosen-appearance;
+
 // Rules
+
 window {
 	appearance: @ns-appearance-name-vibrant;
 }
+
 sidebar {
 	appearance: @ns-appearance-name-vibrant;
 }
+
 searchbar {
 	appearance: @ns-appearance-name-vibrant;
 	color: @searchbar-text-color;
@@ -217,70 +281,65 @@ searchbar {
 	placeholder-color: @searchbar-text-color;
 	background-color: @searchbar-background-color;
 }
+
 editor {
 	background-color: @background-color;
-	editor-wrap-to-column: @editor-wrap-to-column;
-    item-wrap-to-column: @item-wrap-to-column;
-	font-family: @font;
+	editor-wrap-to-column: @set-editor-wrap-to-column;
+    item-wrap-to-column: @set-item-wrap-to-column;
+	font-family: @@selected-font;
 	guide-line-width: 1.5 * @ui-scale;
 	guide-line-color: @guide-line-color;
 	caret-color: @caret-color;
 	caret-width: 1.75 * @ui-scale;
-	// top-padding-percent: 5%; 
 	bottom-padding-percent: 50%;
 	typewriter-scroll-percent: 50%;
 }
+
 item[data-type=project] {
 	color: @project-color;
-	font-family: @font;
+	font-family: @@selected-font;
 	font-weight: bold;
 	line-height-multiple: 2 * @ui-scale;
 	font-size: 1.2 * @user-font-size;
 }
+
 item[depth=1][data-type=project] {
 	font-size: 1.6 * @user-font-size;
-	// paragraph-spacing-before: 20 * @ui-scale;
-	// paragraph-spacing-after: 0 * @ui-scale;
-	// text-baseline-offset: 10 * @ui-scale;
-	// line-height-multiple: 2 * @ui-scale;
-	// > run[content] {
-	// 	text-underline: none;
-	// }
 }
+
 item[depth=2][data-type=project] {
 	> run[content] {
 		text-underline: NSUnderlineStyleThick;
 	}
 }
+
 item[depth=2][data-type=project],
 item[depth=3][data-type=project] {
 }
-// item[depth=2][data-type=project],
+
 item[depth=3][data-type=project],
 item[depth=4][data-type=project],
 item[depth=5][data-type=project] {
-	// paragraph-spacing-before: 10 * @ui-scale;
-	// paragraph-spacing-after: 0 * @ui-scale;
-	// text-baseline-offset: 5 * @ui-scale;
 	> run[content] {
-		// text-underline: none;
 	}
 }
+
 item[data-type=task] > run[content],
 item[data-type=note] > run[content] {
-	// font-weight: bold;
 }
+
 item[data-type=task], item[data-type=note] {
 	color: @note-color;
 	font-weight: bold;
 	> run[content] {
 	}
 }
+
 item[data-type=note] {
 	font-style: italic;
 	color: @note-color;
-	// line-height-multiple: .6 * @default-spacing-height;
 }
+
 item[collapsed] {
 	& [data-type=task] > run[content] {
 		font-weight: bold;
@@ -291,44 +350,53 @@ item[collapsed] {
 		text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
 	}
 }
+
 item[focused] {
 	font-size: 1.6 * @user-font-size; 
 	line-height-multiple: 2 * @ui-scale;
-	// text-underline: NSUnderlineStyleThick;
 }
+
 item {
 	handle-border-color: @handle-color;
 	handle-border-width: @handle-border-width;
 }
+
 item[leaf],
 item[leaf][mouseOver] {
 	handle-border-color: none;
 	handle-size: @handle-size;
 }
+
 item[mouseOver] {
 	handle-color: @handle-secondary-color;
 	handle-border-color: @handle-secondary-color;
 }
+
 item[collapsed] {
 	handle-color: @handle-collapsed-color;
 	handle-border-color: @handle-collapsed-color;
 	handle-size: @handle-size;
 }
+
 item[collapsed][mouseOver], item[expanded][mouseOver], item[filtered][mouseOver] {
 	handle-color: @handle-secondary-color;
 	handle-border-color: @handle-secondary-color;
 	handle-size: @handle-size;
 }
+
 item[expanded] {
   handle-border-color: @handle-color;
 }
+
 item[filtered] {
   handle-color: @handle-secondary-color;
 }
+
 item[filtered][mouseOver] {
   	handle-color: @handle-color;
   	handle-border-color: @handle-color;
   }
+
 item[leaf][data-type=note],
 item[leaf][data-type=task] {
 	font-weight: normal;
@@ -336,18 +404,21 @@ item[leaf][data-type=task] {
 		text-underline: NSUnderlineStyleNone;
 	}
 }
+
 run[link] {
 	color: @current-link-color;
 	text-underline: NSUnderlineStyleSingle;
 }
+
 run[link^=button] {
 	color: @text-color;
 	text-underline: NSUnderlineStyleNone;
-	// text-expansion: .5 * @ui-scale;
 }
+
 run[link^=filter] {
 	color: @text-color;
 }
+
 run[tag] {
 	color: @tag-color;
 	font-style: italic;
@@ -356,6 +427,7 @@ run[tag] {
 		color: @text-color;
 	}
 }
+
 item[data-pinned]
 {
 	color: @item-pinned-color;
@@ -364,6 +436,7 @@ item[data-pinned]
 		color: @tag-pinned-color;
 	}
 }
+
 item[data-p],
 item[data-prio],
 item[data-priority],
@@ -381,6 +454,7 @@ item[data-priority],
 		color: @item-prio-color;
 	}
 }
+
 item[data-p="1"],
 item[data-prio="1"],
 item[data-priority="1"],
@@ -404,6 +478,7 @@ item[data-priority="i"],
 		color: @item-prio-1-color;
 	}
 }
+
 item[data-p="2"],
 item[data-prio="2"],
 item[data-priority="2"],
@@ -427,6 +502,7 @@ item[data-priority="ii"],
 		color: @item-prio-2-color;
 	}
 }
+
 item[data-p="3"],
 item[data-prio="3"],
 item[data-priority="3"],
@@ -457,57 +533,35 @@ item[data-ongoing],
 		color: @tag-ongoing-color;
 	}
 }
+
 item[data-flag],
 item[data-f],
-// item[data-important],
-// item[data-i],
-// item[data-today]
  {
 	background-color: @item-flag-background-color;
 	> run[tag=data-flag],
 	> run[tag=data-f],
-	// > run[tag=data-important],
-	// > run[tag=data-i],
-	// > run[tag=data-today]
 	 {
 		color: @tag-flag-color;
 	}
 }
-// item[data-flag],
-// item[data-f],
-// item[data-flag],
-// item[data-f],
-// item[data-important],
-// item[data-i],
+
 item[data-today]
  {
-	// background-color: @item-flag-background-color;
-	// > run[tag=data-flag],
-	// > run[tag=data-f],
-	// > run[tag=data-important],
-	// > run[tag=data-i],
 	> run[tag=data-today]
 	 {
 		color: @tag-flag-color;
 	}
 }
+
 item[data-important],
 item[data-i],
-// item[data-today]
  {
- 	color: white;
-	background-color: @item-prio-1-color;
-	// > run[tag=data-flag],
-	// > run[tag=data-f],
-	// > run[tag=data-important],
-	// > run[tag=data-i],
-	// > run[tag=data-today]
+	background-color: @tag-important-background-color;
 	> run[tag],
 	> run[content],
 	> run[link^=button]
 	 {
-		color: @text-color;
-		color: white;
+		color: @tag-important-color;
 	}
 }
 
@@ -520,6 +574,7 @@ run[tag=data-www]
 		color: @current-link-color;
 	}
 }
+
 item[data-done],
 item[data-cancelled] {
 		text-strikethrough: NSUnderlineStyleSingle;
@@ -529,6 +584,7 @@ item[data-cancelled] {
 		text-strikethrough: NSUnderlineStyleSingle;
 	}
 }
+
 item[data-done] {
 	background-color: @background-color;
 	color:  @done-tag-color;
@@ -542,27 +598,22 @@ item[data-done] {
 		background-color: @background-color;
 		color: @done-tag-color;
 	}
-	// > run[content] {
-	// 	// text-strikethrough-color: @done-strike-color;
-	// }
 }
+
 item[data-cancelled] {
 	background-color: @background-color;
 	text-strikethrough-color: @cancelled-strike-color;
-	// color:  @done-tag-color;
 	> run[content],
 	> run[tag],
 	> run[link^=button] {
 		font-weight: normal;
 		font-style: italic;
-		// text-strikethrough-color: @done-tag-color;
 		text-strikethrough-color: @cancelled-strike-color;
 		background-color: @background-color;
 		color: @cancelled-tag-color;
 	}
-	// > run[content] {
-	// }
 }
+
 item[data----]
  {
   > run[content],
@@ -571,7 +622,7 @@ item[data----]
     color: @background-color;
     text-strikethrough: NSUnderlineStyleSingle;
     text-strikethrough-color: @guide-line-color;
-    font-family: @font;
+    font-family: @@selected-font;
 	text-expansion: .5 * @ui-scale;
   }
 }
