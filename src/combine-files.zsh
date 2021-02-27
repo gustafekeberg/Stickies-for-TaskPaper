@@ -11,7 +11,6 @@ name="Daily Driver"
 
 themes=(default
 	yellow
-	dark
 	grey
 	green
 	orange
