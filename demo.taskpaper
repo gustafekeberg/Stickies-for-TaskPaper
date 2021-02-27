@@ -1,0 +1,25 @@
+Project (depth 1):
+	Project (depth 2):
+		Project (depth 3):
+			Project (depth 4):
+				Project (depth 5):
+	Tasks:
+		- Empty item
+		- Item with children
+			A note that contains a link: http://my.link
+			A note with a line break!
+		- Tasks with Prio-tags @p
+			- A task with a Prio 1-tag @p(1)
+			- A task with a Prio 2-tag @p(2)
+			- A task with a Prio 3-tag @p(3)
+		Styled tags:
+			- Cancelled @cancelled
+			- Flagged @flag
+			- Important @important
+			- Ongoing @ongoing
+			- Pinned @pinned
+			- Today @today
+		Divider:
+			Divided
+			- @---
+			Divided
