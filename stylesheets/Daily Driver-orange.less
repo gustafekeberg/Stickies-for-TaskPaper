@@ -1,13 +1,12 @@
+// src: Daily Driver.less
+
 // TaskPaper stylesheet by Gustaf Ekeberg
 
 // Settings
 
 @set-font: 'sans'; 			// sans/serif/mono
-@set-theme: 'yellow'; 		// default/yellow/dark/grey/green/orange/pink/blue
+@set-theme: 'default'; 		// default/yellow/dark/grey/green/orange/pink/blue
 @set-appearance: 'system';	// system/light/dark
-
-@set-editor-wrap-to-column: 0; 	// width in number of characters / 0 = none
-@set-item-wrap-to-column: 0; 	// width in number of characters / 0 = none
 
 // Custom tags
 
@@ -105,7 +104,10 @@
 @current-appearence-background-color: "@{appearance}-background-color";
 @background-color: @@current-appearence-background-color;
 
-// Editor colors
+// Editor
+
+@set-editor-wrap-to-column: 0; 	// width in number of characters / 0 = none
+@set-item-wrap-to-column: 0; 	// width in number of characters / 0 = none
 
 @light-selection-color: mix(@selected-content-color, @background-color, 15%);
 @dark-selection-color: mix(@selected-content-color, @background-color, 25%);
@@ -628,3 +630,10 @@ item[data----]
 	text-expansion: .5 * @ui-scale;
   }
 }
+
+// src: _orange.less
+
+@set-theme: 'orange'; 		// default/yellow/dark/grey/green/orange/pink/blue
+
+// @set-font: 'sans'; 			// sans/serif/mono?
+// @set-appearance: 'system';	// system/light/dark
