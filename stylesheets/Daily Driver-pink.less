@@ -1,13 +1,12 @@
+// src: Daily Driver.less
+
 // TaskPaper stylesheet by Gustaf Ekeberg
 
 // Settings
 
 @set-font: 'sans'; 			// sans/serif/mono
-@set-theme: 'yellow'; 		// default/yellow/dark/grey/green/orange/pink/blue
+@set-theme: 'default'; 		// default/yellow/grey/green/orange/pink/blue
 @set-appearance: 'system';	// system/light/dark
-
-@set-editor-wrap-to-column: 0; 	// width in number of characters / 0 = none
-@set-item-wrap-to-column: 0; 	// width in number of characters / 0 = none
 
 // Custom tags
 
@@ -33,50 +32,62 @@
 
 @default-fg-color: hsl(0, 0, 25%);
 @default-bg-color: hsl(0, 0, 100%);
-
-// Yellow
-
-@yellow-fg-color: rgb(75, 47, 11);
-@yellow-bg-color: hsl(46, 67%, 92%);
+@default-dark-fg-color: hsl(0, 0, 85%);
+@default-dark-bg-color: darken(@default-bg-color, 88%);
 
 // Grey theme
 
 @grey-fg-color: hsl(0, 0, 25%);
 @grey-bg-color: hsl(0, 0, 85%);
+@grey-dark-fg-color: hsl(0, 0, 85%);
+@grey-dark-bg-color: darken(@grey-bg-color, 65%);
+
+// Yellow
+
+@yellow: 45;
+@yellow-fg-color: hsl(@yellow, 100, 15%);
+@yellow-bg-color: hsl(@yellow, 67%, 92%);
+@yellow-dark-fg-color: hsl(0, 0, 85%);
+@yellow-dark-bg-color: darken(@yellow-bg-color, 82%);
 
 // Green theme
 
 @green: 100;
 @green-fg-color: hsl(@green, 100, 25%);
 @green-bg-color: hsl(@green, 100, 90%);
+@green-dark-fg-color: hsl(0, 0, 85%);
+@green-dark-bg-color: darken(@green-bg-color, 85%);
 
 // Orange theme
 
 @orange: 30;
 @orange-fg-color: hsl(@orange, 100, 25%);
 @orange-bg-color: hsl(@orange, 100, 80%);
+@orange-dark-fg-color: hsl(0, 0, 85%);
+@orange-dark-bg-color: darken(@orange-bg-color, 72%);
 
 // Pink theme
 
 @pink: 320;
 @pink-fg-color: hsl(@pink, 100, 30%);
 @pink-bg-color: hsl(@pink, 100, 95%);
+@pink-dark-fg-color: hsl(0, 0, 85%);
+@pink-dark-bg-color: darken(@pink-bg-color, 88%);
 
 // Blue theme
 
 @blue: 200;
 @blue-fg-color: hsl(@blue, 100, 25%);
 @blue-bg-color: hsl(@blue, 100, 95%);
-
-// Dark theme
-
-@dark-bg-color: hsl(0, 0%, 12%);
-@dark-fg-color: hsl(0, 0, 85%);
+@blue-dark-fg-color: hsl(0, 0, 85%);
+@blue-dark-bg-color: darken(@blue-bg-color, 85%);
 
 // Set theme
 
 @fg-color: "@{set-theme}-fg-color";
 @bg-color: "@{set-theme}-bg-color";
+@dark-fg-color: "@{set-theme}-dark-fg-color";
+@dark-bg-color: "@{set-theme}-dark-bg-color";
 
 // Custom tag colors
 
@@ -95,17 +106,20 @@
 
 // Foreground color
 
-@text-color: contrast(@background-color, @@fg-color, @dark-fg-color);
-@project-fg-color: contrast(@background-color, darken(@@fg-color, 5%), lighten(@dark-fg-color, 20%));
+@text-color: contrast(@background-color, @@fg-color, @@dark-fg-color);
+@project-fg-color: contrast(@background-color, darken(@@fg-color, 5%), lighten(@@dark-fg-color, 20%));
 
 // Background color
 
 @light-background-color: @@bg-color;
-@dark-background-color: @dark-bg-color;
+@dark-background-color: @@dark-bg-color;
 @current-appearence-background-color: "@{appearance}-background-color";
 @background-color: @@current-appearence-background-color;
 
-// Editor colors
+// Editor
+
+@set-editor-wrap-to-column: 0; 	// width in number of characters / 0 = none
+@set-item-wrap-to-column: 0; 	// width in number of characters / 0 = none
 
 @light-selection-color: mix(@selected-content-color, @background-color, 15%);
 @dark-selection-color: mix(@selected-content-color, @background-color, 25%);
@@ -628,3 +642,10 @@ item[data----]
 	text-expansion: .5 * @ui-scale;
   }
 }
+
+// src: _pink.less
+
+@set-theme: 'pink'; 		// default/yellow/dark/grey/green/orange/pink/blue
+
+// @set-font: 'sans'; 			// sans/serif/mono?
+// @set-appearance: 'system';	// system/light/dark
