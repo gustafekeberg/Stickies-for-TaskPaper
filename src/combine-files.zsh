@@ -7,29 +7,22 @@ fi
 src=$1
 dst=$2
 
-name="Daily Driver"
+commonfile="Daily Driver.less"
+stylename="Daily Driver"
 
-themes=(default
-	yellow
-	dark
-	grey
-	green
-	orange
-	pink
-	blue)
-
-# cd $1
-
-for (( i = 1; i <= $#themes; i++ ))
+cd $src
+for file in _*.less
 do
-	currentfilename="${dst}/${name}-${themes[i]}.less"
+	currentthemename=$(echo "${file}" | awk '{gsub("_","")} {print $0}')
+	
+	currentfilename="${dst}/${stylename}-${currentthemename}"
 	echo "Writing:" $currentfilename
 
-	printf "// src: ${name}.less"		> $currentfilename
-	printf "\n\n" 						>> $currentfilename
-	cat "${src}/${name}.less" 			>> $currentfilename
-	printf "\n\n" 						>> $currentfilename
-	printf "// src: _${themes[i]}.less"	>> $currentfilename
-	printf "\n\n" 						>> $currentfilename
-	cat "${src}/_${themes[i]}.less" 	>> $currentfilename
+	printf "// src: ${commonfile}"	> $currentfilename
+	printf "\n\n" 					>> $currentfilename
+	cat "${src}/${commonfile}" 		>> $currentfilename
+	printf "\n\n" 					>> $currentfilename
+	printf "// src: ${file}"		>> $currentfilename
+	printf "\n\n" 					>> $currentfilename
+	cat "${src}/${file}" 			>> $currentfilename
 done
