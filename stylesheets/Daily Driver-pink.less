@@ -1,11 +1,9 @@
-// src: Daily Driver.less
-
 // TaskPaper stylesheet by Gustaf Ekeberg
 
 // Settings
 
+@set-theme: 'white'; 	// white/yellow/pink/grey/green/orange/blue/purple - overridden in last line
 @set-font: 'sans'; 			// sans/serif/mono
-@set-theme: 'default'; 		// default/yellow/grey/green/orange/pink/blue
 @set-appearance: 'system';	// system/light/dark
 
 // Custom tags
@@ -28,66 +26,69 @@
 
 @selected-font: "set-font-@{set-font}";
 
-// Default theme
+// White theme
 
-@default-fg-color: hsl(0, 0, 25%);
-@default-bg-color: hsl(0, 0, 100%);
-@default-dark-fg-color: hsl(0, 0, 85%);
-@default-dark-bg-color: darken(@default-bg-color, 88%);
+@white-light-fg-color: hsl(0, 0%, 25%);
+@white-light-bg-color: hsl(0, 0%, 100%);
+@white-dark-fg-color: hsl(0, 0, 85%);
+@white-dark-bg-color: hsl(0, 0%, 12%);
 
 // Grey theme
 
-@grey-fg-color: hsl(0, 0, 25%);
-@grey-bg-color: hsl(0, 0, 85%);
-@grey-dark-fg-color: hsl(0, 0, 85%);
-@grey-dark-bg-color: darken(@grey-bg-color, 65%);
+@grey-light-fg-color: hsl(0, 0%, 40%);
+@grey-light-bg-color: hsl(0, 0%, 95%);
+@grey-dark-fg-color: hsl(0, 0, 75%);
+@grey-dark-bg-color: darken(@grey-light-bg-color, 65%);
 
 // Yellow
 
-@yellow: 45;
-@yellow-fg-color: hsl(@yellow, 100, 15%);
-@yellow-bg-color: hsl(@yellow, 67%, 92%);
+@yellow-light-fg-color: hsl(36, 72%, 28%);
+@yellow-light-bg-color: hsl(44, 100%, 94%);
 @yellow-dark-fg-color: hsl(0, 0, 85%);
-@yellow-dark-bg-color: darken(@yellow-bg-color, 82%);
+@yellow-dark-bg-color: darken(@yellow-light-bg-color, 80%);
 
-// Green theme
+// Red
 
-@green: 100;
-@green-fg-color: hsl(@green, 100, 25%);
-@green-bg-color: hsl(@green, 100, 90%);
-@green-dark-fg-color: hsl(0, 0, 85%);
-@green-dark-bg-color: darken(@green-bg-color, 85%);
+@red-light-fg-color: hsl(9, 100%, 26%);
+@red-light-bg-color: hsl(9, 100%, 90%);
+@red-dark-fg-color: hsl(0, 0, 85%);
+@red-dark-bg-color: darken(@red-light-bg-color, 75%);
+
+// Purple
+
+@purple-light-fg-color: hsl(285, 52%, 35%);
+@purple-light-bg-color: hsl(285, 52%, 89%);
+@purple-dark-fg-color: hsl(0, 0, 85%);
+@purple-dark-bg-color: darken(@purple-light-bg-color, 75%);
 
 // Orange theme
 
-@orange: 30;
-@orange-fg-color: hsl(@orange, 100, 25%);
-@orange-bg-color: hsl(@orange, 100, 80%);
+@orange-light-fg-color: hsl(29, 100%, 25%);
+@orange-light-bg-color: hsl(29, 100%, 83%);
 @orange-dark-fg-color: hsl(0, 0, 85%);
-@orange-dark-bg-color: darken(@orange-bg-color, 72%);
+@orange-dark-bg-color: darken(@orange-light-bg-color, 68%);
+
+// Green theme
+
+@green-light-fg-color: hsl(100, 100, 15%);
+@green-light-bg-color: hsl(100, 100, 90%);
+@green-dark-fg-color: hsl(0, 0, 85%);
+@green-dark-bg-color: darken(@green-light-bg-color, 80%);
+
 
 // Pink theme
 
-@pink: 320;
-@pink-fg-color: hsl(@pink, 100, 30%);
-@pink-bg-color: hsl(@pink, 100, 95%);
+@pink-light-fg-color: hsl(320, 100, 30%);
+@pink-light-bg-color: hsl(320, 100, 95%);
 @pink-dark-fg-color: hsl(0, 0, 85%);
-@pink-dark-bg-color: darken(@pink-bg-color, 88%);
+@pink-dark-bg-color: darken(@pink-light-bg-color, 80%);
 
 // Blue theme
 
-@blue: 200;
-@blue-fg-color: hsl(@blue, 100, 25%);
-@blue-bg-color: hsl(@blue, 100, 95%);
+@blue-light-fg-color: hsl(200, 100, 25%);
+@blue-light-bg-color: hsl(200, 100, 95%);
 @blue-dark-fg-color: hsl(0, 0, 85%);
-@blue-dark-bg-color: darken(@blue-bg-color, 85%);
-
-// Set theme
-
-@fg-color: "@{set-theme}-fg-color";
-@bg-color: "@{set-theme}-bg-color";
-@dark-fg-color: "@{set-theme}-dark-fg-color";
-@dark-bg-color: "@{set-theme}-dark-bg-color";
+@blue-dark-bg-color: darken(@blue-light-bg-color, 85%);
 
 // Custom tag colors
 
@@ -104,36 +105,36 @@
 @tint-color: $CONTROL_ACCENT_COLOR; // use color from system
 @selected-content-color: $SELECTED_CONTENT_BACKGROUND_COLOR; // use color from system
 
-// Foreground color
+// Set theme colors
 
-@text-color: contrast(@background-color, @@fg-color, @@dark-fg-color);
-@project-fg-color: contrast(@background-color, darken(@@fg-color, 5%), lighten(@@dark-fg-color, 20%));
+@fg-color: "@{set-theme}-@{appearance}-fg-color";
+@bg-color: "@{set-theme}-@{appearance}-bg-color";
 
-// Background color
+// Text color
 
-@light-background-color: @@bg-color;
-@dark-background-color: @@dark-bg-color;
-@current-appearence-background-color: "@{appearance}-background-color";
-@background-color: @@current-appearence-background-color;
+@text-color: @@fg-color;
+@project-text-color: contrast(@@bg-color, darken(@@fg-color, 20%), lighten(@@fg-color, 20%));
 
 // Editor
 
 @set-editor-wrap-to-column: 0; 	// width in number of characters / 0 = none
 @set-item-wrap-to-column: 0; 	// width in number of characters / 0 = none
 
-@light-selection-color: mix(@selected-content-color, @background-color, 15%);
-@dark-selection-color: mix(@selected-content-color, @background-color, 25%);
+@light-selection-color: mix(@selected-content-color, @@bg-color, 15%);
+@dark-selection-color: mix(@selected-content-color, @@bg-color, 25%);
 @current-selection-color: "@{appearance}-selection-color";
 @selection-color: @@current-selection-color;
+
 @dark-caret-color: lighten(@accent-color, 10%);
 @light-caret-color: darken(@accent-color, 0%);
 @current-caret-color: "@{appearance}-caret-color";
 @caret-color: @@current-caret-color;
-@invisibles-color: mix(@tint-color, @background-color, 50%);
+
+@invisibles-color: mix(@tint-color, @@bg-color, 50%);
 
 // Searchbar colors
 
-@searchbar-background-color: contrast(@background-color, darken(@background-color,10%), lighten(@background-color,5%));
+@searchbar-background-color: contrast(@@bg-color, darken(@@bg-color,10%), lighten(@@bg-color,5%));
 @base-searchbar-error-color: spin(@accent-color, 180);
 @dark-searchbar-error-color: darken(@base-searchbar-error-color, 5%);
 @light-searchbar-error-color: lighten(@base-searchbar-error-color, 5%);
@@ -144,8 +145,8 @@
 
 // Project color
 
-@light-project-color: mix(@background-color, @project-fg-color, 0%);
-@dark-project-color: mix(@background-color, @project-fg-color, 10%);
+@light-project-color: mix(@@bg-color, @project-text-color, 0%);
+@dark-project-color: mix(@@bg-color, @project-text-color, 10%);
 @current-appearence-project-color: "@{appearance}-project-color";
 @project-color: @@current-appearence-project-color;
 
@@ -159,36 +160,36 @@
 @light-tag-mix-percent: 35%;
 @dark-tag-mix-percent: 40%;
 @current-appearence-tag-mix-percent: "@{appearance}-tag-mix-percent";
-@tag-color: mix(@text-color, @background-color, @@current-appearence-tag-mix-percent);
+@tag-color: mix(@text-color, @@bg-color, @@current-appearence-tag-mix-percent);
 
 @light-done-tag-mix-percent: 25%;
 @dark-done-tag-mix-percent: 20%;
 @current-appearence-done-tag-mix-percent: "@{appearance}-done-tag-mix-percent";
-@done-tag-color: mix(@text-color, @background-color, @@current-appearence-done-tag-mix-percent);
+@done-tag-color: mix(@text-color, @@bg-color, @@current-appearence-done-tag-mix-percent);
 
 @light-done-strike-mix-percent: 55%;
 @dark-done-strike-mix-percent: 30%;
 @current-appearence-done-strike-mix-percent: "@{appearance}-done-strike-mix-percent";
-@done-strike-color: mix(@text-color, @background-color, @@current-appearence-done-strike-mix-percent);
+@done-strike-color: mix(@text-color, @@bg-color, @@current-appearence-done-strike-mix-percent);
 
 @light-cancelled-tag-mix-percent: 45%;
 @dark-cancelled-tag-mix-percent: 40%;
 @current-appearence-cancelled-tag-mix-percent: "@{appearance}-cancelled-tag-mix-percent";
-@cancelled-tag-color: mix(@cancelled-color, @background-color, @@current-appearence-cancelled-tag-mix-percent);
-@cancelled-strike-color: mix(@cancelled-color, @background-color, 100% - @@current-appearence-cancelled-tag-mix-percent);
+@cancelled-tag-color: mix(@cancelled-color, @@bg-color, @@current-appearence-cancelled-tag-mix-percent);
+@cancelled-strike-color: mix(@cancelled-color, @@bg-color, 100% - @@current-appearence-cancelled-tag-mix-percent);
 
 // Link color
 
-@light-link-color: mix(@link-color, @background-color, 90%);
-@dark-link-color: mix(@link-color, @background-color, 65%);
+@light-link-color: mix(@link-color, @@bg-color, 90%);
+@dark-link-color: mix(@link-color, @@bg-color, 65%);
 @current-appearence-link-color: "@{appearance}-link-color";
 @current-link-color: @@current-appearence-link-color;
 
 // Accent color
 
-@light-accent-color: mix(@tint-color, @background-color, 75%);
+@light-accent-color: mix(@tint-color, @@bg-color, 75%);
 @searchbar-accent-color: lighten(@tint-color, 10%);
-@dark-accent-color: mix(@tint-color, @background-color, 65%);
+@dark-accent-color: mix(@tint-color, @@bg-color, 65%);
 @current-appearence-accent-color: "@{appearance}-accent-color";
 @accent-color: @@current-appearence-accent-color;
 
@@ -208,15 +209,15 @@
 @current-item-prio-mix-percent: "@{appearance}-item-prio-mix-percent";
 @prio-item-mix-percent: @@current-item-prio-mix-percent;
 
-@item-prio-color: mix(@prio-color, @background-color, @prio-item-mix-percent);
-@item-prio-1-color: mix(@prio-1-color, @background-color, @prio-item-mix-percent);
-@item-prio-2-color: mix(@prio-2-color, @background-color, @prio-item-mix-percent);
-@item-prio-3-color: mix(@prio-3-color, @background-color, @prio-item-mix-percent);
+@item-prio-color: mix(@prio-color, @@bg-color, @prio-item-mix-percent);
+@item-prio-1-color: mix(@prio-1-color, @@bg-color, @prio-item-mix-percent);
+@item-prio-2-color: mix(@prio-2-color, @@bg-color, @prio-item-mix-percent);
+@item-prio-3-color: mix(@prio-3-color, @@bg-color, @prio-item-mix-percent);
 
-@tag-prio-color: mix(@item-prio-color, @background-color, @prio-tag-mix-percent);
-@tag-prio-1-color: mix(@item-prio-1-color, @background-color, @prio-tag-mix-percent);
-@tag-prio-2-color: mix(@item-prio-2-color, @background-color, @prio-tag-mix-percent);
-@tag-prio-3-color: mix(@item-prio-3-color, @background-color, @prio-tag-mix-percent);
+@tag-prio-color: mix(@item-prio-color, @@bg-color, @prio-tag-mix-percent);
+@tag-prio-1-color: mix(@item-prio-1-color, @@bg-color, @prio-tag-mix-percent);
+@tag-prio-2-color: mix(@item-prio-2-color, @@bg-color, @prio-tag-mix-percent);
+@tag-prio-3-color: mix(@item-prio-3-color, @@bg-color, @prio-tag-mix-percent);
 
 // Today, ongoing, flag and important tag color
 
@@ -230,13 +231,13 @@
 @tag-ongoing-color: @ongoing-color;
 @item-pinned-color: @pinned-color;
 @tag-pinned-color: @pinned-color;
-@item-ongoing-background-color: mix(@item-ongoing-color, @background-color, @ongoing-background-mix);
+@item-ongoing-background-color: mix(@item-ongoing-color, @@bg-color, @ongoing-background-mix);
 
 @item-flag-color: @flag-color;
 @tag-flag-color: @flag-color;
-@item-flag-background-color: mix(@item-flag-color, @background-color, @flag-background-mix);
+@item-flag-background-color: mix(@item-flag-color, @@bg-color, @flag-background-mix);
 
-@tag-important-background-color: mix(@important-color, @background-color, 75%);
+@tag-important-background-color: mix(@important-color, @@bg-color, 75%);
 @tag-important-color: contrast(@tag-important-background-color, @@fg-color, @@bg-color);
 
 // Scale and sizes
@@ -246,15 +247,15 @@
 @base-font-size: 16;
 @user-font-size: $USER_FONT_SIZE;
 @ui-scale: @user-font-size / @base-font-size;
-@default-spacing-height: @ui-scale * 2;
+@white-spacing-height: @ui-scale * 2;
 
 // Handle and guide line
 
 @handle-size: 9 * @ui-scale;
 @handle-border-width: 2 * @ui-scale;
 
-@dark-guide-line-color: mix(@text-color, @background-color, 15%); 
-@light-guide-line-color: mix(@text-color, @background-color, 10%); 
+@dark-guide-line-color: mix(@text-color, @@bg-color, 15%); 
+@light-guide-line-color: mix(@text-color, @@bg-color, 10%); 
 @current-guide-line-color: "@{appearance}-guide-line-color"; 
 @guide-line-color: @@current-guide-line-color; 
 
@@ -299,7 +300,7 @@ searchbar {
 }
 
 editor {
-	background-color: @background-color;
+	background-color: @@bg-color;
 	editor-wrap-to-column: @set-editor-wrap-to-column;
     item-wrap-to-column: @set-item-wrap-to-column;
 	font-family: @@selected-font;
@@ -602,7 +603,7 @@ item[data-cancelled] {
 }
 
 item[data-done] {
-	background-color: @background-color;
+	background-color: @@bg-color;
 	color:  @done-tag-color;
 	text-strikethrough-color: @done-strike-color;
 	> run[content],
@@ -611,13 +612,13 @@ item[data-done] {
 		font-weight: normal;
 		font-style: italic;
 		text-strikethrough-color: @done-strike-color;
-		background-color: @background-color;
+		background-color: @@bg-color;
 		color: @done-tag-color;
 	}
 }
 
 item[data-cancelled] {
-	background-color: @background-color;
+	background-color: @@bg-color;
 	text-strikethrough-color: @cancelled-strike-color;
 	> run[content],
 	> run[tag],
@@ -625,7 +626,7 @@ item[data-cancelled] {
 		font-weight: normal;
 		font-style: italic;
 		text-strikethrough-color: @cancelled-strike-color;
-		background-color: @background-color;
+		background-color: @@bg-color;
 		color: @cancelled-tag-color;
 	}
 }
@@ -635,7 +636,7 @@ item[data----]
   > run[content],
   > run[tag],
   > run[link^="button"] {
-    color: @background-color;
+    color: @@bg-color;
     text-strikethrough: NSUnderlineStyleSingle;
     text-strikethrough-color: @guide-line-color;
     font-family: @@selected-font;
@@ -643,9 +644,4 @@ item[data----]
   }
 }
 
-// src: _pink.less
-
-@set-theme: 'pink'; 		// default/yellow/dark/grey/green/orange/pink/blue
-
-// @set-font: 'sans'; 			// sans/serif/mono?
-// @set-appearance: 'system';	// system/light/dark
+@set-theme: 'pink';
