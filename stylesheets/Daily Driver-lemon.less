@@ -1396,4 +1396,702 @@ item[data----]
   }
 }
 
+@set-theme: 'lemon';// TaskPaper stylesheet by Gustaf Ekeberg
+
+// Settings
+
+@set-theme: 'snow'; 	// snow/lemon/magenta/silver/spring/tangerine/turquoise - overridden in last line
+@set-font: 'sans'; 			// sans/serif/mono
+@set-appearance: 'system';	// system/light/dark
+
+// Custom tags
+
+//		@f, @flag = Flag
+//		@p, @prio, @priority = Prio
+//		@p(1), @prio(1), @priority(1) = Prio 1
+//		@p(2), @prio(2), @priority(2) = Prio 2
+//		@p(3), @prio(3), @priority(3) = Prio 3
+//		@today = Today
+//		@i, @important = Important
+//		@pinned
+// 		@--- = divider
+
+// Fonts
+
+@set-font-sans: 'San Fransisco';
+@set-font-serif: 'Palatino';
+@set-font-mono: 'Menlo';
+
+@selected-font: "set-font-@{set-font}";
+
+// Snow theme
+
+@snow: #FFFFFF;
+
+@snow-fg-color: darken(@snow, 75%);
+@snow-bg-color: @snow;
+@snow-dark-fg-color: hsl(0, 0, 85%);
+@snow-dark-bg-color: darken(@snow-bg-color, 88%);
+
+// Silver theme
+
+@silver: #F7F7F7;
+
+@silver-fg-color: darken(@silver, 75%);
+@silver-bg-color: @silver;
+@silver-dark-fg-color: hsl(0, 0, 85%);
+@silver-dark-bg-color: darken(@silver-bg-color, 65%);
+
+// Lemon
+
+@lemon: #FDFFCE;
+
+@lemon-fg-color: darken(@lemon, 75%);
+@lemon-bg-color: @lemon;
+@lemon-dark-fg-color: hsl(0, 0, 85%);
+@lemon-dark-bg-color: darken(@lemon-bg-color, 82%);
+
+// Maraschino
+
+@maraschino: #FFD5CE;
+
+@maraschino-fg-color: darken(@maraschino, 65%);
+@maraschino-bg-color: @maraschino;
+@maraschino-dark-fg-color: hsl(0, 0, 85%);
+@maraschino-dark-bg-color: darken(@maraschino-bg-color, 82%);
+
+// Plum
+
+@plum: #F1D3EB;
+
+@plum-fg-color: darken(@plum, 65%);
+@plum-bg-color: @plum;
+@plum-dark-fg-color: hsl(0, 0, 85%);
+@plum-dark-bg-color: darken(@plum-bg-color, 82%);
+
+// Tangering theme
+
+@tangerine: #FFECCE;
+
+// @tangerine: 30;
+// @tangerine-fg-color: hsl(@tangerine, 100, 25%);
+// @tangerine-bg-color: hsl(@tangerine, 100, 80%);
+// @tangerine-dark-fg-color: hsl(0, 0, 85%);
+// @tangerine-dark-bg-color: darken(@tangerine-bg-color, 72%);
+
+@tangerine-fg-color: darken(@tangerine, 65%);
+@tangerine-bg-color: @tangerine;
+@tangerine-dark-fg-color: hsl(0, 0, 85%);
+@tangerine-dark-bg-color: darken(@tangerine-bg-color, 82%);
+
+// Spring theme
+
+// @spring: 100;
+// @spring-fg-color: hsl(@spring, 100, 25%);
+// @spring-bg-color: hsl(@spring, 100, 90%);
+// @spring-dark-fg-color: hsl(0, 0, 85%);
+// @spring-dark-bg-color: darken(@spring-bg-color, 85%);
+
+@spring: #BFFFD1;
+@spring-fg-color: darken(@spring, 75%);
+@spring-bg-color: @spring;
+@spring-dark-fg-color: hsl(0, 0, 85%);
+@spring-dark-bg-color: darken(@spring-bg-color, 85%);
+
+
+// Magenta theme
+
+// @magenta: 320;
+// @magenta-fg-color: hsl(@magenta, 100, 30%);
+// @magenta-bg-color: hsl(@magenta, 100, 95%);
+// @magenta-dark-fg-color: hsl(0, 0, 85%);
+// @magenta-dark-bg-color: darken(@magenta-bg-color, 88%);
+
+@magenta: #FFD6FF;
+
+@magenta-fg-color: darken(@magenta, 75%);
+@magenta-bg-color: @magenta;
+@magenta-dark-fg-color: hsl(0, 0, 85%);
+@magenta-dark-bg-color: darken(@magenta-bg-color, 85%);
+
+// Turquoise theme
+
+// @turquoise: 200;
+// @turquoise-fg-color: hsl(@turquoise, 100, 25%);
+// @turquoise-bg-color: hsl(@turquoise, 100, 95%);
+// @turquoise-dark-fg-color: hsl(0, 0, 85%);
+// @turquoise-dark-bg-color: darken(@turquoise-bg-color, 85%);
+
+@turquoise: #C3FFFF;
+
+@turquoise-fg-color: darken(@turquoise, 75%);
+@turquoise-bg-color: @turquoise;
+@turquoise-dark-fg-color: hsl(0, 0, 85%);
+@turquoise-dark-bg-color: darken(@turquoise-bg-color, 85%);
+
+// Set theme
+
+@fg-color: "@{set-theme}-fg-color";
+@bg-color: "@{set-theme}-bg-color";
+@dark-fg-color: "@{set-theme}-dark-fg-color";
+@dark-bg-color: "@{set-theme}-dark-bg-color";
+
+// Theme color function
+
+
+
+// Custom tag colors
+
+@prio-color: #4AC100;
+@prio-1-color: #E84A52;
+@prio-2-color: #D49229;
+@prio-3-color: #0098E9;
+@cancelled-color: #FF0000;
+@link-color: #009FF4;
+@important-color: #E84A52;
+
+// Colors
+
+@tint-color: $CONTROL_ACCENT_COLOR; // use color from system
+@selected-content-color: $SELECTED_CONTENT_BACKGROUND_COLOR; // use color from system
+
+// Foreground color
+
+@text-color: contrast(@background-color, @@fg-color, @@dark-fg-color);
+@project-fg-color: contrast(@background-color, darken(@@fg-color, 5%), lighten(@@dark-fg-color, 20%));
+
+// Background color
+
+@light-background-color: @@bg-color;
+@dark-background-color: @@dark-bg-color;
+@current-appearence-background-color: "@{appearance}-background-color";
+@background-color: @@current-appearence-background-color;
+
+// Editor
+
+@set-editor-wrap-to-column: 0; 	// width in number of characters / 0 = none
+@set-item-wrap-to-column: 0; 	// width in number of characters / 0 = none
+
+@light-selection-color: mix(@selected-content-color, @background-color, 15%);
+@dark-selection-color: mix(@selected-content-color, @background-color, 25%);
+@current-selection-color: "@{appearance}-selection-color";
+@selection-color: @@current-selection-color;
+@dark-caret-color: lighten(@accent-color, 10%);
+@light-caret-color: darken(@accent-color, 0%);
+@current-caret-color: "@{appearance}-caret-color";
+@caret-color: @@current-caret-color;
+@invisibles-color: mix(@tint-color, @background-color, 50%);
+
+// Searchbar colors
+
+@searchbar-background-color: contrast(@background-color, darken(@background-color,10%), lighten(@background-color,5%));
+@base-searchbar-error-color: spin(@accent-color, 180);
+@dark-searchbar-error-color: darken(@base-searchbar-error-color, 5%);
+@light-searchbar-error-color: lighten(@base-searchbar-error-color, 5%);
+@searchbar-error-color: contrast(@searchbar-background-color, @dark-searchbar-error-color, @light-searchbar-error-color);
+
+@searchbar-secondary-text-color: contrast(@searchbar-background-color, @searchbar-accent-color, @dark-accent-color);
+@searchbar-text-color: @text-color;
+
+// Project color
+
+@light-project-color: mix(@background-color, @project-fg-color, 0%);
+@dark-project-color: mix(@background-color, @project-fg-color, 10%);
+@current-appearence-project-color: "@{appearance}-project-color";
+@project-color: @@current-appearence-project-color;
+
+// Note and item color
+
+@note-color: @text-color;
+@item-color: @text-color;
+
+// Tags
+
+@light-tag-mix-percent: 35%;
+@dark-tag-mix-percent: 40%;
+@current-appearence-tag-mix-percent: "@{appearance}-tag-mix-percent";
+@tag-color: mix(@text-color, @background-color, @@current-appearence-tag-mix-percent);
+
+@light-done-tag-mix-percent: 25%;
+@dark-done-tag-mix-percent: 20%;
+@current-appearence-done-tag-mix-percent: "@{appearance}-done-tag-mix-percent";
+@done-tag-color: mix(@text-color, @background-color, @@current-appearence-done-tag-mix-percent);
+
+@light-done-strike-mix-percent: 55%;
+@dark-done-strike-mix-percent: 30%;
+@current-appearence-done-strike-mix-percent: "@{appearance}-done-strike-mix-percent";
+@done-strike-color: mix(@text-color, @background-color, @@current-appearence-done-strike-mix-percent);
+
+@light-cancelled-tag-mix-percent: 45%;
+@dark-cancelled-tag-mix-percent: 40%;
+@current-appearence-cancelled-tag-mix-percent: "@{appearance}-cancelled-tag-mix-percent";
+@cancelled-tag-color: mix(@cancelled-color, @background-color, @@current-appearence-cancelled-tag-mix-percent);
+@cancelled-strike-color: mix(@cancelled-color, @background-color, 100% - @@current-appearence-cancelled-tag-mix-percent);
+
+// Link color
+
+@light-link-color: mix(@link-color, @background-color, 90%);
+@dark-link-color: mix(@link-color, @background-color, 65%);
+@current-appearence-link-color: "@{appearance}-link-color";
+@current-link-color: @@current-appearence-link-color;
+
+// Accent color
+
+@light-accent-color: mix(@tint-color, @background-color, 75%);
+@searchbar-accent-color: lighten(@tint-color, 10%);
+@dark-accent-color: mix(@tint-color, @background-color, 65%);
+@current-appearence-accent-color: "@{appearance}-accent-color";
+@accent-color: @@current-appearence-accent-color;
+
+// Custom tag color calculations
+
+@flag-color: @tint-color;
+@ongoing-color: spin(@tint-color, 180);
+@pinned-color: @ongoing-color;
+
+@dark-tag-prio-mix-percent: 50%;
+@light-tag-prio-mix-percent: 50%;
+@current-tag-prio-mix-percent: "@{appearance}-tag-prio-mix-percent";
+@prio-tag-mix-percent: @@current-tag-prio-mix-percent;
+
+@dark-item-prio-mix-percent: 90%;
+@light-item-prio-mix-percent: 90%;
+@current-item-prio-mix-percent: "@{appearance}-item-prio-mix-percent";
+@prio-item-mix-percent: @@current-item-prio-mix-percent;
+
+@item-prio-color: mix(@prio-color, @background-color, @prio-item-mix-percent);
+@item-prio-1-color: mix(@prio-1-color, @background-color, @prio-item-mix-percent);
+@item-prio-2-color: mix(@prio-2-color, @background-color, @prio-item-mix-percent);
+@item-prio-3-color: mix(@prio-3-color, @background-color, @prio-item-mix-percent);
+
+@tag-prio-color: mix(@item-prio-color, @background-color, @prio-tag-mix-percent);
+@tag-prio-1-color: mix(@item-prio-1-color, @background-color, @prio-tag-mix-percent);
+@tag-prio-2-color: mix(@item-prio-2-color, @background-color, @prio-tag-mix-percent);
+@tag-prio-3-color: mix(@item-prio-3-color, @background-color, @prio-tag-mix-percent);
+
+// Today, ongoing, flag and important tag color
+
+@dark-flag-background-mix: 35%;
+@light-flag-background-mix: 25%;
+@current-appearence-flag-mix: "@{appearance}-flag-background-mix";
+@flag-background-mix: @@current-appearence-flag-mix;
+@ongoing-background-mix: @@current-appearence-flag-mix;
+
+@item-ongoing-color: @ongoing-color;
+@tag-ongoing-color: @ongoing-color;
+@item-pinned-color: @pinned-color;
+@tag-pinned-color: @pinned-color;
+@item-ongoing-background-color: mix(@item-ongoing-color, @background-color, @ongoing-background-mix);
+
+@item-flag-color: @flag-color;
+@tag-flag-color: @flag-color;
+@item-flag-background-color: mix(@item-flag-color, @background-color, @flag-background-mix);
+
+@tag-important-background-color: mix(@important-color, @background-color, 75%);
+@tag-important-color: contrast(@tag-important-background-color, @@fg-color, @@bg-color);
+
+// Scale and sizes
+
+// UI Scale
+
+@base-font-size: 16;
+@user-font-size: $USER_FONT_SIZE;
+@ui-scale: @user-font-size / @base-font-size;
+@snow-spacing-height: @ui-scale * 2;
+
+// Handle and guide line
+
+@handle-size: 9 * @ui-scale;
+@handle-border-width: 2 * @ui-scale;
+
+@dark-guide-line-color: mix(@text-color, @background-color, 15%); 
+@light-guide-line-color: mix(@text-color, @background-color, 10%); 
+@current-guide-line-color: "@{appearance}-guide-line-color"; 
+@guide-line-color: @@current-guide-line-color; 
+
+@handle-color: @guide-line-color;
+@handle-border-color: @handle-color;
+@handle-secondary-color: @accent-color;
+@handle-collapsed-color: @accent-color;
+
+// editor/sidebar/searchbar NSAppearanceNameVibrant Light/Dark
+
+@light-ns-appearance-name-vibrant: "NSAppearanceNameVibrantLight";
+@dark-ns-appearance-name-vibrant: "NSAppearanceNameVibrantDark";
+@current-ns-appearance-name-vibrant: "@{appearance}-ns-appearance-name-vibrant";
+@ns-appearance-name-vibrant: @@current-ns-appearance-name-vibrant;
+
+// Appearance
+
+@system-appearance: $APPEARANCE; // get appearence from system
+@light-appearance: 'light';
+@dark-appearance: 'dark';
+
+@chosen-appearance: "@{set-appearance}-appearance";
+@appearance: @@chosen-appearance;
+
+// Rules
+
+window {
+	appearance: @ns-appearance-name-vibrant;
+}
+
+sidebar {
+	appearance: @ns-appearance-name-vibrant;
+}
+
+searchbar {
+	appearance: @ns-appearance-name-vibrant;
+	color: @searchbar-text-color;
+	secondary-text-color: @searchbar-secondary-text-color;
+	error-text-color: @searchbar-error-color;
+	placeholder-color: @searchbar-text-color;
+	background-color: @searchbar-background-color;
+}
+
+editor {
+	background-color: @background-color;
+	editor-wrap-to-column: @set-editor-wrap-to-column;
+    item-wrap-to-column: @set-item-wrap-to-column;
+	font-family: @@selected-font;
+	guide-line-width: 1.5 * @ui-scale;
+	guide-line-color: @guide-line-color;
+	caret-color: @caret-color;
+	caret-width: 1.75 * @ui-scale;
+	bottom-padding-percent: 50%;
+	typewriter-scroll-percent: 50%;
+}
+
+item[data-type=project] {
+	color: @project-color;
+	font-family: @@selected-font;
+	font-weight: bold;
+	line-height-multiple: 2 * @ui-scale;
+	font-size: 1.2 * @user-font-size;
+}
+
+item[depth=1][data-type=project] {
+	font-size: 1.6 * @user-font-size;
+}
+
+item[depth=2][data-type=project] {
+	> run[content] {
+		text-underline: NSUnderlineStyleThick;
+	}
+}
+
+item[depth=2][data-type=project],
+item[depth=3][data-type=project] {
+}
+
+item[depth=3][data-type=project],
+item[depth=4][data-type=project],
+item[depth=5][data-type=project] {
+	> run[content] {
+	}
+}
+
+item[data-type=task] > run[content],
+item[data-type=note] > run[content] {
+}
+
+item[data-type=task], item[data-type=note] {
+	color: @note-color;
+	font-weight: bold;
+	> run[content] {
+	}
+}
+
+item[data-type=note] {
+	font-style: italic;
+	color: @note-color;
+}
+
+item[collapsed] {
+	& [data-type=task] > run[content] {
+		font-weight: bold;
+		text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
+	}
+	& [data-type=note] > run[content] {
+		font-weight: bold;
+		text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
+	}
+}
+
+item[focused] {
+	font-size: 1.6 * @user-font-size; 
+	line-height-multiple: 2 * @ui-scale;
+}
+
+item {
+	handle-border-color: @handle-color;
+	handle-border-width: @handle-border-width;
+}
+
+item[leaf],
+item[leaf][mouseOver] {
+	handle-border-color: none;
+	handle-size: @handle-size;
+}
+
+item[mouseOver] {
+	handle-color: @handle-secondary-color;
+	handle-border-color: @handle-secondary-color;
+}
+
+item[collapsed] {
+	handle-color: @handle-collapsed-color;
+	handle-border-color: @handle-collapsed-color;
+	handle-size: @handle-size;
+}
+
+item[collapsed][mouseOver], item[expanded][mouseOver], item[filtered][mouseOver] {
+	handle-color: @handle-secondary-color;
+	handle-border-color: @handle-secondary-color;
+	handle-size: @handle-size;
+}
+
+item[expanded] {
+  handle-border-color: @handle-color;
+}
+
+item[filtered] {
+  handle-color: @handle-secondary-color;
+}
+
+item[filtered][mouseOver] {
+  	handle-color: @handle-color;
+  	handle-border-color: @handle-color;
+  }
+
+item[leaf][data-type=note],
+item[leaf][data-type=task] {
+	font-weight: normal;
+	> run[content] {
+		text-underline: NSUnderlineStyleNone;
+	}
+}
+
+run[link] {
+	color: @current-link-color;
+	text-underline: NSUnderlineStyleSingle;
+}
+
+run[link^=button] {
+	color: @text-color;
+	text-underline: NSUnderlineStyleNone;
+}
+
+run[link^=filter] {
+	color: @text-color;
+}
+
+run[tag] {
+	color: @tag-color;
+	font-style: italic;
+	text-underline: NSUnderlineStyleSingle;
+	&[tagvalue] {
+		color: @text-color;
+	}
+}
+
+item[data-pinned]
+{
+	color: @item-pinned-color;
+	>run[tag=data-pinned]
+	{
+		color: @tag-pinned-color;
+	}
+}
+
+item[data-p],
+item[data-prio],
+item[data-priority],
+ {
+	color: @item-prio-color;
+	> run[tag=data-p],
+	> run[tag=data-prio],
+	> run[tag=data-priority]{
+		color: @tag-prio-color;
+	}
+	> run[link^=button] {
+		color: @item-prio-color;
+	}
+	> run[tagvalue] {
+		color: @item-prio-color;
+	}
+}
+
+item[data-p="1"],
+item[data-prio="1"],
+item[data-priority="1"],
+item[data-p="I"],
+item[data-prio="I"],
+item[data-priority="I"],
+item[data-p="i"],
+item[data-prio="i"],
+item[data-priority="i"],
+ {
+	color: @item-prio-1-color;
+	> run[tag=data-p],
+	> run[tag=data-prio],
+	> run[tag=data-priority] {
+		color: @tag-prio-1-color;
+	}
+	> run[link^=button] {
+		color: @item-prio-1-color;
+	}
+	> run[tagvalue] {
+		color: @item-prio-1-color;
+	}
+}
+
+item[data-p="2"],
+item[data-prio="2"],
+item[data-priority="2"],
+item[data-p="II"],
+item[data-prio="II"],
+item[data-priority="II"],
+item[data-p="ii"],
+item[data-prio="ii"],
+item[data-priority="ii"],
+ {
+	color: @item-prio-2-color;
+	> run[tag=data-p],
+	> run[tag=data-prio],
+	> run[tag=data-priority] {
+		color: @tag-prio-2-color;
+	}
+	> run[link^=button] {
+		color: @item-prio-2-color;
+	}
+	> run[tagvalue] {
+		color: @item-prio-2-color;
+	}
+}
+
+item[data-p="3"],
+item[data-prio="3"],
+item[data-priority="3"],
+item[data-p="III"],
+item[data-prio="III"],
+item[data-priority="III"],
+item[data-p="iii"],
+item[data-prio="iii"],
+item[data-priority="iii"],
+ {
+	color: @item-prio-3-color;
+	> run[tag=data-p],
+	> run[tag=data-prio],
+	> run[tag=data-priority] {
+		color: @tag-prio-3-color;
+	}
+	> run[link^=button] {
+		color: @item-prio-3-color;
+	}
+	> run[tagvalue] {
+		color: @item-prio-3-color;
+	}
+}
+item[data-ongoing],
+ {
+	>run[tag=data-ongoing],
+	 {
+		color: @tag-ongoing-color;
+	}
+}
+
+item[data-flag],
+item[data-f],
+ {
+	background-color: @item-flag-background-color;
+	> run[tag=data-flag],
+	> run[tag=data-f],
+	 {
+		color: @tag-flag-color;
+	}
+}
+
+item[data-today]
+ {
+	> run[tag=data-today]
+	 {
+		color: @tag-flag-color;
+	}
+}
+
+item[data-important],
+item[data-i],
+ {
+	background-color: @tag-important-background-color;
+	> run[tag],
+	> run[content],
+	> run[link^=button]
+	 {
+		color: @tag-important-color;
+	}
+}
+
+run[tag=data-file],
+run[tag=data-link],
+run[tag=data-url],
+run[tag=data-www]
+ {
+		&[tagvalue] {
+		color: @current-link-color;
+	}
+}
+
+item[data-done],
+item[data-cancelled] {
+		text-strikethrough: NSUnderlineStyleSingle;
+	> run[content],
+	> run[tag],
+	> run[link^=button] {
+		text-strikethrough: NSUnderlineStyleSingle;
+	}
+}
+
+item[data-done] {
+	background-color: @background-color;
+	color:  @done-tag-color;
+	text-strikethrough-color: @done-strike-color;
+	> run[content],
+	> run[tag],
+	> run[link^=button] {
+		font-weight: normal;
+		font-style: italic;
+		text-strikethrough-color: @done-strike-color;
+		background-color: @background-color;
+		color: @done-tag-color;
+	}
+}
+
+item[data-cancelled] {
+	background-color: @background-color;
+	text-strikethrough-color: @cancelled-strike-color;
+	> run[content],
+	> run[tag],
+	> run[link^=button] {
+		font-weight: normal;
+		font-style: italic;
+		text-strikethrough-color: @cancelled-strike-color;
+		background-color: @background-color;
+		color: @cancelled-tag-color;
+	}
+}
+
+item[data----]
+ {
+  > run[content],
+  > run[tag],
+  > run[link^="button"] {
+    color: @background-color;
+    text-strikethrough: NSUnderlineStyleSingle;
+    text-strikethrough-color: @guide-line-color;
+    font-family: @@selected-font;
+	text-expansion: .5 * @ui-scale;
+  }
+}
+
 @set-theme: 'lemon';

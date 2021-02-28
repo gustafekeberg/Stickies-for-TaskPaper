@@ -10,7 +10,7 @@ dst=$2
 
 commonfile="Daily Driver.less"
 stylename="Daily Driver"
-themes=(snow lemon magenta silver plum spring tangerine turquoise)
+themes=(white yellow pink grey green orange blue purple)
 
 for theme in $themes
 do
