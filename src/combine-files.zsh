@@ -4,25 +4,19 @@ if [[ -z "$1" || -z "$2" ]]; then
 	echo Missing script input: '<src dir>' '<dst dir>'
 	return
 fi
+
 src=$1
 dst=$2
 
 commonfile="Daily Driver.less"
 stylename="Daily Driver"
+themes=(snow lemon magenta silver plum spring tangerine turquoise)
 
-cd $src
-for file in _*.less
+for theme in $themes
 do
-	currentthemename=$(echo "${file}" | awk '{gsub("_","")} {print $0}')
-	
-	currentfilename="${dst}/${stylename}-${currentthemename}"
+	currentfilename="${dst}/${stylename}-${theme}.less"
 	echo "Writing:" $currentfilename
-
-	printf "// src: ${commonfile}"	> $currentfilename
-	printf "\n\n" 					>> $currentfilename
-	cat "${src}/${commonfile}" 		>> $currentfilename
-	printf "\n\n" 					>> $currentfilename
-	printf "// src: ${file}"		>> $currentfilename
-	printf "\n\n" 					>> $currentfilename
-	cat "${src}/${file}" 			>> $currentfilename
+	cat "${src}/${commonfile}" 			>> $currentfilename
+	printf "\n\n" 						>> $currentfilename
+	printf "@set-theme: '${theme}';"	>> $currentfilename
 done
