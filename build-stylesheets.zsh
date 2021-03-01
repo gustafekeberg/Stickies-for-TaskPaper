@@ -10,11 +10,11 @@ dst=$2
 
 commonfile="Stickies.less"
 stylename="Stickies"
-themes=(blue green grey orange pink purple red white yellow)
+themes=(Blue Green Grey Orange Pink Purple Red White Yellow)
 
 for theme in $themes
 do
-	currentfilename="${dst}/${stylename}-${theme}.less"
+	currentfilename="${dst}/${stylename} ${theme}.less"
 	echo "Writing:" $currentfilename
 	cat "${src}/${commonfile}" 			> $currentfilename
 	printf "\n\n" 						>> $currentfilename
