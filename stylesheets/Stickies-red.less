@@ -254,15 +254,15 @@
 @handle-size: 9 * @ui-scale;
 @handle-border-width: 2 * @ui-scale;
 
-@dark-guide-line-color: mix(@text-color, @@bg-color, 15%); 
-@light-guide-line-color: mix(@text-color, @@bg-color, 10%); 
+@dark-guide-line-color: mix(@text-color, @@bg-color, 25%); 
+@light-guide-line-color: mix(@text-color, @@bg-color, 15%); 
 @current-guide-line-color: "@{appearance}-guide-line-color"; 
 @guide-line-color: @@current-guide-line-color; 
 
 @handle-color: @guide-line-color;
 @handle-border-color: @handle-color;
-@handle-secondary-color: @accent-color;
-@handle-collapsed-color: @accent-color;
+@handle-secondary-color: @text-color;
+@handle-collapsed-color: @handle-color;
 
 // editor/sidebar/searchbar NSAppearanceNameVibrant Light/Dark
 
@@ -644,4 +644,4 @@ item[data----]
   }
 }
 
-@set-theme: 'grey';
+@set-theme: 'red';
