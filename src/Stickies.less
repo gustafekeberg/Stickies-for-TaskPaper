@@ -312,35 +312,6 @@ editor {
 	typewriter-scroll-percent: 50%;
 }
 
-item[data-type=project] {
-	color: @project-color;
-	font-family: @@selected-font;
-	font-weight: bold;
-	line-height-multiple: 2 * @ui-scale;
-	font-size: 1.2 * @user-font-size;
-}
-
-item[depth=1][data-type=project] {
-	font-size: 1.6 * @user-font-size;
-}
-
-item[depth=2][data-type=project] {
-	> run[content] {
-		text-underline: NSUnderlineStyleThick;
-	}
-}
-
-item[depth=2][data-type=project],
-item[depth=3][data-type=project] {
-}
-
-item[depth=3][data-type=project],
-item[depth=4][data-type=project],
-item[depth=5][data-type=project] {
-	> run[content] {
-	}
-}
-
 item[data-type=task] > run[content],
 item[data-type=note] > run[content] {
 }
@@ -366,11 +337,6 @@ item[collapsed] {
 		font-weight: bold;
 		text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
 	}
-}
-
-item[focused] {
-	font-size: 1.6 * @user-font-size; 
-	line-height-multiple: 2 * @ui-scale;
 }
 
 item {
@@ -419,6 +385,39 @@ item[leaf][data-type=task] {
 	font-weight: normal;
 	> run[content] {
 		text-underline: NSUnderlineStyleNone;
+	}
+}
+
+item[data-type=project],
+item[focused] {
+	color: @project-color;
+	// font-family: @@selected-font;
+	font-weight: bold;
+	line-height-multiple: 2 * @ui-scale;
+	font-size: 1.2 * @user-font-size;
+}
+item[focused] {
+	font-size: 1.6 * @user-font-size; 
+}
+
+item[depth=1][data-type=project] {
+	font-size: 1.6 * @user-font-size;
+}
+
+item[depth=2][data-type=project] {
+	> run[content] {
+		text-underline: NSUnderlineStyleThick;
+	}
+}
+
+item[depth=2][data-type=project],
+item[depth=3][data-type=project] {
+}
+
+item[depth=3][data-type=project],
+item[depth=4][data-type=project],
+item[depth=5][data-type=project] {
+	> run[content] {
 	}
 }
 
@@ -543,6 +542,7 @@ item[data-priority="iii"],
 		color: @item-prio-3-color;
 	}
 }
+
 item[data-ongoing],
  {
 	>run[tag=data-ongoing],
