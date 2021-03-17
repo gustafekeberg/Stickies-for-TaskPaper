@@ -28,66 +28,66 @@
 
 // White theme
 
-@White-light-fg-color: hsl(0, 0%, 25%);
-@White-light-bg-color: hsl(0, 0%, 100%);
+@White-light-fg-color: hsl(0, 0, 25%);
+@White-light-bg-color: hsl(0, 0, 100%);
 @White-dark-fg-color: hsl(0, 0, 85%);
-@White-dark-bg-color: hsl(0, 0%, 12%);
+@White-dark-bg-color: hsl(0, 0, 12%);
 
 // Grey theme
 
 @Grey-light-fg-color: hsl(0, 0%, 40%);
 @Grey-light-bg-color: hsl(0, 0%, 95%);
-@Grey-dark-fg-color: hsl(0, 0, 75%);
+@Grey-dark-fg-color: hsl(0, 0%, 75%);
 @Grey-dark-bg-color: darken(@Grey-light-bg-color, 65%);
 
 // Yellow
 
 @Yellow-light-fg-color: hsl(36, 72%, 28%);
 @Yellow-light-bg-color: hsl(44, 100%, 94%);
-@Yellow-dark-fg-color: hsl(0, 0, 85%);
+@Yellow-dark-fg-color: hsl(36, 50%, 85%);
 @Yellow-dark-bg-color: darken(@Yellow-light-bg-color, 80%);
 
 // Red
 
 @Red-light-fg-color: hsl(9, 100%, 26%);
 @Red-light-bg-color: hsl(9, 100%, 90%);
-@Red-dark-fg-color: hsl(0, 0, 85%);
+@Red-dark-fg-color: hsl(9, 50%, 85%);
 @Red-dark-bg-color: darken(@Red-light-bg-color, 75%);
 
 // Purple
 
 @Purple-light-fg-color: hsl(285, 52%, 35%);
 @Purple-light-bg-color: hsl(285, 52%, 89%);
-@Purple-dark-fg-color: hsl(0, 0, 85%);
+@Purple-dark-fg-color: hsl(285, 26%, 85%);
 @Purple-dark-bg-color: darken(@Purple-light-bg-color, 75%);
 
 // Orange theme
 
 @Orange-light-fg-color: hsl(29, 100%, 25%);
 @Orange-light-bg-color: hsl(29, 100%, 83%);
-@Orange-dark-fg-color: hsl(0, 0, 85%);
+@Orange-dark-fg-color: hsl(29, 50%, 85%);
 @Orange-dark-bg-color: darken(@Orange-light-bg-color, 68%);
 
 // Green theme
 
-@Green-light-fg-color: hsl(100, 100, 15%);
-@Green-light-bg-color: hsl(100, 100, 90%);
-@Green-dark-fg-color: hsl(0, 0, 85%);
+@Green-light-fg-color: hsl(100, 100%, 15%);
+@Green-light-bg-color: hsl(100, 100%, 90%);
+@Green-dark-fg-color: hsl(100, 50%, 85%);
 @Green-dark-bg-color: darken(@Green-light-bg-color, 80%);
 
 
 // Pink theme
 
-@Pink-light-fg-color: hsl(320, 100, 30%);
-@Pink-light-bg-color: hsl(320, 100, 95%);
-@Pink-dark-fg-color: hsl(0, 0, 85%);
+@Pink-light-fg-color: hsl(320, 100%, 30%);
+@Pink-light-bg-color: hsl(320, 100%, 95%);
+@Pink-dark-fg-color: hsl(320, 50%, 85%);
 @Pink-dark-bg-color: darken(@Pink-light-bg-color, 80%);
 
 // Blue theme
 
-@Blue-light-fg-color: hsl(200, 100, 25%);
-@Blue-light-bg-color: hsl(200, 100, 95%);
-@Blue-dark-fg-color: hsl(0, 0, 85%);
+@Blue-light-fg-color: hsl(200, 100%, 25%);
+@Blue-light-bg-color: hsl(200, 100%, 95%);
+@Blue-dark-fg-color: hsl(200, 50%, 85%);
 @Blue-dark-bg-color: darken(@Blue-light-bg-color, 85%);
 
 // Custom tag colors
@@ -113,7 +113,7 @@
 // Text color
 
 @text-color: @@fg-color;
-@project-text-color: contrast(@@bg-color, darken(@@fg-color, 20%), lighten(@@fg-color, 20%));
+@project-text-color: contrast(@@bg-color, darken(@@fg-color, 10%), lighten(@@fg-color, 10%));
 
 // Editor
 
@@ -135,7 +135,7 @@
 // Searchbar colors
 
 @searchbar-background-color: contrast(@@bg-color, darken(@@bg-color,10%), lighten(@@bg-color,5%));
-@base-searchbar-error-color: spin(@accent-color, 180);
+@base-searchbar-error-color: #ff0000;
 @dark-searchbar-error-color: darken(@base-searchbar-error-color, 5%);
 @light-searchbar-error-color: lighten(@base-searchbar-error-color, 5%);
 @searchbar-error-color: contrast(@searchbar-background-color, @dark-searchbar-error-color, @light-searchbar-error-color);
@@ -312,64 +312,37 @@ editor {
 	typewriter-scroll-percent: 50%;
 }
 
-item[data-type=project] {
-	color: @project-color;
-	font-family: @@selected-font;
-	font-weight: bold;
-	line-height-multiple: 2 * @ui-scale;
-	font-size: 1.2 * @user-font-size;
-}
-
-item[depth=1][data-type=project] {
-	font-size: 1.6 * @user-font-size;
-}
-
-item[depth=2][data-type=project] {
-	> run[content] {
-		text-underline: NSUnderlineStyleThick;
-	}
-}
-
-item[depth=2][data-type=project],
-item[depth=3][data-type=project] {
-}
-
-item[depth=3][data-type=project],
-item[depth=4][data-type=project],
-item[depth=5][data-type=project] {
-	> run[content] {
-	}
-}
-
 item[data-type=task] > run[content],
 item[data-type=note] > run[content] {
 }
 
 item[data-type=task], item[data-type=note] {
 	color: @note-color;
-	font-weight: bold;
+	// font-weight: bold;
 	> run[content] {
 	}
 }
 
 item[data-type=note] {
-	font-style: italic;
+	font-style: normal;
 	color: @note-color;
 }
 
 item[collapsed] {
+		// text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
+		font-style: italic;
 	& [data-type=task] > run[content] {
-		font-weight: bold;
-		text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
+		// font-weight: bold;
+		// text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
 	}
 	& [data-type=note] > run[content] {
-		font-weight: bold;
-		text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
+		// font-weight: bold;
+		// text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
 	}
 }
 
-item[focused] {
-	font-size: 1.6 * @user-font-size; 
+item {
+	// font-weight: bold;
 	line-height-multiple: 2 * @ui-scale;
 }
 
@@ -407,6 +380,7 @@ item[expanded] {
 
 item[filtered] {
   handle-color: @handle-secondary-color;
+	text-underline: NSUnderlineStyleThick NSUnderlinePatternDot;
 }
 
 item[filtered][mouseOver] {
@@ -417,6 +391,7 @@ item[filtered][mouseOver] {
 item[leaf][data-type=note],
 item[leaf][data-type=task] {
 	font-weight: normal;
+	line-height-multiple: 1.2 * @ui-scale;
 	> run[content] {
 		text-underline: NSUnderlineStyleNone;
 	}
@@ -451,6 +426,38 @@ item[data-pinned]
 	>run[tag=data-pinned]
 	{
 		color: @tag-pinned-color;
+	}
+}
+
+item[data-type=project],
+item[focused],
+item[focused] > run[link^=button] {
+	color: @project-color;
+	font-weight: bold;
+	line-height-multiple: 1.6 * @ui-scale;
+	font-size: 1.2 * @user-font-size;
+}
+item[focused] {
+	text-underline: NSUnderlineStyleSingle;
+}
+
+item[depth=1][data-type=project],
+item[focused] {
+	font-size: 1.6 * @user-font-size;
+}
+
+item[depth=2][data-type=project] {
+	// text-underline: NSUnderlineStyleThick;
+}
+
+item[depth=2][data-type=project],
+item[depth=3][data-type=project] {
+}
+
+item[depth=3][data-type=project],
+item[depth=4][data-type=project],
+item[depth=5][data-type=project] {
+	> run[content] {
 	}
 }
 
@@ -543,6 +550,7 @@ item[data-priority="iii"],
 		color: @item-prio-3-color;
 	}
 }
+
 item[data-ongoing],
  {
 	>run[tag=data-ongoing],

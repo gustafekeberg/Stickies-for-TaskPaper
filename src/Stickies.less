@@ -135,7 +135,7 @@
 // Searchbar colors
 
 @searchbar-background-color: contrast(@@bg-color, darken(@@bg-color,10%), lighten(@@bg-color,5%));
-@base-searchbar-error-color: spin(@accent-color, 180);
+@base-searchbar-error-color: #ff0000;
 @dark-searchbar-error-color: darken(@base-searchbar-error-color, 5%);
 @light-searchbar-error-color: lighten(@base-searchbar-error-color, 5%);
 @searchbar-error-color: contrast(@searchbar-background-color, @dark-searchbar-error-color, @light-searchbar-error-color);
@@ -318,25 +318,32 @@ item[data-type=note] > run[content] {
 
 item[data-type=task], item[data-type=note] {
 	color: @note-color;
-	font-weight: bold;
+	// font-weight: bold;
 	> run[content] {
 	}
 }
 
 item[data-type=note] {
-	font-style: italic;
+	font-style: normal;
 	color: @note-color;
 }
 
 item[collapsed] {
+		// text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
+		font-style: italic;
 	& [data-type=task] > run[content] {
-		font-weight: bold;
-		text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
+		// font-weight: bold;
+		// text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
 	}
 	& [data-type=note] > run[content] {
-		font-weight: bold;
-		text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
+		// font-weight: bold;
+		// text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
 	}
+}
+
+item {
+	// font-weight: bold;
+	line-height-multiple: 2 * @ui-scale;
 }
 
 item {
@@ -373,6 +380,7 @@ item[expanded] {
 
 item[filtered] {
   handle-color: @handle-secondary-color;
+	text-underline: NSUnderlineStyleThick NSUnderlinePatternDot;
 }
 
 item[filtered][mouseOver] {
@@ -383,6 +391,7 @@ item[filtered][mouseOver] {
 item[leaf][data-type=note],
 item[leaf][data-type=task] {
 	font-weight: normal;
+	line-height-multiple: 1.2 * @ui-scale;
 	> run[content] {
 		text-underline: NSUnderlineStyleNone;
 	}
