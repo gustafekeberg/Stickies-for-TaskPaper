@@ -324,13 +324,13 @@ item[data-type=task], item[data-type=note] {
 }
 
 item[data-type=note] {
-	font-style: normal;
+	font-style: italic;
 	color: @note-color;
 }
 
 item[collapsed] {
-		// text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
-		font-style: italic;
+		// text-underline: NSUnderlineStyleDouble NSUnderlinePatternSolid;
+		// font-style: italic;
 	& [data-type=task] > run[content] {
 		// font-weight: bold;
 		// text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
@@ -354,23 +354,6 @@ item {
 item[leaf],
 item[leaf][mouseOver] {
 	handle-border-color: none;
-	handle-size: @handle-size;
-}
-
-item[mouseOver] {
-	handle-color: @handle-secondary-color;
-	handle-border-color: @handle-secondary-color;
-}
-
-item[collapsed] {
-	handle-color: @handle-collapsed-color;
-	handle-border-color: @handle-collapsed-color;
-	handle-size: @handle-size;
-}
-
-item[collapsed][mouseOver], item[expanded][mouseOver], item[filtered][mouseOver] {
-	handle-color: @handle-secondary-color;
-	handle-border-color: @handle-secondary-color;
 	handle-size: @handle-size;
 }
 
@@ -439,6 +422,20 @@ item[focused] > run[link^=button] {
 }
 item[focused] {
 	text-underline: NSUnderlineStyleSingle;
+}
+
+item[collapsed], item[collapsed][data-type=project] {
+	text-underline: NSUnderlineStyleDouble;
+}
+
+item[collapsed],
+item[mouseOver],
+item[collapsed][mouseOver],
+item[expanded][mouseOver],
+item[filtered][mouseOver] {
+	handle-color: @handle-secondary-color;
+	handle-border-color: @handle-secondary-color;
+	handle-size: @handle-size;
 }
 
 item[depth=1][data-type=project],
