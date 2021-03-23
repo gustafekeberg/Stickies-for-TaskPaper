@@ -417,8 +417,8 @@ item[focused],
 item[focused] > run[link^=button] {
 	color: @project-color;
 	font-weight: bold;
-	line-height-multiple: 1.6 * @ui-scale;
-	font-size: 1.2 * @user-font-size;
+	line-height-multiple: 1.2 * @ui-scale;
+	font-size: 1 * @user-font-size;
 }
 item[focused] {
 	text-underline: NSUnderlineStyleSingle;
@@ -440,8 +440,9 @@ item[filtered][mouseOver] {
 
 item[depth=1][data-type=project],
 item[focused] {
-	font-size: 1.6 * @user-font-size;
+	font-size: 1.2 * @user-font-size;
 }
+
 
 item[depth=2][data-type=project] {
 	// text-underline: NSUnderlineStyleThick;
@@ -648,3 +649,13 @@ item[data----]
 	text-expansion: .5 * @ui-scale;
   }
 }
+
+// item[depth=3][data-type=task] {
+// 	font-size: .8 * @user-font-size;
+// 	// line-height-multiple: .8 * @ui-scale;
+// 	>run[tag] {
+// 	font-size: .8 * @user-font-size;
+// 	// line-height-multiple: .8 * @ui-scale;
+		
+// 	}
+// }
