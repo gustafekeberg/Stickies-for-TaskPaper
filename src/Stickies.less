@@ -104,7 +104,7 @@
 
 @tint-color: $CONTROL_ACCENT_COLOR; // use color from system
 @selected-content-color: $SELECTED_CONTENT_BACKGROUND_COLOR; // use color from system
-
+@selected-content-color: @@fg-color;
 // Set theme colors
 
 @fg-color: "@{set-theme}-@{appearance}-fg-color";
@@ -120,7 +120,7 @@
 @set-editor-wrap-to-column: 0; 	// width in number of characters / 0 = none
 @set-item-wrap-to-column: 0; 	// width in number of characters / 0 = none
 
-@light-selection-color: mix(@selected-content-color, @@bg-color, 15%);
+@light-selection-color: mix(@selected-content-color, @@bg-color, 25%);
 @dark-selection-color: mix(@selected-content-color, @@bg-color, 25%);
 @current-selection-color: "@{appearance}-selection-color";
 @selection-color: @@current-selection-color;
@@ -129,6 +129,7 @@
 @light-caret-color: darken(@accent-color, 0%);
 @current-caret-color: "@{appearance}-caret-color";
 @caret-color: @@current-caret-color;
+@caret-color: @@fg-color;
 
 @invisibles-color: mix(@tint-color, @@bg-color, 50%);
 

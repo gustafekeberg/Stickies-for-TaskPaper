@@ -104,7 +104,7 @@
 
 @tint-color: $CONTROL_ACCENT_COLOR; // use color from system
 @selected-content-color: $SELECTED_CONTENT_BACKGROUND_COLOR; // use color from system
-
+@selected-content-color: @@fg-color;
 // Set theme colors
 
 @fg-color: "@{set-theme}-@{appearance}-fg-color";
@@ -120,7 +120,7 @@
 @set-editor-wrap-to-column: 0; 	// width in number of characters / 0 = none
 @set-item-wrap-to-column: 0; 	// width in number of characters / 0 = none
 
-@light-selection-color: mix(@selected-content-color, @@bg-color, 15%);
+@light-selection-color: mix(@selected-content-color, @@bg-color, 25%);
 @dark-selection-color: mix(@selected-content-color, @@bg-color, 25%);
 @current-selection-color: "@{appearance}-selection-color";
 @selection-color: @@current-selection-color;
@@ -129,6 +129,7 @@
 @light-caret-color: darken(@accent-color, 0%);
 @current-caret-color: "@{appearance}-caret-color";
 @caret-color: @@current-caret-color;
+@caret-color: @@fg-color;
 
 @invisibles-color: mix(@tint-color, @@bg-color, 50%);
 
@@ -417,8 +418,8 @@ item[focused],
 item[focused] > run[link^=button] {
 	color: @project-color;
 	font-weight: bold;
-	line-height-multiple: 1.2 * @ui-scale;
-	font-size: 1 * @user-font-size;
+	line-height-multiple: 1.6 * @ui-scale;
+	font-size: 1.2 * @user-font-size;
 }
 item[focused] {
 	text-underline: NSUnderlineStyleSingle;
@@ -440,9 +441,8 @@ item[filtered][mouseOver] {
 
 item[depth=1][data-type=project],
 item[focused] {
-	font-size: 1.2 * @user-font-size;
+	font-size: 1.6 * @user-font-size;
 }
-
 
 item[depth=2][data-type=project] {
 	// text-underline: NSUnderlineStyleThick;
@@ -650,14 +650,5 @@ item[data----]
   }
 }
 
-// item[depth=3][data-type=task] {
-// 	font-size: .8 * @user-font-size;
-// 	// line-height-multiple: .8 * @ui-scale;
-// 	>run[tag] {
-// 	font-size: .8 * @user-font-size;
-// 	// line-height-multiple: .8 * @ui-scale;
-		
-// 	}
-// }
 
 @set-theme: 'Pink';
