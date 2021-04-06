@@ -342,6 +342,58 @@ item[collapsed] {
 	}
 }
 
+
+
+item[data-type=project],
+item[focused],
+item[focused] > run[link^=button] {
+	color: @project-color;
+	font-weight: bold;
+	line-height-multiple: 1.2 * @ui-scale;
+	font-size: 1.2 * @user-font-size;
+	// font-size: 1 * @user-font-size;
+	line-height-multiple: 2 * @ui-scale;
+}
+item[focused] {
+	text-underline: NSUnderlineStyleSingle;
+}
+
+item[collapsed], item[collapsed][data-type=project] {
+	>run[content]{
+	text-underline: NSUnderlineStyleDouble;
+	}
+}
+
+item[collapsed],
+item[mouseOver],
+item[collapsed][mouseOver],
+item[expanded][mouseOver],
+item[filtered][mouseOver] {
+	handle-color: @handle-secondary-color;
+	handle-border-color: @handle-secondary-color;
+	handle-size: @handle-size;
+}
+
+item[depth=1][data-type=project],
+item[focused] {
+	// font-size: 1.2 * @user-font-size;
+}
+
+
+item[depth=2][data-type=project] {
+	// text-underline: NSUnderlineStyleThick;
+}
+
+item[depth=2][data-type=project],
+item[depth=3][data-type=project] {
+}
+
+item[depth=3][data-type=project],
+item[depth=4][data-type=project],
+item[depth=5][data-type=project] {
+	> run[content] {
+	}
+}
 item {
 	// font-weight: bold;
 	line-height-multiple: 2 * @ui-scale;
@@ -364,7 +416,10 @@ item[expanded] {
 
 item[filtered] {
   handle-color: @handle-secondary-color;
+  >run[content] {
 	text-underline: NSUnderlineStyleThick NSUnderlinePatternDot;
+
+  }
 }
 
 item[filtered][mouseOver] {
@@ -412,54 +467,6 @@ item[data-pinned]
 		color: @tag-pinned-color;
 	}
 }
-
-item[data-type=project],
-item[focused],
-item[focused] > run[link^=button] {
-	color: @project-color;
-	font-weight: bold;
-	line-height-multiple: 1.2 * @ui-scale;
-	font-size: 1 * @user-font-size;
-}
-item[focused] {
-	text-underline: NSUnderlineStyleSingle;
-}
-
-item[collapsed], item[collapsed][data-type=project] {
-	text-underline: NSUnderlineStyleDouble;
-}
-
-item[collapsed],
-item[mouseOver],
-item[collapsed][mouseOver],
-item[expanded][mouseOver],
-item[filtered][mouseOver] {
-	handle-color: @handle-secondary-color;
-	handle-border-color: @handle-secondary-color;
-	handle-size: @handle-size;
-}
-
-item[depth=1][data-type=project],
-item[focused] {
-	font-size: 1.2 * @user-font-size;
-}
-
-
-item[depth=2][data-type=project] {
-	// text-underline: NSUnderlineStyleThick;
-}
-
-item[depth=2][data-type=project],
-item[depth=3][data-type=project] {
-}
-
-item[depth=3][data-type=project],
-item[depth=4][data-type=project],
-item[depth=5][data-type=project] {
-	> run[content] {
-	}
-}
-
 item[data-p],
 item[data-prio],
 item[data-priority],
