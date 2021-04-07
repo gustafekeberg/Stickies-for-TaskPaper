@@ -404,12 +404,13 @@ item {
 	handle-border-width: @handle-border-width;
 }
 
+
 item[leaf],
 item[leaf][mouseOver] {
 	handle-border-color: none;
 	handle-size: @handle-size;
+		line-height-multiple: 2 * @ui-scale;
 }
-
 item[expanded] {
   handle-border-color: @handle-color;
 }
@@ -418,7 +419,6 @@ item[filtered] {
   handle-color: @handle-secondary-color;
   >run[content] {
 	text-underline: NSUnderlineStyleThick NSUnderlinePatternDot;
-
   }
 }
 
@@ -430,7 +430,7 @@ item[filtered][mouseOver] {
 item[leaf][data-type=note],
 item[leaf][data-type=task] {
 	font-weight: normal;
-	line-height-multiple: 1.2 * @ui-scale;
+	line-height-multiple: 1 * @ui-scale;
 	> run[content] {
 		text-underline: NSUnderlineStyleNone;
 	}
