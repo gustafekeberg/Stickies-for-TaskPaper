@@ -342,8 +342,6 @@ item[collapsed] {
 	}
 }
 
-
-
 item[data-type=project],
 item[focused],
 item[focused] > run[link^=button] {
@@ -355,7 +353,9 @@ item[focused] > run[link^=button] {
 	line-height-multiple: 2 * @ui-scale;
 }
 item[focused] {
+	>run[content]{
 	text-underline: NSUnderlineStyleSingle;
+	}
 }
 
 item[collapsed], item[collapsed][data-type=project] {
