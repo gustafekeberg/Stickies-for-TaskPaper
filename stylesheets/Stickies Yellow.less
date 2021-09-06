@@ -4,6 +4,7 @@
 
 @set-theme: 'White'; 	// White/Yellow/Pink/Grey/Green/Orange/Blue/Purple - overridden in last line
 @set-font: 'Sans'; 			// Sans/Serif/Mono
+@set-tag-font: 'Mono'; // Sans/Serif/Mono
 @set-appearance: 'System';	// System/Light/Dark
 
 // Custom tags
@@ -25,6 +26,7 @@
 @set-font-Mono: 'Menlo';
 
 @selected-font: "set-font-@{set-font}";
+@selected-tag-font: "set-font-@{set-tag-font}";
 
 // White theme
 
@@ -452,7 +454,10 @@ run[link^=filter] {
 
 run[tag] {
 	color: @tag-color;
-	font-style: italic;
+	// font-style: italic;
+	font-weight: bold;
+	font-family: @@selected-tag-font;
+	font-size: @user-font-size * 0.75;
 	text-underline: NSUnderlineStyleSingle;
 	&[tagvalue] {
 		color: @text-color;
