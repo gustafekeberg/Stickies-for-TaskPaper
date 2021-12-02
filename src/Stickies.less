@@ -164,6 +164,7 @@
 @dark-tag-mix-percent: 40%;
 @current-appearence-tag-mix-percent: "@{appearance}-tag-mix-percent";
 @tag-color: mix(@text-color, @@bg-color, @@current-appearence-tag-mix-percent);
+@tag-color: @tint-color;
 
 @light-done-tag-mix-percent: 25%;
 @dark-done-tag-mix-percent: 20%;
@@ -315,25 +316,27 @@ editor {
 	typewriter-scroll-percent: 50%;
 }
 
-item[data-type=task] > run[content],
-item[data-type=note] > run[content] {
+item[data-type=task] > run[content] {
+	font-weight: bold;
 }
+item[data-type=note] > run[content] {}
 
 item[data-type=task], item[data-type=note] {
-	color: @note-color;
+	// color: @note-color;
 	// font-weight: bold;
 	> run[content] {
 	}
 }
 
 item[data-type=note] {
-	font-style: italic;
-	color: @note-color;
+	font-style: none;
+	// color: @note-color;
 }
 
 item[collapsed] {
 		// text-underline: NSUnderlineStyleDouble NSUnderlinePatternSolid;
 		// font-style: italic;
+		// line-height-multiple: 2 * @ui-scale;
 	& [data-type=task] > run[content] {
 		// font-weight: bold;
 		// text-underline: NSUnderlineStyleSingle NSUnderlinePatternDot;
@@ -411,7 +414,7 @@ item[leaf],
 item[leaf][mouseOver] {
 	handle-border-color: none;
 	handle-size: @handle-size;
-		line-height-multiple: 2 * @ui-scale;
+	line-height-multiple: 2 * @ui-scale;
 }
 item[expanded] {
   handle-border-color: @handle-color;
@@ -474,7 +477,7 @@ item[data-pinned]
 }
 item[data-p],
 item[data-prio],
-item[data-priority],
+item[data-priority]
  {
 	color: @item-prio-color;
 	> run[tag=data-p],
@@ -498,7 +501,7 @@ item[data-prio="I"],
 item[data-priority="I"],
 item[data-p="i"],
 item[data-prio="i"],
-item[data-priority="i"],
+item[data-priority="i"]
  {
 	color: @item-prio-1-color;
 	> run[tag=data-p],
@@ -522,7 +525,7 @@ item[data-prio="II"],
 item[data-priority="II"],
 item[data-p="ii"],
 item[data-prio="ii"],
-item[data-priority="ii"],
+item[data-priority="ii"]
  {
 	color: @item-prio-2-color;
 	> run[tag=data-p],
@@ -546,7 +549,7 @@ item[data-prio="III"],
 item[data-priority="III"],
 item[data-p="iii"],
 item[data-prio="iii"],
-item[data-priority="iii"],
+item[data-priority="iii"]
  {
 	color: @item-prio-3-color;
 	> run[tag=data-p],
@@ -562,20 +565,20 @@ item[data-priority="iii"],
 	}
 }
 
-item[data-ongoing],
+item[data-ongoing]
  {
-	>run[tag=data-ongoing],
+	>run[tag=data-ongoing]
 	 {
 		color: @tag-ongoing-color;
 	}
 }
 
 item[data-flag],
-item[data-f],
+item[data-f]
  {
 	background-color: @item-flag-background-color;
 	> run[tag=data-flag],
-	> run[tag=data-f],
+	> run[tag=data-f]
 	 {
 		color: @tag-flag-color;
 	}
@@ -590,7 +593,7 @@ item[data-today]
 }
 
 item[data-important],
-item[data-i],
+item[data-i]
  {
 	background-color: @tag-important-background-color;
 	> run[tag],
