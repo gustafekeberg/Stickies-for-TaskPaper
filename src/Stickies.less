@@ -2,11 +2,11 @@
 
 // Settings
 
-@set-theme: 'White'; 	// White/Yellow/Pink/Grey/Green/Orange/Blue/Purple - overridden in last line
-@set-font: 'Sans'; 			// Sans/Serif/Mono
-@set-tag-font: 'Mono'; // Sans/Serif/Mono
+@set-theme: 'White';				// White/Yellow/Pink/Grey/Green/Orange/Blue/Purple - overridden in last line
+@set-font: 'Sans';					// Sans/Serif/Mono
+@set-tag-font: 'Mono';			// Sans/Serif/Mono
+@set-note-font: 'Mono'; 		// Sans/Serif/Mono
 @set-appearance: 'System';	// System/Light/Dark
-
 // Custom tags
 
 //		@f, @flag = Flag
@@ -27,7 +27,7 @@
 
 @selected-font: "set-font-@{set-font}";
 @selected-tag-font: "set-font-@{set-tag-font}";
-
+@selected-note-font: "set-font-@{set-note-font}";
 // White theme
 
 @White-light-fg-color: hsl(0, 0, 25%);
@@ -319,7 +319,9 @@ editor {
 item[data-type=task] > run[content] {
 	font-weight: bold;
 }
-item[data-type=note] > run[content] {}
+item[data-type=note] > run[content] {
+	font-family: @@selected-note-font;
+}
 
 item[data-type=task], item[data-type=note] {
 	// color: @note-color;
@@ -460,7 +462,7 @@ run[tag] {
 	// font-style: italic;
 	font-weight: bold;
 	font-family: @@selected-tag-font;
-	font-size: @user-font-size * 0.75;
+	font-size: @user-font-size * 1;
 	text-underline: NSUnderlineStyleSingle;
 	&[tagvalue] {
 		color: @text-color;
@@ -470,10 +472,11 @@ run[tag] {
 item[data-pinned]
 {
 	color: @item-pinned-color;
-	>run[tag=data-pinned]
-	{
+	> run[tag=data-pinned],
+	> run[lead] {
 		color: @tag-pinned-color;
 	}
+
 }
 item[data-p],
 item[data-prio],
@@ -512,7 +515,8 @@ item[data-priority="i"]
 	> run[link^=button] {
 		color: @item-prio-1-color;
 	}
-	> run[tagvalue] {
+	> run[tagvalue],
+	> run[lead] {
 		color: @item-prio-1-color;
 	}
 }
@@ -536,7 +540,8 @@ item[data-priority="ii"]
 	> run[link^=button] {
 		color: @item-prio-2-color;
 	}
-	> run[tagvalue] {
+	> run[tagvalue],
+	> run[lead] {
 		color: @item-prio-2-color;
 	}
 }
@@ -560,7 +565,8 @@ item[data-priority="iii"]
 	> run[link^=button] {
 		color: @item-prio-3-color;
 	}
-	> run[tagvalue] {
+	> run[tagvalue],
+	> run[lead] {
 		color: @item-prio-3-color;
 	}
 }
@@ -675,3 +681,5 @@ item[data----]
 		
 // 	}
 // }
+
+item > run[lead] {text-expansion: 1.25}
