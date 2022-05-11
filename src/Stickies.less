@@ -2,7 +2,7 @@
 
 // Settings
 
-@set-theme: 'White';				// White/Yellow/Pink/Grey/Green/Orange/Blue/Purple - overridden in last line
+@set-theme: 'Orange';				// White/Yellow/Pink/Grey/Green/Orange/Blue/Purple - overridden in last line
 @set-font: 'Sans';					// Sans/Serif/Mono
 @set-tag-font: 'Mono';			// Sans/Serif/Mono
 @set-note-font: 'Mono'; 		// Sans/Serif/Mono
@@ -21,9 +21,9 @@
 
 // Fonts
 
-@set-font-Sans: 'San Fransisco';
+@set-font-Sans: 'American Typewriter';
 @set-font-Serif: 'Palatino';
-@set-font-Mono: 'Menlo';
+@set-font-Mono: 'Fira Code';
 
 @selected-font: "set-font-@{set-font}";
 @selected-tag-font: "set-font-@{set-tag-font}";
@@ -306,10 +306,10 @@ searchbar {
 editor {
 	background-color: @@bg-color;
 	editor-wrap-to-column: @set-editor-wrap-to-column;
-    item-wrap-to-column: @set-item-wrap-to-column;
+	item-wrap-to-column: @set-item-wrap-to-column;
 	font-family: @@selected-font;
-	guide-line-width: 1.5 * @ui-scale;
-	guide-line-color: @guide-line-color;
+	guide-line-width: 2 * @ui-scale;
+	guide-line-color: @handle-secondary-color;
 	caret-color: @caret-color;
 	caret-width: 1.75 * @ui-scale;
 	bottom-padding-percent: 50%;
@@ -367,18 +367,20 @@ item[focused] {
 
 item[collapsed], item[collapsed][data-type=project] {
 	>run[content]{
-	text-underline: NSUnderlineStyleDouble;
+	// text-underline: NSUnderlineStyleSingle;
 	}
 }
 
 item[collapsed],
+item[leaf][mouseOver],
 item[mouseOver],
 item[collapsed][mouseOver],
 item[expanded][mouseOver],
 item[filtered][mouseOver] {
-	handle-color: @handle-secondary-color;
+	handle-color: @handle-color;
 	handle-border-color: @handle-secondary-color;
-	handle-size: @handle-size;
+	handle-size: @handle-size * 1.5;
+	handle-border-width: @handle-size * 1.125;
 }
 
 item[depth=1][data-type=project],
@@ -406,20 +408,20 @@ item {
 	line-height-multiple: 2 * @ui-scale;
 }
 
-item {
-	handle-border-color: @handle-color;
-	handle-border-width: @handle-border-width;
-}
+// item {
+// 	handle-border-color: none;
+// 	handle-border-width: @handle-border-width;
+// }
 
 
-item[leaf],
-item[leaf][mouseOver] {
+item[leaf]
+{
 	handle-border-color: none;
-	handle-size: @handle-size;
-	line-height-multiple: 2 * @ui-scale;
+	// handle-size: @handle-size;
+	// line-height-multiple: 2 * @ui-scale;
 }
 item[expanded] {
-  handle-border-color: @handle-color;
+  handle-border-color: none;
 }
 
 item[filtered] {
