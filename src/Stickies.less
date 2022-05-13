@@ -317,7 +317,7 @@ editor {
 }
 
 item[data-type=task] > run[content] {
-	font-weight: bold;
+	font-weight: 7;
 }
 item[data-type=note] > run[content] {
 	font-family: @@selected-note-font;
@@ -353,7 +353,7 @@ item[data-type=project],
 item[focused],
 item[focused] > run[link^=button] {
 	color: @project-color;
-	font-weight: bold;
+	font-weight: 7;
 	line-height-multiple: 1.2 * @ui-scale;
 	font-size: 1.2 * @user-font-size;
 	// font-size: 1 * @user-font-size;
@@ -427,13 +427,13 @@ item[expanded] {
 item[filtered] {
   handle-color: @handle-secondary-color;
   >run[content] {
-	text-underline: NSUnderlineStyleThick NSUnderlinePatternDot;
+	text-underline: NSUnderlineStyleThick;
   }
 }
 
 item[filtered][mouseOver] {
-  	handle-color: @handle-color;
-  	handle-border-color: @handle-color;
+  	// handle-color: @handle-color;
+  	// handle-border-color: @handle-color;
   }
 
 item[leaf][data-type=note],

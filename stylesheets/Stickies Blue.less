@@ -2,11 +2,11 @@
 
 // Settings
 
-@set-theme: 'White'; 	// White/Yellow/Pink/Grey/Green/Orange/Blue/Purple - overridden in last line
-@set-font: 'Sans'; 			// Sans/Serif/Mono
-@set-tag-font: 'Mono'; // Sans/Serif/Mono
+@set-theme: 'White';				// White/Yellow/Pink/Grey/Green/Orange/Blue/Purple - overridden in last line
+@set-font: 'Sans';					// Sans/Serif/Mono
+@set-tag-font: 'Mono';			// Sans/Serif/Mono
+@set-note-font: 'Mono'; 		// Sans/Serif/Mono
 @set-appearance: 'System';	// System/Light/Dark
-
 // Custom tags
 
 //		@f, @flag = Flag
@@ -21,13 +21,13 @@
 
 // Fonts
 
-@set-font-Sans: 'San Fransisco';
+@set-font-Sans: 'American Typewriter';
 @set-font-Serif: 'Palatino';
-@set-font-Mono: 'Menlo';
+@set-font-Mono: 'Fira Code';
 
 @selected-font: "set-font-@{set-font}";
 @selected-tag-font: "set-font-@{set-tag-font}";
-
+@selected-note-font: "set-font-@{set-note-font}";
 // White theme
 
 @White-light-fg-color: hsl(0, 0, 25%);
@@ -306,10 +306,10 @@ searchbar {
 editor {
 	background-color: @@bg-color;
 	editor-wrap-to-column: @set-editor-wrap-to-column;
-    item-wrap-to-column: @set-item-wrap-to-column;
+	item-wrap-to-column: @set-item-wrap-to-column;
 	font-family: @@selected-font;
-	guide-line-width: 1.5 * @ui-scale;
-	guide-line-color: @guide-line-color;
+	guide-line-width: 1.75 * @ui-scale;
+	guide-line-color: @handle-secondary-color;
 	caret-color: @caret-color;
 	caret-width: 1.75 * @ui-scale;
 	bottom-padding-percent: 50%;
@@ -317,9 +317,11 @@ editor {
 }
 
 item[data-type=task] > run[content] {
-	font-weight: bold;
+	font-weight: 7;
 }
-item[data-type=note] > run[content] {}
+item[data-type=note] > run[content] {
+	font-family: @@selected-note-font;
+}
 
 item[data-type=task], item[data-type=note] {
 	// color: @note-color;
@@ -351,7 +353,7 @@ item[data-type=project],
 item[focused],
 item[focused] > run[link^=button] {
 	color: @project-color;
-	font-weight: bold;
+	font-weight: 7;
 	line-height-multiple: 1.2 * @ui-scale;
 	font-size: 1.2 * @user-font-size;
 	// font-size: 1 * @user-font-size;
@@ -365,18 +367,20 @@ item[focused] {
 
 item[collapsed], item[collapsed][data-type=project] {
 	>run[content]{
-	text-underline: NSUnderlineStyleDouble;
+	// text-underline: NSUnderlineStyleSingle;
 	}
 }
 
 item[collapsed],
+item[leaf][mouseOver],
 item[mouseOver],
 item[collapsed][mouseOver],
 item[expanded][mouseOver],
 item[filtered][mouseOver] {
-	handle-color: @handle-secondary-color;
+	handle-color: none;
 	handle-border-color: @handle-secondary-color;
-	handle-size: @handle-size;
+	handle-size: @handle-size * 1.35;
+	handle-border-width: @handle-size * 1;
 }
 
 item[depth=1][data-type=project],
@@ -404,20 +408,20 @@ item {
 	line-height-multiple: 2 * @ui-scale;
 }
 
-item {
-	handle-border-color: @handle-color;
-	handle-border-width: @handle-border-width;
-}
+// item {
+// 	handle-border-color: none;
+// 	handle-border-width: @handle-border-width;
+// }
 
 
-item[leaf],
-item[leaf][mouseOver] {
+item[leaf]
+{
 	handle-border-color: none;
-	handle-size: @handle-size;
-	line-height-multiple: 2 * @ui-scale;
+	// handle-size: @handle-size;
+	// line-height-multiple: 2 * @ui-scale;
 }
 item[expanded] {
-  handle-border-color: @handle-color;
+  handle-border-color: none;
 }
 
 item[filtered] {
@@ -460,7 +464,7 @@ run[tag] {
 	// font-style: italic;
 	font-weight: bold;
 	font-family: @@selected-tag-font;
-	font-size: @user-font-size * 0.75;
+	font-size: @user-font-size * 1;
 	text-underline: NSUnderlineStyleSingle;
 	&[tagvalue] {
 		color: @text-color;
@@ -470,10 +474,11 @@ run[tag] {
 item[data-pinned]
 {
 	color: @item-pinned-color;
-	>run[tag=data-pinned]
-	{
+	> run[tag=data-pinned],
+	> run[lead] {
 		color: @tag-pinned-color;
 	}
+
 }
 item[data-p],
 item[data-prio],
@@ -512,7 +517,8 @@ item[data-priority="i"]
 	> run[link^=button] {
 		color: @item-prio-1-color;
 	}
-	> run[tagvalue] {
+	> run[tagvalue],
+	> run[lead] {
 		color: @item-prio-1-color;
 	}
 }
@@ -536,7 +542,8 @@ item[data-priority="ii"]
 	> run[link^=button] {
 		color: @item-prio-2-color;
 	}
-	> run[tagvalue] {
+	> run[tagvalue],
+	> run[lead] {
 		color: @item-prio-2-color;
 	}
 }
@@ -560,7 +567,8 @@ item[data-priority="iii"]
 	> run[link^=button] {
 		color: @item-prio-3-color;
 	}
-	> run[tagvalue] {
+	> run[tagvalue],
+	> run[lead] {
 		color: @item-prio-3-color;
 	}
 }
@@ -632,7 +640,7 @@ item[data-done] {
 	> run[tag],
 	> run[link^=button] {
 		font-weight: normal;
-		font-style: italic;
+		// font-style: italic;
 		text-strikethrough-color: @done-strike-color;
 		background-color: @@bg-color;
 		color: @done-tag-color;
@@ -646,7 +654,7 @@ item[data-cancelled] {
 	> run[tag],
 	> run[link^=button] {
 		font-weight: normal;
-		font-style: italic;
+		// font-style: italic;
 		text-strikethrough-color: @cancelled-strike-color;
 		background-color: @@bg-color;
 		color: @cancelled-tag-color;
@@ -675,5 +683,7 @@ item[data----]
 		
 // 	}
 // }
+
+item > run[lead] {text-expansion: 1.25}
 
 @set-theme: 'Blue';
